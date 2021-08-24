@@ -1,2 +1,3 @@
 Michael, Jared, and Keenan
-# PiedPiper
+# PiedPiper (Group Name)
+# Conspiracy Theory Chat (Name of application)
