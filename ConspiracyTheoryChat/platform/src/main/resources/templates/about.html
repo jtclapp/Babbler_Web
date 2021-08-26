@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <meta charset="UTF-8">
 <title>Conspiracy Theory Chat</title>
 <head>
@@ -49,35 +49,12 @@ body {
         <a href="/connect">Connect</a>
         <a href="/view">View</a>
         <a href="/create">Create</a>
-        <a href="/about">About</a>
+        <a href="/about" class="active">About</a>
         <b onclick="location.href='/signUp'">Sign Up</b>
         <b onclick="location.href='/signIn'">Sign In</b>
     </div>
 </head>
 <body>
-<style>
-    label {
-        display:inline-block;
-        width:80px;
-        margin-left:30px;
-        text-align:left;
-    }
-</style>
-<div align="center">
-    <h1 style="#A00000">Sign In</h1>
-    <br/>
-    <br/>
-    <form action="#" th:action="@{/SignIn}" method="post" th:object="${credentials}">
-        <label>Email:</label>
-        <input type="email" th:field="*{email}" required/><br/>
-        <br/>
-        <label>Password:</label>
-        <input type="password" th:field="*{password}" required/><br/>
-        <br/>
-        <br/>
-        <button type="submit">Sign In</button>
-    </form>
-    <br/>
-</div>
+
 </body>
 </html>

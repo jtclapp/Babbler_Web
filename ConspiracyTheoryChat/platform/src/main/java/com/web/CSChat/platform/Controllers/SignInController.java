@@ -17,7 +17,7 @@ public class SignInController
 {
     FirebaseAuth auth;
     FBInitializer fb;
-    @GetMapping("/SignIn")
+    @GetMapping("/signIn")
     public String loadLoginPage(Model model)
     {
         System.out.println("Switching over to Sign In page.");

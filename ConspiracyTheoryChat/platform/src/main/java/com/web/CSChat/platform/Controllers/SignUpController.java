@@ -17,8 +17,8 @@ public class SignUpController
 {
     FirebaseAuth auth;
     FBInitializer fb;
-    @GetMapping("/SignUp")
-    public String loadLoginPage(Model model)
+    @GetMapping("/signUp")
+    public String loadSignUpPage(Model model)
     {
         System.out.println("Switching over to Sign Up page.");
         model.addAttribute("signUpCredentials", new Credentials());
@@ -35,6 +35,7 @@ public class SignUpController
                 .setPassword(credentials.getPassword())
                 .setEmailVerified(false)
                 .setDisabled(false);
+
         UserRecord userRecord = FirebaseAuth.getInstance().createUser(request);
         System.out.println("Successfully created new user: " + userRecord.getUid());
         return "index";
