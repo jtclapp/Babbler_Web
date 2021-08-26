@@ -1,54 +1,30 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>T&T 3D Solutions</title>-->
-<!--</head>-->
-<!--<body bgcolor="#808080">-->
-
-<!--<div align="center">-->
-<!--    <h1 style="color: #A00000">Sign Up To Buy Products Now!</h1>-->
-<!--    <a href="/add">Sign Up</a>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div align="right">
-        <a href="/add" >Sign Up</a>
-        &emsp;
-        <a href="/login">Sign In</a>
-        &emsp;
+        <button type="button" onclick="location.href='/SignIn'" value="Submit">Sign In</button>
+        <button type="button" onclick="location.href='/SignUp'" value="Submit">Sign Up</button>
     </div>
     <meta charset="UTF-8">
-    <title>Bruno's Closet</title>
+    <title>Conspiracy Theory Chat</title>
     <link th:href="@{/css/main.css}" rel="stylesheet" />
-    <script type="text/javascript" th:src="@{/js/demo.js}"></script>
 
 </head>
 <div align="center">
-    <h1>Bruno's Closet</h1>
+    <h1>Conspiracy Theory Chat</h1>
 </div>
 <br>
 <br>
 <br>
-<div align="center">
-    <a href="/WomensClothing"><h2 style="float:center">Women Clothes</h2></a>
     <br>
     <br>
     <br>
-    <p style="float:center">
-        <strong>This is a basic description of the products offered... These products include...</strong></p>
     <br>
     <br>
     <br>
-    <a href="/MensClothing"><h2 style="float:center">Men Clothes</h2></a>
     <br>
     <br>
     <br>
-    <p style="float:center">
-        <strong>This is a basic description of the products offered... These products include...     </strong></p>
     <br>
     <br>
     <br>
@@ -63,7 +39,5 @@
 <br>
 <br>
 <br>
-<button type="button" th:onclick="showAlert()">Exit</button>
-
 </body>
 </html>

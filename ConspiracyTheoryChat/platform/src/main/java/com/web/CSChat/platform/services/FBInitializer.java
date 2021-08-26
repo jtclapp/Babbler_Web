@@ -1,4 +1,4 @@
-package com.web.CSChat.platform.service;
+package com.web.CSChat.platform.services;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
