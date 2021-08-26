@@ -2,12 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Sign In</title>
+    <title>Sign Up</title>
 </head>
 <body bgcolor="#FDEDEC">
 <div align="center">
-    <h1 style="#A00000">Sign In</h1>
-    <form action="#" th:action="@{/SignIn}" method="post" th:object="${credentials}">
+    <h1 style="#A00000">Sign Up To Start Discussing Today!</h1>
+    <form action="#" th:action="@{/SignUp}" method="post" th:object="${signUpCredentials}">
+        <label>Username:</label>
+        <input type="text" th:field="*{username}" required/><br/>
+        <br/>
         <label>Email:</label>
         <input type="email" th:field="*{email}" required/><br/>
         <br/>
@@ -15,7 +18,7 @@
         <input type="password" th:field="*{password}" required/><br/>
         <br/>
         <br/>
-        <button type="submit">Sign In</button>
+        <button type="submit">Sign Up</button>
     </form>
     <br/>
 </div>

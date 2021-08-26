@@ -1,8 +1,10 @@
 package com.web.CSChat.platform.Controllers;
 
 import com.google.api.client.auth.oauth2.Credential;
+import com.google.firebase.auth.FirebaseAuth;
 import com.web.CSChat.platform.models.Credentials;
 import com.web.CSChat.platform.models.User;
+import com.web.CSChat.platform.services.FBInitializer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,19 +15,20 @@ import java.io.IOException;
 @Controller
 public class SignInController
 {
+    FirebaseAuth auth;
+    FBInitializer fb;
     @GetMapping("/SignIn")
     public String loadLoginPage(Model model)
     {
         System.out.println("Switching over to Sign In page.");
         model.addAttribute("credentials", new Credentials());
-
         return "signIn";
     }
     @PostMapping("/SignIn")
     public String loginAttempt(@ModelAttribute("credentials") Credentials credentials) throws IOException
     {
-        System.out.println("User Credentials: " + credentials.getUsername() + " : " + credentials.getPassword());
-        // Use Firebase Authentication
+        fb = new FBInitializer();
+        auth = FirebaseAuth.getInstance();
         return "index";
     }
 }
