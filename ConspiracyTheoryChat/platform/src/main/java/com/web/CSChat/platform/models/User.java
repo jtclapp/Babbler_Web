@@ -2,48 +2,36 @@ package com.web.CSChat.platform.models;
 
 public class User
 {
-    public String gender;
-    public String birthday;
-    public String email;
-    public String name;
-    public String password;
-    public String phone_number;
+    public String id;
+    public String username;
+    public String imageURL;
 
-    public String getPhone_number() {
-        return phone_number;
+    public User(String id, String username, String imageURL) {
+        this.id = id;
+        this.username = username;
+        this.imageURL = imageURL;
     }
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public User() {
     }
-    public String getEmail() {
-        return email;
+    public String getId() {
+        return id;
     }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getPassword() {
-        return password;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getUsername() {
+        return username;
     }
-    public String getName() {
-        return name;
+    public void setUsername(String username) {
+        this.username = username;
     }
-    public void setName(String name) {
-        this.name = name;
+
+    public String getImageURL() {
+        return imageURL;
     }
-    public String getBirthday() {
-        return birthday;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-    public String getGender() {
-        return gender;
-    }
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+
 }

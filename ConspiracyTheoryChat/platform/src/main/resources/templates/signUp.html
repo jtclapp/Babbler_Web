@@ -67,20 +67,24 @@ body {
     <h1 style="#A00000">Sign Up</h1>
     <br/>
     <br/>
-    <form action="#" th:action="@{/SignUp}" method="post" th:object="${signUpCredentials}">
+    <form action="#" th:action="@{/signedUp}" method="post" th:object="${signUpCredentials}">
         <label>Username:</label>
-        <input type="text" size="20" th:field="*{username}" required/><br/>
+        <input minlength="3" type="text" size="20" th:field="*{username}" required/><br/>
         <br/>
         <label>Email:</label>
         <input type="email" th:field="*{email}" required/><br/>
         <br/>
         <label>Password:</label>
-        <input type="password" th:field="*{password}" required/><br/>
+        <input minlength="8" type="password" th:field="*{password}" required/><br/>
         <br/>
         <br/>
         <button type="submit">Sign Up</button>
     </form>
     <br/>
+
+</div>
+<div align="center" th:if="${param.error}" class="alert alert-danger">
+    Invalid username or email.
 </div>
 </body>
 </html>

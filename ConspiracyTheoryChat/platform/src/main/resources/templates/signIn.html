@@ -63,16 +63,17 @@ body {
         text-align:left;
     }
 </style>
+
 <div align="center">
     <h1 style="#A00000">Sign In</h1>
     <br/>
     <br/>
     <form action="#" th:action="@{/SignIn}" method="post" th:object="${credentials}">
         <label>Email:</label>
-        <input type="email" th:field="*{email}" required/><br/>
+        <input id="email" type="email" th:field="*{email}" required/><br/>
         <br/>
         <label>Password:</label>
-        <input type="password" th:field="*{password}" required/><br/>
+        <input id="password" type="password" th:field="*{password}" required/><br/>
         <br/>
         <br/>
         <button type="submit">Sign In</button>
