@@ -1,7 +1,8 @@
 package com.web.CSChat.platform.Controllers;
 
-import com.google.firebase.auth.*;
-import com.google.firebase.database.*;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.UserRecord;
 import com.web.CSChat.platform.models.Credentials;
 import com.web.CSChat.platform.models.User;
 import com.web.CSChat.platform.services.FBInitializer;
@@ -11,11 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @Controller
