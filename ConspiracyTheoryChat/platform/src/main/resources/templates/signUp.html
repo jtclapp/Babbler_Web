@@ -64,7 +64,7 @@ body {
     }
 </style>
 <div align="center">
-    <h1 style="#A00000">Sign Up</h1>
+    <h1>Sign Up</h1>
     <br/>
     <br/>
     <form action="#" th:action="@{/signedUp}" method="post" th:object="${signUpCredentials}">
@@ -81,7 +81,6 @@ body {
         <button type="submit">Sign Up</button>
     </form>
     <br/>
-
 </div>
 <div align="center" th:if="${param.error}" class="alert alert-danger">
     Invalid username or email.

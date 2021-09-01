@@ -7,6 +7,14 @@ import com.web.CSChat.platform.models.Credentials;
 import com.web.CSChat.platform.models.User;
 import com.web.CSChat.platform.services.FBInitializer;
 import com.web.CSChat.platform.services.UserService;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +22,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @Controller
@@ -23,11 +33,16 @@ public class SignUpController
     FBInitializer fb;
     User user;
     UserService userService;
-
+    List<GrantedAuthority> authorities;
+    boolean result;
+    Authentication authentication;
     @GetMapping("/signUp")
     public String loadSignUpPage(Model model)
     {
-        System.out.println("Switching over to Sign Up page.");
+        authorities = new ArrayList<GrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority("ANONYMOUS_USER"));
+        authentication = new UsernamePasswordAuthenticationToken(null, null, authorities);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         model.addAttribute("signUpCredentials", new Credentials());
         return "signUp";
     }
@@ -37,7 +52,6 @@ public class SignUpController
         fb = new FBInitializer();
         auth = FirebaseAuth.getInstance();
         userService = new UserService();
-
         UserRecord.CreateRequest request = new UserRecord.CreateRequest()
                 .setDisplayName(credentials.getUsername())
                 .setEmail(credentials.getEmail())
@@ -48,13 +62,23 @@ public class SignUpController
         UserRecord userRecord;
         try {
             userRecord = FirebaseAuth.getInstance().createUser(request);
-            user = new User(userRecord.getUid(),userRecord.getDisplayName(),"default");
+            user = new User(userRecord.getUid(),userRecord.getDisplayName(),userRecord.getEmail(),credentials.getPassword(),"default");
             userService.createUser(user);
+            result = userService.authenticateUser(credentials.getEmail(),credentials.getPassword());
         } catch (FirebaseAuthException e) {
             return "redirect:signUp?error";
         }
-//        auth.generateEmailVerificationLink(userRecord.getEmail());
-        System.out.println("Successfully created new user: " + userRecord.getUid());
-        return "index";
+        if(result) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if ((authentication instanceof UsernamePasswordAuthenticationToken)) {
+                String currentUserName = authentication.getName();
+                System.out.println("Current User: " + currentUserName);
+            } else {
+                System.out.println("Error Occurred...");
+            }
+            return "index";
+        } else {
+            return "redirect:signUp?error";
+        }
     }
 }

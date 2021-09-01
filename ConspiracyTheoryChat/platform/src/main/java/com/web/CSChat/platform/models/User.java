@@ -2,14 +2,18 @@ package com.web.CSChat.platform.models;
 
 public class User
 {
-    public String id;
-    public String username;
-    public String imageURL;
+    private String id;
+    private String username;
+    private String imageURL;
+    private String email;
+    private String password;
 
-    public User(String id, String username, String imageURL) {
+    public User(String id, String username, String email, String password, String imageURL) {
         this.id = id;
         this.username = username;
         this.imageURL = imageURL;
+        this.email = email;
+        this.password = password;
     }
     public User() {
     }
@@ -34,4 +38,17 @@ public class User
         this.imageURL = imageURL;
     }
 
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
