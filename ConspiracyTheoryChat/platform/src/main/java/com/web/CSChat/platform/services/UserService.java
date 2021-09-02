@@ -47,7 +47,7 @@ public class UserService {
     }
     public boolean authenticateUser(String email, String password) throws ExecutionException, InterruptedException {
         List<User> userList = getAllUsers();
-        authorities = new ArrayList<GrantedAuthority>();
+        authorities = new ArrayList<>();
         userDetailsManager = new InMemoryUserDetailsManager();
         authorities.add(new SimpleGrantedAuthority("USER"));
         for(int i = 0; i <= userList.size()-1; i++)
@@ -64,4 +64,16 @@ public class UserService {
         }
         return false;
     }
+    public User getUser(String email) throws ExecutionException, InterruptedException {
+        List<User> userList = getAllUsers();
+        for(int i = 0; i <= userList.size()-1; i++)
+        {
+            if(userList.get(i).getEmail().equals(email))
+            {
+                return userList.get(i);
+            }
+        }
+        return new User();
+    }
+    // Add update and delete later
 }
