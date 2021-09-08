@@ -20,6 +20,7 @@ public class FBInitializer {
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .setDatabaseUrl("https://conspiracy-theory-chat-default-rtdb.firebaseio.com")
+                .setStorageBucket("conspiracy-theory-chat.appspot.com")
                 .build();
 
         FirebaseApp.initializeApp(options);

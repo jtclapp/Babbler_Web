@@ -4,7 +4,6 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.web.CSChat.platform.models.Thread;
-import com.web.CSChat.platform.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
