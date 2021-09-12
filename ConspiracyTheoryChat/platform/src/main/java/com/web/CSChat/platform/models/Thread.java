@@ -2,28 +2,31 @@ package com.web.CSChat.platform.models;
 
 public class Thread
 {
-    private String id;
     private String title;
     private String sender;
-    private String type;
     private String caption;
     private String date;
     private String image1;
     private String image2;
     private String image3;
+    private String image4;
+    private String image5;
 
-    public Thread(String id, String title, String sender, String type, String caption,
-                  String date, String image1, String image2, String image3) {
-        this.id = id;
+    public Thread(String title, String sender,
+                  String caption, String date,
+                  String image1, String image2, String image3,
+                  String image4, String image5) {
         this.title = title;
         this.sender = sender;
-        this.type = type;
         this.caption = caption;
         this.date = date;
         this.image1 = image1;
         this.image2 = image2;
         this.image3 = image3;
+        this.image4 = image4;
+        this.image5 = image5;
     }
+
     public Thread()
     {
 
@@ -35,25 +38,11 @@ public class Thread
         this.title = title;
     }
 
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getSender() {
         return sender;
     }
     public void setSender(String sender) {
         this.sender = sender;
-    }
-
-    public String getType() {
-        return type;
-    }
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getCaption() {
@@ -89,5 +78,19 @@ public class Thread
     }
     public void setImage3(String image3) {
         this.image3 = image3;
+    }
+
+    public String getImage4() {
+        return image4;
+    }
+    public void setImage4(String image4) {
+        this.image4 = image4;
+    }
+
+    public String getImage5() {
+        return image5;
+    }
+    public void setImage5(String image5) {
+        this.image5 = image5;
     }
 }

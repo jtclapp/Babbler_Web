@@ -19,7 +19,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 public class StorageService
@@ -66,7 +65,4 @@ public class StorageService
         fos.close();
         return convertedFile;
     }
-//    private String generateFileName(MultipartFile multiPart) {
-//        return new Date().getTime() + "-" + Objects.requireNonNull(multiPart.getOriginalFilename()).replace(" ", "_");
-//    }
 }

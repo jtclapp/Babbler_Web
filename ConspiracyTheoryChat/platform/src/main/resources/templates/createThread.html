@@ -40,8 +40,14 @@ body {
     font-size: 13px;
 }
 .topNav b:hover {
-  background-color: #a9a9a9;
-  color: black;
+    background-color: #a9a9a9;
+    color: black;
+}
+img {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 3px;
+    padding-right: 3px;
 }
 </style>
     <div class="topNav">
@@ -56,21 +62,38 @@ body {
 </head>
 <body>
 <br>
+<br/>
+<tr th:each="photo: ${Photos}">
+    <img th:src="${photo}" width="300" height="300"/>
+</tr>
 <br>
-<div align="center">
-<form th:action="@{/create/save}" method="post" enctype="multipart/form-data" >
-        <input type="file" name="files" accept="image/*" multiple>
+<br/>
+<div>
+<form th:action="@{/create/add}" method="post" enctype="multipart/form-data" >
+        <input type="file" name="files" accept="image/*" multiple required>
         <br>
         <br>
+        <div th:align="center">
         <input type="submit" value="Add Items">
+        </div>
 </form>
 </div>
 <br>
 <br/>
-    <tr th:each="photo: ${Photos}">
-        <div th:align="center">
-            <img th:src="${photo}" width="150" height="150"/>
-        </div>
-    </tr>
+<div th:if="${capacityMessage}" th:align="center">
+    <div th:text="${capacityMessage}"/>
+</div>
+
+<form th:action="@{/create/save}" method="post" th:object="${createdThread}">
+    <label>Thread Title:</label>
+    <input type="text" th:field="*{title}" required/><br/>
+    <div th:align="center">
+    <label>Caption:</label>
+    <input type="text" th:field="*{caption}" required/><br/>
+    <br>
+    <br>
+    <input type="submit" value="Create Thread">
+    </div>
+</form>
 </body>
 </html>

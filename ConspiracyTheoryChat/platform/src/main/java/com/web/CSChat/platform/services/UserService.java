@@ -65,15 +65,28 @@ public class UserService {
         return false;
     }
     public User getUser(String email) throws ExecutionException, InterruptedException {
-        List<User> userList = getAllUsers();
-        for(int i = 0; i <= userList.size()-1; i++)
-        {
-            if(userList.get(i).getEmail().equals(email))
+        CollectionReference users = getUserCollection();
+        ApiFuture<QuerySnapshot> querySnapshot = users.get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            User usr = doc.toObject(User.class);
+            if(usr.getEmail().equals(email))
             {
-                return userList.get(i);
+                return usr;
             }
         }
         return new User();
+    }
+    public String getUserID(String email) throws ExecutionException, InterruptedException {
+        CollectionReference users = getUserCollection();
+        ApiFuture<QuerySnapshot> querySnapshot = users.get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            User usr = doc.toObject(User.class);
+            if(usr.getEmail().equals(email))
+            {
+                return usr.getId();
+            }
+        }
+        return "Invalid";
     }
     // Add update and delete later
 }

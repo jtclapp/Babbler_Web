@@ -4,6 +4,8 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.web.CSChat.platform.models.Thread;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ import java.util.concurrent.ExecutionException;
 public class ThreadService
 {
     private Firestore firestore;
+    private String currentUserName;
+    private UserService userService;
 
     private CollectionReference getThreadCollection() {
         firestore = FirestoreClient.getFirestore();
@@ -21,7 +25,7 @@ public class ThreadService
     }
     public String createThread(Thread thread) throws ExecutionException, InterruptedException {
                 ApiFuture<WriteResult> apiFuture =
-                getThreadCollection().document(thread.getId()).set(thread);
+                getThreadCollection().document().set(thread);
                 return apiFuture.get().getUpdateTime().toString();
     }
     public List<Thread> getAllThreads() throws ExecutionException, InterruptedException {
@@ -35,16 +39,16 @@ public class ThreadService
         }
         return threadList;
     }
-    public Thread getThread(String id) throws ExecutionException, InterruptedException {
-        List<Thread> threadList = getAllThreads();
-        for(int i = 0; i <= threadList.size()-1; i++)
-        {
-            if(threadList.get(i).getId().equals(id))
-            {
-                return threadList.get(i);
-            }
-        }
-        return new Thread();
-    }
+//    public Thread getThread(String id) throws ExecutionException, InterruptedException {
+//        List<Thread> threadList = getAllThreads();
+//        for(int i = 0; i <= threadList.size()-1; i++)
+//        {
+//            if(threadList.get(i).getId().equals(id))
+//            {
+//                return threadList.get(i);
+//            }
+//        }
+//        return new Thread();
+//    }
     // Add update and delete later
 }
