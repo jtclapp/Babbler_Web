@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PiedPiper.iml" filepath="$PROJECT_DIR$/.idea/PiedPiper.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ConspiracyTheoryChat/platform/platform.iml" filepath="$PROJECT_DIR$/ConspiracyTheoryChat/platform/platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Blabber.iml" filepath="$PROJECT_DIR$/.idea/Blabber.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Blabber/platform/platform.iml" filepath="$PROJECT_DIR$/Blabber/platform/platform.iml" />
     </modules>
   </component>
 </project>

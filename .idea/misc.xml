@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/platform/platform/pom.xml" />
         <option value="$PROJECT_DIR$/ConspiracyTheoryChat/platform/pom.xml" />
+        <option value="$PROJECT_DIR$/Blabber/platform/pom.xml" />
       </list>
     </option>
   </component>
