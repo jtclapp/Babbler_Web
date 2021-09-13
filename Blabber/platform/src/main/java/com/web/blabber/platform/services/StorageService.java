@@ -30,7 +30,7 @@ public class StorageService
 
     public StorageService() throws IOException, ExecutionException, InterruptedException {
         this.log = (Logger) LoggerFactory.getLogger(CreateThreadController.class);
-        this.serviceAccount = new FileInputStream("ConspiracyTheoryChat/platform/src/main/resources/key.json");
+        this.serviceAccount = new FileInputStream("Blabber/platform/src/main/resources/key.json");
         this.storageOptions = StorageOptions.newBuilder().setProjectId("conspiracy-theory-chat").setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         this.currentUserName = authentication.getName();
