@@ -3,21 +3,15 @@
 <meta charset="UTF-8">
 <title>Conspiracy Theory Chat</title>
 <head>
-<body>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
 
-.logo {
-     display: block;
-     margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-    }
     .home {
      display: block;
     width: 10vh;
     }
-.layer2{
+
+    .layer2{
     position:auto;
     margin-left: auto;
     margin-right: auto;
@@ -25,21 +19,6 @@
     Width: 60%;
     background:#333;
 padding: 10px;
-
-}
-
-.layer3{
-    position:auto;
-    margin-left: auto;
-    margin-right: auto;
-    height:300px;
-    Width: 300px;
-    background:black;
-    border-style: inset;
-    border-color: rgba(194,6,6,1);
-padding: 10px;
-color: white;
-
 
 }
 body {
@@ -56,10 +35,7 @@ body {
 .topNav {
   overflow: hidden;
   background-color: #333;
-
 }
-
-
 
 .topNav a {
   float: left;
@@ -68,17 +44,14 @@ body {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
-
 }
 .topNav a:hover {
   background-color: #a9a9a9;
   color: black;
-
 }
 .topNav a.active {
   background-color: #C20606;
   color: white;
-
 }
 .topNav b {
     float: right;
@@ -87,12 +60,10 @@ body {
     padding: 12px 14px;
     text-decoration: none;
     font-size: 13px;
-
 }
 .topNav b:hover {
   background-color: #a9a9a9;
   color: black;
-
 }
 </style>
     <div class="topNav">
@@ -105,6 +76,7 @@ body {
         <b onclick="location.href='/signIn'">Sign In</b>
     </div>
 </head>
+<body>
 <style>
     label {
         display:inline-block;
@@ -113,30 +85,28 @@ body {
         text-align:left;
     }
 </style>
-
-<div align="center"class="layer2">
-    </br>
+<div align="center" class="layer2">
+    <h1 style="#A00000">Sign Up</h1>
     <br/>
-
-    <div align="center" class="layer3">
-        <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
-    <h1 style="#A00000">Sign In</h1>
-
-    <form action="#" th:action="@{/SignIn}" method="post" th:object="${credentials}">
+    <br/>
+    <form action="#" th:action="@{/signedUp}" method="post" th:object="${signUpCredentials}">
+        <label>Username:</label>
+        <input minlength="3" type="text" size="20" th:field="*{username}" required/><br/>
+        <br/>
         <label>Email:</label>
-        <input id="email" type="email" th:field="*{email}" required/><br/>
+        <input type="email" th:field="*{email}" required/><br/>
         <br/>
         <label>Password:</label>
-        <input id="password" type="password" th:field="*{password}" required/><br/>
+        <input minlength="8" type="password" th:field="*{password}" required/><br/>
         <br/>
         <br/>
-        <button type="submit">Sign In</button>
-
+        <button type="submit">Sign Up</button>
     </form>
-        </div>
+    <br/>
 
 </div>
-
-
+<div align="center" th:if="${param.error}" class="alert alert-danger">
+    Invalid username or email.
+</div>
 </body>
 </html>
