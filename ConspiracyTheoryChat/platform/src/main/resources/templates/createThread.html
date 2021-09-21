@@ -5,6 +5,12 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+
+    .home {
+     display: block;
+    width: 10vh;
+    }
+
     .layer2{
     position:auto;
     margin-left: auto;
@@ -61,7 +67,7 @@ body {
 }
 </style>
     <div class="topNav">
-        <a href="/">Home</a>
+        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}" ></a>
         <a href="/connect">Connect</a>
         <a href="/view">View</a>
         <a href="/create" class="active">Create</a>

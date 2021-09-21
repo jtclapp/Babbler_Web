@@ -6,6 +6,11 @@
 <body>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+
+    .home {
+     display: block;
+    width: 10vh;
+    }
 .layer2{
     position:auto;
     margin-left: auto;
@@ -14,6 +19,21 @@
     Width: 60%;
     background:#333;
 padding: 10px;
+
+}
+
+.layer3{
+    position:auto;
+    margin-left: auto;
+    margin-right: auto;
+    height:200px;
+    Width: 300px;
+    background:black;
+    border-style: inset;
+    border-color: rgba(194,6,6,1);
+padding: 10px;
+color: white;
+
 
 }
 body {
@@ -70,7 +90,7 @@ body {
 }
 </style>
     <div class="topNav">
-        <a href="/">Home</a>
+        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}" ></a>
         <a href="/connect">Connect</a>
         <a href="/view">View</a>
         <a href="/create">Create</a>
@@ -91,6 +111,7 @@ body {
 <div align="center"class="layer2">
     </br>
     <br/>
+    <div align="center" class="layer3">
     <h1 style="#A00000">Sign In</h1>
     <form action="#" th:action="@{/SignIn}" method="post" th:object="${credentials}">
         <label>Email:</label>
@@ -101,7 +122,9 @@ body {
         <br/>
         <br/>
         <button type="submit">Sign In</button>
+
     </form>
+        </div>
 
 </div>
 
