@@ -68,28 +68,48 @@ body {
 </style>
     <div class="topNav">
         <a href="/"><img class="home" th:src="@{images/Babbler_White.png}" ></a>
-        <a href="/connect" class="active">Connect</a>
+        <a href="/connect">Connect</a>
         <a href="/view">View</a>
-        <a href="/create">Create</a>
+        <a href="/create" class="active">Create</a>
         <a href="/about">About</a>
         <b onclick="location.href='/signUp'">Sign Up</b>
         <b onclick="location.href='/signIn'">Sign In</b>
     </div>
 </head>
 <body>
-<div class="layer2">
-    <tr th:each="User: ${allUsers}">
+<br>
+<br/>
+<tr th:each="photo: ${Photos}">
+    <img th:src="${photo}" width="300" height="300"/>
+</tr>
+<br>
+<br/>
+<div>
+    <form th:action="@{/create/add}" method="post" enctype="multipart/form-data" >
+        <input type="file" name="files" accept="image/*" multiple required>
         <br>
-        <div th:if= "${User.imageURL == 'default'}">
-            <img th:src="@{images/default.png}" width="75" height="75"/>
-            <td th:text="${User.username}"></td>
-        </div>
-        <div th:if= "${User.imageURL != 'default'}">
-            <img th:src="${User.imageURL}" width="75" height="75"/>
-            <td th:text="${User.username}"></td>
-        </div>
         <br>
-    </tr>
+        <div th:align="center">
+            <input type="submit" value="Add Items">
+        </div>
+    </form>
 </div>
+<br>
+<br/>
+<div th:if="${capacityMessage}" th:align="center">
+    <div th:text="${capacityMessage}"/>
+</div>
+
+<form th:action="@{/create/save}" method="post" th:object="${createdThread}">
+    <label>Thread Title:</label>
+    <input type="text" th:field="*{title}" required/><br/>
+    <div th:align="center">
+        <label>Caption:</label>
+        <input type="text" th:field="*{caption}" required/><br/>
+        <br>
+        <br>
+        <input type="submit" value="Create Thread">
+    </div>
+</form>
 </body>
 </html>
