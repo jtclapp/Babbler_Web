@@ -91,7 +91,7 @@ body {
 <div class = "layer2">
     <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
 
-    <span th:text="${currentUser}" th:size="20"/>
+    <span th:text="${currentUser}" th:size="20" />
 </div>
 <div align="center" th:if="${param.error}" class="alert alert-danger">
     Invalid username or email.
