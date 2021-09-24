@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<title>Conspiracy Theory Chat</title>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+    .home {
+     display: block;
+    width: 10vh;
+    }
+
+    .layer2{
+    position:auto;
+    margin-left: auto;
+    margin-right: auto;
+    height:100vh;
+    Width: 60%;
+    background:#333;
+padding: 10px;
+
+}
+body {
+ margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
+ background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(194,6,6,1) 51%, rgba(0,0,0,1) 100%);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align:center;
+}
+
+.topNav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topNav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topNav a:hover {
+  background-color: #a9a9a9;
+  color: black;
+}
+.topNav a.active {
+  background-color: #C20606;
+  color: white;
+}
+.topNav b {
+    float: right;
+    color: #f2f2f2;
+    text-align: right;
+    padding: 12px 14px;
+    text-decoration: none;
+    font-size: 13px;
+}
+.topNav b:hover {
+  background-color: #a9a9a9;
+  color: black;
+}
+</style>
+    <div class="topNav">
+        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}" ></a>
+        <a href="/connect">Connect</a>
+        <a href="/view">View</a>
+        <a href="/create">Create</a>
+        <a href="/about">About</a>
+        <b onclick="location.href='/signUp'">Sign Up</b>
+        <b onclick="location.href='/signIn'">Sign In</b>
+    </div>
+</head>
+<body>
+<style>
+    label {
+        display:inline-block;
+        width:80px;
+        margin-left:30px;
+        text-align:left;
+    }
+</style>
+<div align="center" class="layer2">
+    <h1 style="#A00000">Sign Up</h1>
+    <br/>
+    <br/>
+    <form action="#" th:action="@{/signedUp}" method="post" th:object="${signUpCredentials}">
+        <label>Username:</label>
+        <input minlength="3" type="text" size="20" th:field="*{username}" required/><br/>
+        <br/>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required/><br/>
+        <br/>
+        <label>Password:</label>
+        <input minlength="8" type="password" th:field="*{password}" required/><br/>
+        <br/>
+        <br/>
+        <button type="submit">Sign Up</button>
+    </form>
+    <br/>
+
+</div>
+<div align="center" th:if="${param.error}" class="alert alert-danger">
+    Invalid username or email.
+</div>
+</body>
+</html>
