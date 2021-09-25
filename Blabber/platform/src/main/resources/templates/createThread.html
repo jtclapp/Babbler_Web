@@ -67,9 +67,9 @@
         }
     </style>
     <div class="topNav">
-        <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
-        <a href="/" class="active">Home</a>
-        <a href="/view">Threads</a>
+        <img class="home" th:src="@{/images/Babbler_White.png}" width="45" height="45">
+        <a href="/">Home</a>
+        <a href="/view" class="active">Threads</a>
         <a href="/connect">Users</a>
         <!--        <a href="/about">About</a>-->
         <div th:if="${currentUser}">
@@ -82,39 +82,46 @@
     </div>
 </head>
 <body>
-<br>
-<br/>
-<tr th:each="photo: ${Photos}">
-    <img th:src="${photo}" width="300" height="300"/>
-</tr>
-<br>
-<br/>
-<div>
-    <form th:action="@{/create/add}" method="post" enctype="multipart/form-data" >
-        <input type="file" name="files" accept="image/*" multiple required>
-        <br>
-        <br>
-        <div th:align="center">
-            <input type="submit" value="Add Items">
-        </div>
-    </form>
-</div>
-<br>
-<br/>
-<div th:if="${capacityMessage}" th:align="center">
-    <div th:text="${capacityMessage}"/>
-</div>
+<div class="layer2">
+    <div class="layer3">
 
-<form th:action="@{/create/save}" method="post" th:object="${createdThread}">
-    <label>Thread Title:</label>
-    <input type="text" th:field="*{title}" required/><br/>
-    <div th:align="center">
-        <label>Caption:</label>
-        <input type="text" th:field="*{caption}" required/><br/>
+        <tr th:each="photo: ${Photos}">
+            <img th:src="${photo}" width="300" height="300"/>
+        </tr>
         <br>
+        <br/>
+
+        <div>
+
+            <form th:action="@{/create/add}" method="post" enctype="multipart/form-data" >
+                <input type="file" name="files" accept="image/*" multiple required>
+                <br>
+                <br>
+                <div th:align="center">
+                    <input type="submit" value="Add Items">
+                </div>
+            </form>
+
+        </div>
         <br>
-        <input type="submit" value="Create Thread">
+        <br/>
+        <div th:if="${capacityMessage}" th:align="center">
+            <div th:text="${capacityMessage}"/>
+        </div>
+
+        <form th:action="@{/create/save}" method="post" th:object="${createdThread}">
+            <label>Thread Title:</label>
+            <input type="text" th:field="*{title}" required/><br/>
+            <div th:align="center">
+                <label>Caption:</label>
+                <input type="text" th:field="*{caption}" required/><br/>
+                <br>
+                <br>
+                <input type="submit" value="Create Thread">
+            </div>
+
+        </form>
     </div>
-</form>
+</div>
 </body>
 </html>

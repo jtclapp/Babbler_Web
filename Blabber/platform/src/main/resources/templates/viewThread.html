@@ -66,6 +66,21 @@
             background-color: #a9a9a9;
             color: black;
         }
+        .button {
+            background-color: black;
+            border: none;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+        .button5 {border-radius: 60%;}
     </style>
     <div class="topNav">
         <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
@@ -84,7 +99,7 @@
 </head>
 <body>
 <div class="layer2">
-
+    <button class="button button5" onclick="location.href='/create'">Add</button>
 </div>
 </body>
 </html>

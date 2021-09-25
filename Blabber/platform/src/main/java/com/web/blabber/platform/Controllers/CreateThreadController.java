@@ -48,6 +48,11 @@ public class CreateThreadController
     }
     @PostMapping("/create/add")
     public String addToThread(@ModelAttribute("files") MultipartFile[] files, Model model) throws Exception {
+        Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = user_authentication.getName();
+        if (!currentUserName.equals("") && !currentUserName.equals("anonymousUser")) {
+            model.addAttribute("currentUser", currentUserName);
+        }
         storageService = new StorageService();
         for (MultipartFile file : files) {
             if(fileList.size() > 4)
