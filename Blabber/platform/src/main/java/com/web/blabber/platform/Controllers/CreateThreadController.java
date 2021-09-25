@@ -36,6 +36,11 @@ public class CreateThreadController
     }
     @GetMapping("/create")
     public String loadCreateThreadPage(Model model) throws IOException {
+        Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = user_authentication.getName();
+        if (!currentUserName.equals("") && !currentUserName.equals("anonymousUser")) {
+            model.addAttribute("currentUser", currentUserName);
+        }
         fileList = new ArrayList<>();
         model.addAttribute("createdThread",new Thread());
         System.out.println("Switching over to the create thread page.");

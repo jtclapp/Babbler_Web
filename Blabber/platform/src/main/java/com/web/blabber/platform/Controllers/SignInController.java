@@ -29,12 +29,13 @@ public class SignInController
     UserService userService;
     @GetMapping("/signIn")
     public String loadLoginPage(Model model) {
-        authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("ANONYMOUS_USER"));
-        authentication = new UsernamePasswordAuthenticationToken(null, null, authorities);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        model.addAttribute("credentials", new Credentials());
-        return "signIn";
+            Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentUserName = user_authentication.getName();
+            if (!currentUserName.equals("") && !currentUserName.equals("anonymousUser")) {
+                model.addAttribute("currentUser", currentUserName);
+            }
+            model.addAttribute("credentials", new Credentials());
+            return "signIn";
     }
     @PostMapping("/SignIn")
     public String loginAttempt(@ModelAttribute("credentials") Credentials credentials) throws ExecutionException, InterruptedException

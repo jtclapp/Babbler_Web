@@ -1,79 +1,84 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<title>Conspiracy Theory Chat</title>
+<title>Blabber</title>
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+        .home {
+            display: block;
+            width: 10vh;
+        }
+        .layer2{
+            position:auto;
+            margin-left: auto;
+            margin-right: auto;
+            height:100vh;
+            Width: 60%;
+            background:#333;
+            padding: 10px;
 
-    .home {
-     display: block;
-    width: 10vh;
-    }
-
-    .layer2{
-    position:auto;
-    margin-left: auto;
-    margin-right: auto;
-    height:100vh;
-    Width: 60%;
-    background:#333;
-padding: 10px;
-
-}
-body {
- margin: auto;
-  font-family: Arial, Helvetica, sans-serif;
- background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(194,6,6,1) 51%, rgba(0,0,0,1) 100%);
-    height: 100%;
-    margin: 0;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    text-align:center;
-}
-
-.topNav {
-  overflow: hidden;
-  background-color: #333;
-}
-
-.topNav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: left;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-.topNav a:hover {
-  background-color: #a9a9a9;
-  color: black;
-}
-.topNav a.active {
-  background-color: #C20606;
-  color: white;
-}
-.topNav b {
-    float: right;
-    color: #f2f2f2;
-    text-align: right;
-    padding: 12px 14px;
-    text-decoration: none;
-    font-size: 13px;
-}
-.topNav b:hover {
-  background-color: #a9a9a9;
-  color: black;
-}
-</style>
+        }
+        body {
+            margin: auto;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(194,6,6,1) 51%, rgba(0,0,0,1) 100%);
+            height: 100%;
+            margin: 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .topNav {
+            overflow: hidden;
+            background-color: #333;
+        }
+        .topNav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: left;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        .topNav a:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        .topNav a.active {
+            background-color: #C20606;
+            color: white;
+        }
+        .topNav b {
+            float: right;
+            color: #f2f2f2;
+            text-align: right;
+            padding: 12px 14px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .topNav b:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+    </style>
     <div class="topNav">
-        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}" ></a>
-        <a href="/connect">Connect</a>
-        <a href="/view">View</a>
-        <a href="/create" class="active">Create</a>
-        <a href="/about">About</a>
-        <b onclick="location.href='/signUp'">Sign Up</b>
-        <b onclick="location.href='/signIn'">Sign In</b>
+        <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
+        <a href="/" class="active">Home</a>
+        <a href="/view">Threads</a>
+        <a href="/connect">Users</a>
+        <!--        <a href="/about">About</a>-->
+        <div th:if="${currentUser}">
+            <b onclick="location.href='/logout'">Logout</b>
+        </div>
+        <div th:unless="${currentUser}">
+            <b onclick="location.href='/signUp'">Sign Up</b>
+            <b onclick="location.href='/signIn'">Sign In</b>
+        </div>
     </div>
 </head>
 <body>

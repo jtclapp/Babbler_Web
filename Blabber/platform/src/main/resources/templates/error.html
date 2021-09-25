@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<title>Blabber</title>
 <body>
 <style>
 
@@ -98,16 +100,14 @@ body {
   background-color: #a9a9a9;
   color: black;
 }
-
-
 </style>
 <head>
     <div class="topNav">
-        <a href="/" class="active"> <img class="home" th:src="@{images/Babbler_White.png}" ></a>
-        <a href="/connect">Connect</a>
-        <a href="/view">View</a>
-        <a href="/create">Create</a>
-        <a href="/about">About</a>
+        <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
+        <a href="/">Home</a>
+        <a href="/view">Threads</a>
+        <a href="/connect" class="active">Users</a>
+        <!--        <a href="/about">About</a>-->
         <b onclick="location.href='/signUp'">Sign Up</b>
         <b onclick="location.href='/signIn'">Sign In</b>
     </div>

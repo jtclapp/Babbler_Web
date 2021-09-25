@@ -30,16 +30,15 @@ public class SignUpController
     FBInitializer fb;
     User user;
     UserService userService;
-    List<GrantedAuthority> authorities;
     boolean result;
-    Authentication authentication;
     @GetMapping("/signUp")
     public String loadSignUpPage(Model model)
     {
-        authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("ANONYMOUS_USER"));
-        authentication = new UsernamePasswordAuthenticationToken(null, null, authorities);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = user_authentication.getName();
+        if (!currentUserName.equals("") && !currentUserName.equals("anonymousUser")) {
+            model.addAttribute("currentUser", currentUserName);
+        }
         model.addAttribute("signUpCredentials", new Credentials());
         return "signUp";
     }
