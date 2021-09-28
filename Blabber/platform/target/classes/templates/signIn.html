@@ -119,10 +119,12 @@
         <br/>
         <form action="#" th:action="@{/SignIn}" method="post" th:object="${credentials}">
             <label style="color: white">Email:</label>
-            <input id="email" type="email" th:field="*{email}" required/><br/>
+            <input style="border-radius: 15px; height: 25px; width: 200px; font-size: 16px; padding: 2px;
+            border-color: black" id="email" type="email" th:field="*{email}" required/><br/>
             <br/>
             <label style="color: white">Password:</label>
-            <input id="password" type="password" th:field="*{password}" required/><br/>
+            <input style="border-radius: 15px; height: 25px; width: 200px; font-size: 16px; padding: 2px;
+            border-color: black" id="password" type="password" th:field="*{password}" required/><br/>
             <br/>
             <br/>
             <input type="submit" value="Sign In">
