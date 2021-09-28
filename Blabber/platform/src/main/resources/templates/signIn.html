@@ -5,7 +5,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-
         .logo {
             display: block;
             margin-left: auto;
@@ -20,28 +19,21 @@
             position:auto;
             margin-left: auto;
             margin-right: auto;
-            height:100vh;
+            height: 100vh;
             Width: 60%;
             background:#333;
             padding: 10px;
-
         }
         body {
             margin: auto;
             font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(194,6,6,1) 51%, rgba(0,0,0,1) 100%);
             height: 100%;
-            margin: 0;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(194, 6, 6, 1) 51%, rgba(0, 0, 0, 1) 100%) no-repeat fixed;
         }
-
-
         .topNav {
             overflow: hidden;
             background-color: #333;
         }
-
         .topNav a {
             float: left;
             color: #f2f2f2;
@@ -88,7 +80,7 @@
         <a href="/connect">Users</a>
         <!--        <a href="/about">About</a>-->
         <div th:if="${currentUser}">
-            <b onclick="location.href='/logout'">Logout</b>
+            <b style="color: white;" th:text="${currentUser}" th:size="20" onclick="location.href='/logout'"></b>
         </div>
         <div th:unless="${currentUser}">
             <b onclick="location.href='/signUp'">Sign Up</b>
@@ -107,14 +99,12 @@
 </style>
 
 <div align="center"class="layer2">
-    </br>
     <br/>
-
-    <div align="center" class="layer3">
+    <div th:align="center" class="layer3">
         <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
         <br>
         <br>
-        <h1 style="color: white; font-family: 'BN Machine'; font-size: 55px">Sign In</h1>
+        <h1 style="color: white; font-family: 'BN Machine',serif; font-size: 55px">Sign In</h1>
         <br/>
         <br/>
         <form action="#" th:action="@{/SignIn}" method="post" th:object="${credentials}">

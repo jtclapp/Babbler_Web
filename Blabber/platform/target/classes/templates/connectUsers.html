@@ -4,7 +4,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-
         .logo {
             display: block;
             margin-left: auto;
@@ -19,28 +18,21 @@
             position:auto;
             margin-left: auto;
             margin-right: auto;
-            height:100vh;
+            height: 200%;
             Width: 60%;
             background:#333;
             padding: 10px;
-
         }
         body {
             margin: auto;
             font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(194,6,6,1) 51%, rgba(0,0,0,1) 100%);
             height: 100%;
-            margin: 0;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(194, 6, 6, 1) 51%, rgba(0, 0, 0, 1) 100%) no-repeat fixed;
         }
-
-
         .topNav {
             overflow: hidden;
             background-color: #333;
         }
-
         .topNav a {
             float: left;
             color: #f2f2f2;
@@ -69,9 +61,6 @@
             background-color: #a9a9a9;
             color: black;
         }
-
-
-
     </style>
     <div class="topNav">
         <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
@@ -80,7 +69,7 @@
         <a href="/connect" class="active">Users</a>
         <!--        <a href="/about">About</a>-->
         <div th:if="${currentUser}">
-            <b onclick="location.href='/logout'">Logout</b>
+            <b style="color: white;" th:text="${currentUser}" th:size="20" onclick="location.href='/logout'"></b>
         </div>
         <div th:unless="${currentUser}">
             <b onclick="location.href='/signUp'">Sign Up</b>
@@ -90,15 +79,19 @@
 </head>
 <body>
 <div class="layer2">
+    <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
+    <br>
     <tr th:each="User: ${allUsers}">
         <br>
         <div th:if= "${User.imageURL == 'default'}">
-            <img th:src="@{images/default.png}" width="75" height="75"/>
-            <td th:text="${User.username}"></td>
+            <img style="border-radius: 65%;overflow: hidden" th:align="middle" th:src="@{images/default_profile.jpg}" width="75" height="75"/>
+            <a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px; 
+                color: white; margin-left: 10px;" th:text="${User.username}"></a>
         </div>
         <div th:if= "${User.imageURL != 'default'}">
-            <img th:src="${User.imageURL}" width="75" height="75"/>
-            <td th:text="${User.username}"></td>
+            <img style="border-radius: 65%;overflow: hidden;" th:align="middle" th:src="${User.imageURL}" width="75" height="75"/>
+            <a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px; 
+                color: white; margin-left: 10px;" th:text="${User.username}"></a>
         </div>
         <br>
     </tr>
