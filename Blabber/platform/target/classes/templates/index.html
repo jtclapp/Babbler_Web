@@ -69,10 +69,6 @@ body {
 </style>
     <div class="topNav">
         <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
-        <a href="/" class="active">Home</a>
-        <a href="/view">Threads</a>
-        <a href="/connect">Users</a>
-<!--        <a href="/about">About</a>-->
         <div th:if="${currentUser}">
             <b onclick="location.href='/logout'">Logout</b>
         </div>
@@ -80,6 +76,10 @@ body {
             <b onclick="location.href='/signUp'">Sign Up</b>
             <b onclick="location.href='/signIn'">Sign In</b>
         </div>
+        <a href="/" class="active">Home</a>
+        <a href="/view">Threads</a>
+        <a href="/connect">Users</a>
+<!--        <a href="/about">About</a>-->
     </div>
 </head>
 <body>

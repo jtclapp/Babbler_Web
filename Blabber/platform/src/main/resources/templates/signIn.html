@@ -70,6 +70,16 @@
             background-color: #a9a9a9;
             color: black;
         }
+        input[type=submit] {
+            padding:0.6em 2em;
+            border-radius: 6px;
+            color:#ffff;
+            background-color: #C20606;
+            font-size:1.1em;
+            border:0;
+            cursor:pointer;
+            margin:1em;
+        }
     </style>
     <div class="topNav">
         <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
@@ -102,17 +112,22 @@
 
     <div align="center" class="layer3">
         <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
-        <h1 style="#A00000">Sign In</h1>
-
+        <br>
+        <br>
+        <h1 style="color: white; font-family: 'BN Machine'; font-size: 55px">Sign In</h1>
+        <br/>
+        <br/>
         <form action="#" th:action="@{/SignIn}" method="post" th:object="${credentials}">
-            <label>Email:</label>
-            <input id="email" type="email" th:field="*{email}" required/><br/>
+            <label style="color: white">Email:</label>
+            <input style="border-radius: 15px; height: 25px; width: 200px; font-size: 16px; padding: 2px;
+            border-color: black" id="email" type="email" th:field="*{email}" required/><br/>
             <br/>
-            <label>Password:</label>
-            <input id="password" type="password" th:field="*{password}" required/><br/>
+            <label style="color: white">Password:</label>
+            <input style="border-radius: 15px; height: 25px; width: 200px; font-size: 16px; padding: 2px;
+            border-color: black" id="password" type="password" th:field="*{password}" required/><br/>
             <br/>
             <br/>
-            <button type="submit">Sign In</button>
+            <input type="submit" value="Sign In">
         </form>
     </div>
 </div>
