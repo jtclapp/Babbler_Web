@@ -66,10 +66,10 @@
     </style>
     <div class="topNav">
         <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
-        <a href="/" class="active">Home</a>
+        <a href="/">Home</a>
         <a href="/view">Threads</a>
         <a href="/connect">Users</a>
-        <!--        <a href="/about">About</a>-->
+        <a href="/about" class="active">About</a>
         <div th:if="${currentUser}">
             <b style="color: white;" th:text="${currentUser}" th:size="20" onclick="location.href='/logout'"></b>
         </div>

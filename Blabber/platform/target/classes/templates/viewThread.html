@@ -62,28 +62,32 @@
             background-color: #a9a9a9;
             color: black;
         }
-        .button {
-            background-color: black;
+        .main_btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            background: #C20606;
             border: none;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
+            outline: none;
+            color: #FFFF;
+            font-size: 40px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            transition: .3s;
+            float: right;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
-        .button5 {border-radius: 60%;}
+        .main_btn:focus {
+            transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
     </style>
     <div class="topNav">
         <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
         <a href="/">Home</a>
         <a href="/view" class="active">Threads</a>
         <a href="/connect">Users</a>
-        <!--        <a href="/about">About</a>-->
+        <a href="/about">About</a>
         <div th:if="${currentUser}">
             <b style="color: white;" th:text="${currentUser}" th:size="20" onclick="location.href='/logout'"></b>
         </div>
@@ -95,9 +99,7 @@
 </head>
 <body>
 <div class="layer2">
-    <div>
-    <button class="button button5" onclick="location.href='/create'">Add</button>
-    </div>
+    <button class="main_btn" onclick="location.href='/create'">+</button>
 </div>
 </body>
 </html>
