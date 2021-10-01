@@ -1,6 +1,6 @@
 package com.web.blabber.platform.models;
 
-public class Thread
+public class Threads
 {
     private String title;
     private String sender;
@@ -12,10 +12,10 @@ public class Thread
     private String image4;
     private String image5;
 
-    public Thread(String title, String sender,
-                  String caption, String date,
-                  String image1, String image2, String image3,
-                  String image4, String image5) {
+    public Threads(String title, String sender,
+                   String caption, String date,
+                   String image1, String image2, String image3,
+                   String image4, String image5) {
         this.title = title;
         this.sender = sender;
         this.caption = caption;
@@ -27,7 +27,7 @@ public class Thread
         this.image5 = image5;
     }
 
-    public Thread()
+    public Threads()
     {
 
     }

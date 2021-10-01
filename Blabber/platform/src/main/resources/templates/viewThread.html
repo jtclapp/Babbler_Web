@@ -100,6 +100,17 @@
 <body>
 <div class="layer2">
     <button class="main_btn" onclick="location.href='/create'">+</button>
+        <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
+        <br>
+        <tr th:each="Threads: ${allThreads}">
+            <div th:if= "${Threads.title != ''}">
+            <br>
+                <!--/*@thymesVar id="Threads" type=""*/-->
+                <a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
+                color: white; margin-left: 10px;" th:text="${Threads.title}"></a>
+            <br>
+            </div>
+        </tr>
 </div>
 </body>
 </html>

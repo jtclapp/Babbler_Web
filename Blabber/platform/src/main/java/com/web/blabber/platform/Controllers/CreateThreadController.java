@@ -1,6 +1,6 @@
 package com.web.blabber.platform.Controllers;
 
-import com.web.blabber.platform.models.Thread;
+import com.web.blabber.platform.models.Threads;
 import com.web.blabber.platform.services.StorageService;
 import com.web.blabber.platform.services.ThreadService;
 import com.web.blabber.platform.services.UserService;
@@ -27,7 +27,7 @@ public class CreateThreadController
     List<String> fileList = new ArrayList<>();
     StorageService storageService;
     ThreadService threadService;
-    Thread thread;
+    Threads thread;
     String currentUserName;
     UserService userService;
     public CreateThreadController()
@@ -42,7 +42,7 @@ public class CreateThreadController
             model.addAttribute("currentUser", currentUserName);
         }
         fileList = new ArrayList<>();
-        model.addAttribute("createdThread",new Thread());
+        model.addAttribute("createdThread",new Threads());
         System.out.println("Switching over to the create thread page.");
         return "createThread";
     }
@@ -58,22 +58,22 @@ public class CreateThreadController
             if(fileList.size() > 4)
             {
                 model.addAttribute("Photos", fileList);
-                model.addAttribute("createdThread", new Thread());
+                model.addAttribute("createdThread", new Threads());
                 model.addAttribute("capacityMessage","You can only upload five photos per post.");
                 return "createThread";
             }
             storageService.uploadFile(file);
             fileList.add(storageService.getUploadURL(file.getOriginalFilename()));
         }
-        model.addAttribute("createdThread",new Thread());
+        model.addAttribute("createdThread",new Threads());
         model.addAttribute("Photos", fileList);
         return "createThread";
     }
     @PostMapping("/create/save")
-    public String saveCreatedThread(@ModelAttribute("createdThread") Thread capturedThread) throws ExecutionException, InterruptedException, IOException {
+    public String saveCreatedThread(@ModelAttribute("createdThread") Threads capturedThread) throws ExecutionException, InterruptedException, IOException {
         storageService = new StorageService();
         threadService = new ThreadService();
-        thread = new Thread();
+        thread = new Threads();
         thread.setTitle(capturedThread.getTitle());
         thread.setDate(getCurrentDate());
         thread.setSender(getUserIDForThread());
