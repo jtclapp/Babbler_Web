@@ -3,107 +3,12 @@
 <meta charset="UTF-8">
 <title>Blabber</title>
 <body>
-<style>
-.layer3{
-    position:auto;
-    margin-left: auto;
-    margin-right: auto;
-    height:500px;
-    Width: 1115px;
-    background:black;
-    border-style: inset;
-    border-color: rgba(194,6,6,1);
-padding: 10px;
-color: white;
-}
-    .logo {
-     display: block;
-     margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
-.home {
-     display: block;
-    width: 10vh;
-}
-    .layer2{
-        position:auto;
-        margin-left: auto;
-        margin-right: auto;
-        height:100vh;
-        Width: 60%;
-        background:#333;
-    padding: 10px;
-}
-body {
-  margin: auto;
-  font-family: Arial, Helvetica, sans-serif;
-    height: 100%;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(194, 6, 6, 1) 51%, rgba(0, 0, 0, 1) 100%) no-repeat fixed;
-}
-.topNav {
-  overflow: hidden;
-  background-color: #333;
-}
-.errorNav {
-  overflow: hidden;
-  background-color: black;
-}
-.topNav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: left;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-.topNav a:hover {
-  background-color: #a9a9a9;
-  color: black;
-}
-.topNav a.active {
-  background-color: #C20606;
-  color: white;
-}
-.topNav b {
-    float: right;
-    color: #f2f2f2;
-    text-align: right;
-    padding: 12px 14px;
-    text-decoration: none;
-    font-size: 13px;
-}
-.topNav b:hover {
-  background-color: #a9a9a9;
-  color: black;
-}
-.errorNav b {
-    float: center;
-    color: #f2f2f2;
-    text-align: right;
-    padding: 12px 14px;
-    text-decoration: none;
-    font-size: 13px;
-}
-.errorNav b:hover {
-  background-color: #a9a9a9;
-  color: black;
-}
-button {
-    padding:0.6em 2em;
-    border-radius: 6px;
-    color:#ffff;
-    background-color: #C20606;
-    font-size:1.1em;
-    border:0;
-    cursor:pointer;
-    margin:1em;
-}
-</style>
+
 <head>
+    <link  href="css/blabber.css" rel="stylesheet">
     <div class="topNav">
-        <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
-        <a href="/">Home</a>
+
+        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}"></a>
         <a href="/view">Threads</a>
         <a href="/connect">Users</a>
         <a href="/about">About</a>
@@ -113,9 +18,9 @@ button {
 </head>
 <div style="text-align: center;">
     <div class = "layer2">
-        <div class ="layer3">
-        <h1 style="color: white; font-family: 'BN Machine'; font-size: 55px">Please Sign In Or Sign Up To Continue</h1>
-        <button style="margin-top: 300px" onclick="location.href='/signUp'">Sign Up</button>
+        <div class ="error">
+        <h1 style="color: white; font-family: 'BN Machine'; font-size: 25px">Please Sign In Or Sign Up To Continue</h1>
+        <button style= onclick="location.href='/signUp'">Sign Up</button>
         <button onclick="location.href='/signIn'">Sign In</button>
        </div>
     </div>

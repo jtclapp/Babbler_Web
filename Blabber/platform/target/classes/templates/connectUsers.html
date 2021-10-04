@@ -3,68 +3,11 @@
 <title>Blabber</title>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        .logo {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
-        }
-        .home {
-            display: block;
-            width: 10vh;
-        }
-        .layer2{
-            position:auto;
-            margin-left: auto;
-            margin-right: auto;
-            height: 200%;
-            Width: 60%;
-            background:#333;
-            padding: 10px;
-        }
-        body {
-            margin: auto;
-            font-family: Arial, Helvetica, sans-serif;
-            height: 100%;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(194, 6, 6, 1) 51%, rgba(0, 0, 0, 1) 100%) no-repeat fixed;
-        }
-        .topNav {
-            overflow: hidden;
-            background-color: #333;
-        }
-        .topNav a {
-            float: left;
-            color: #f2f2f2;
-            text-align: left;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-        .topNav a:hover {
-            background-color: #a9a9a9;
-            color: black;
-        }
-        .topNav a.active {
-            background-color: #C20606;
-            color: white;
-        }
-        .topNav b {
-            float: right;
-            color: #f2f2f2;
-            text-align: right;
-            padding: 12px 14px;
-            text-decoration: none;
-            font-size: 13px;
-        }
-        .topNav b:hover {
-            background-color: #a9a9a9;
-            color: black;
-        }
-    </style>
+    <link  href="css/blabber.css" rel="stylesheet">
+
     <div class="topNav">
-        <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
-        <a href="/">Home</a>
+
+        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}"></a>
         <a href="/view">Threads</a>
         <a href="/connect" class="active">Users</a>
         <a href="/about">About</a>

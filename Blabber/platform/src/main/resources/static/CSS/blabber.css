@@ -1,0 +1,111 @@
+
+
+.logo {
+     display: block;
+     margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+
+    .layer2{
+    margin-left: auto;
+    margin-right: auto;
+    height: 100vh;
+    Width: 60%;
+    background:#333;
+    padding: 10px;
+}
+
+    .layer3{
+    margin-left: auto;
+    margin-right: auto;
+    height:80%;
+    width:50%;
+    background: black;
+    padding: 10px;
+    }
+
+    .error{
+        margin-left: auto;
+        margin-right: auto;
+        height:90%;
+        width:90%;
+        background: black;
+        padding: 10px;
+        }
+
+body {
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(194, 6, 6, 1) 51%, rgba(0, 0, 0, 1) 100%) no-repeat fixed;
+}
+
+
+.errorNav {
+  overflow: hidden;
+  background-color: black;
+}
+
+.errorNav b {
+    float: center;
+    color: #f2f2f2;
+    text-align: right;
+    padding: 12px 14px;
+    text-decoration: none;
+    font-size: 13px;
+}
+.errorNav b:hover {
+  background-color: #a9a9a9;
+  color: black;
+}
+button {
+    padding:0.6em 2em;
+    border-radius: 6px;
+    color:#ffff;
+    background-color: #C20606;
+    font-size:1.1em;
+    border:0;
+    cursor:pointer;
+    margin:1em;
+}
+
+.topNav {
+  overflow: hidden;
+  background-color: #333;
+}
+.topNav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topNav a:hover {
+  background-color: #a9a9a9;
+  color: black;
+}
+.topNav a.active {
+  background-color: #C20606;
+  color: white;
+}
+.topNav b {
+    float: right;
+    color: #f2f2f2;
+    text-align: right;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topNav b:hover {
+  background-color: #a9a9a9;
+  color: black;
+}
+
+.home {
+     display: block;
+    width: 8vh;
+    height: 2.75vh;
+}
