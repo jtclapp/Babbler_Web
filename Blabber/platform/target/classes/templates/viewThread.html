@@ -2,6 +2,10 @@
 <html lang="en">
 <meta charset="UTF-8">
 <title>Blabber</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -19,7 +23,7 @@
             position:auto;
             margin-left: auto;
             margin-right: auto;
-            height: 100vh;
+            height: 200%;
             Width: 60%;
             background:#333;
             padding: 10px;
@@ -81,6 +85,23 @@
             -ms-transform: rotate(45deg);
             -webkit-transform: rotate(45deg);
         }
+        .carousel{
+            background:#333;
+            margin-top: 50px;
+            height: auto;
+        }
+        .carousel-item{
+            text-align: center;
+            width: 50%;
+            margin: auto;
+            /* Prevent carousel from being distorted if for some reason image doesn't load */
+        }
+        /*.carousel-indicators {*/
+        /*    text-align: left;*/
+        /*    float: left;*/
+        /*    left: 2%;*/
+        /*    right: inherit;*/
+        /*}*/
     </style>
     <div class="topNav">
         <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
@@ -105,10 +126,45 @@
         <tr th:each="Threads: ${allThreads}">
             <div th:if= "${Threads.title != ''}">
             <br>
+            <br>
                 <!--/*@thymesVar id="Threads" type=""*/-->
                 <a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
                 color: white; margin-left: 10px;" th:text="${Threads.title}"></a>
-            <br>
+            </div>
+            <div th:if= "${Threads.image1 != null}">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li th:if="${Threads.image1 != null}" data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li th:if="${Threads.image2 != null}" data-target="#myCarousel" data-slide-to="1"></li>
+                    <li th:if="${Threads.image3 != null}" data-target="#myCarousel" data-slide-to="2"></li>
+                    <li th:if="${Threads.image4 != null}" data-target="#myCarousel" data-slide-to="3"></li>
+                    <li th:if="${Threads.image5 != null}" data-target="#myCarousel" data-slide-to="4"></li>
+                </ol>
+                <!-- Wrapper for carousel items -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img th:src="${Threads.image1}" height="300" width="300"/>
+                    </div>
+                    <div class="carousel-item" th:if= "${Threads.image2 != null}">
+                        <img th:src="${Threads.image2}" height="300" width="300"/>
+                    </div>
+                    <div class="carousel-item" th:if= "${Threads.image3 != null}">
+                        <img th:src="${Threads.image3}" height="300" width="300"/>
+                    </div>
+                    <div class="carousel-item" th:if= "${Threads.image4 != null}">
+                        <img th:src="${Threads.image4}" height="300" width="300"/>
+                    </div>
+                    <div class="carousel-item" th:if= "${Threads.image5 != null}">
+                        <img th:src="${Threads.image5}" height="300" width="300"/>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div th:if= "${Threads.image1 == null}">
+                <br>
+                <!--/*@thymesVar id="Threads" type=""*/-->
+                <a style="font-size: 15px; font-family: 'Baskerville Old Face',serif; margin-right: 200px;
+                color: white; margin-left: 20px;" th:text="${Threads.caption}"></a>
             </div>
         </tr>
 </div>
