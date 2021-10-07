@@ -3,7 +3,7 @@ package com.web.blabber.platform.services;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
-import com.web.blabber.platform.models.Thread;
+import com.web.blabber.platform.models.Threads;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,18 +21,18 @@ public class ThreadService
         firestore = FirestoreClient.getFirestore();
         return firestore.collection("Threads");
     }
-    public String createThread(Thread thread) throws ExecutionException, InterruptedException {
+    public void createThread(Threads thread) throws ExecutionException, InterruptedException {
                 ApiFuture<WriteResult> apiFuture =
                 getThreadCollection().document().set(thread);
-                return apiFuture.get().getUpdateTime().toString();
+                apiFuture.get();
     }
-    public List<Thread> getAllThreads() throws ExecutionException, InterruptedException {
+    public List<Threads> getAllThreads() throws ExecutionException, InterruptedException {
         // You can save doc.getId() to the thread, so you can get the exact thread everytime
-        List<Thread> threadList = new ArrayList<>();
+        List<Threads> threadList = new ArrayList<>();
         CollectionReference threads = getThreadCollection();
         ApiFuture<QuerySnapshot> querySnapshot = threads.get();
         for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
-            Thread thread = doc.toObject(Thread.class);
+            Threads thread = doc.toObject(Threads.class);
             threadList.add(thread);
         }
         return threadList;

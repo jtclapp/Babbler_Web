@@ -3,11 +3,102 @@
 <title>Blabber</title>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link  href="css/blabber.css" rel="stylesheet">
+    <style>
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+        .home {
+            display: block;
+            width: 10vh;
+        }
+        .layer2{
+            position:auto;
+            margin-left: auto;
+            margin-right: auto;
+            height: 200%;
+            Width: 60%;
+            background:#333;
+            padding: 10px;
+        }
+        body {
+            margin: auto;
+            font-family: Arial, Helvetica, sans-serif;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(194, 6, 6, 1) 51%, rgba(0, 0, 0, 1) 100%) no-repeat fixed;
+        }
+        .topNav {
+            overflow: hidden;
+            background-color: #333;
+        }
+        .topNav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: left;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        .topNav a:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        .topNav a.active {
+            background-color: #C20606;
+            color: white;
+        }
+        .topNav b {
+            float: right;
+            color: #f2f2f2;
+            text-align: right;
+            padding: 12px 14px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .topNav b:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        #myInput {
+            background-position: 10px 12px; /* Position the search icon */
+            background-repeat: no-repeat; /* Do not repeat the icon image */
+            width: 50%; /* Full-width */
+            font-size: 16px; /* Increase font-size */
+            padding: 12px 20px 12px 15px; /* Add some padding */
+            border: 1px solid #ddd; /* Add a grey border */
+            margin:0 auto;
+            display:block;
+        }
+    </style>
+    <script>
+        function search() {
+            // Declare variables
+            var input, filter, ul, li, a, i, txtValue, img;
+            input = document.getElementById('myInput');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("userUL");
+            li = ul.getElementsByTagName('li');
+            img = ul.getElementsByTagName('img');
 
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                    img[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                    img[i].style.display = "none";
+                }
+            }
+        }
+    </script>
     <div class="topNav">
-
-        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}"></a>
+        <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
+        <a href="/">Home</a>
         <a href="/view">Threads</a>
         <a href="/connect" class="active">Users</a>
         <a href="/about">About</a>
@@ -24,20 +115,24 @@
 <div class="layer2">
     <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
     <br>
+    <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names..">
+    <br>
+    <ul id="userUL">
     <tr th:each="User: ${allUsers}">
         <br>
         <div th:if= "${User.imageURL == 'default'}">
             <img style="border-radius: 100%;overflow: hidden" th:align="middle" th:src="@{images/default_profile.jpg}" width="75" height="75"/>
-            <a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px; 
-                color: white; margin-left: 10px;" th:text="${User.username}"></a>
+            <li style="list-style-type: none"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
+                color: white; margin-left: 10px;" th:text="${User.username}"></a></li>
         </div>
         <div th:if= "${User.imageURL != 'default'}">
             <img style="border-radius: 100%;overflow: hidden;" th:align="middle" th:src="${User.imageURL}" width="75" height="75"/>
-            <a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px; 
-                color: white; margin-left: 10px;" th:text="${User.username}"></a>
+            <li style="list-style-type: none"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
+                color: white; margin-left: 10px;" th:text="${User.username}"></a></li>
         </div>
-        <br>
     </tr>
+    </ul>
+    <br>
 </div>
 </body>
 </html>

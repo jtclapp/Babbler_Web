@@ -42,7 +42,6 @@ public class SignUpController
         model.addAttribute("signUpCredentials", new Credentials());
         return "signUp";
     }
-
     @PostMapping("/signedUp")
     public String loginAttempt(@ModelAttribute("signUpCredentials") Credentials credentials) throws IOException, FirebaseAuthException, ExecutionException, InterruptedException {
         fb = new FBInitializer();

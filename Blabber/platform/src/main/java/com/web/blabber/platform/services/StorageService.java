@@ -11,10 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.multipart.MultipartFile;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -23,14 +21,15 @@ import java.util.concurrent.ExecutionException;
 
 public class StorageService
 {
-    private Logger log;
-    private FileInputStream serviceAccount;
-    private StorageOptions storageOptions;
+    private final Logger log;
+    private final InputStream serviceAccount;
+    private final StorageOptions storageOptions;
     private String currentUserName;
 
-    public StorageService() throws IOException, ExecutionException, InterruptedException {
+    public StorageService() throws IOException {
         this.log = (Logger) LoggerFactory.getLogger(CreateThreadController.class);
-        this.serviceAccount = new FileInputStream("Blabber/platform/src/main/resources/key.json");
+        this.serviceAccount = getClass().getResourceAsStream("/key.json");
+        assert serviceAccount != null;
         this.storageOptions = StorageOptions.newBuilder().setProjectId("conspiracy-theory-chat").setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         this.currentUserName = authentication.getName();
@@ -59,7 +58,7 @@ public class StorageService
         return URL;
     }
     private File convertMultiPartToFile(MultipartFile file) throws IOException {
-        File convertedFile = new File("uploadedImage");
+        File convertedFile = File.createTempFile("temp",null);
         FileOutputStream fos = new FileOutputStream(convertedFile);
         fos.write(file.getBytes());
         fos.close();

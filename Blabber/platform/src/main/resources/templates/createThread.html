@@ -36,7 +36,7 @@
 <body>
 <div class="layer2">
     <div class="layer3">
-        <div style="border-width: 2px; border-color: white; border-style: solid; width: 1115px; height: 500px; margin-bottom: 6px; padding: 10px" >
+        <div style="border-width: 2px; border-color: white; border-style: solid; width: 1115px; height: 500px; margin-bottom: 6px; padding: 10px" align="center" >
         <tr th:each="photo: ${Photos}">
             <img th:src="${photo}" width="250" height="250"/>
         </tr>
@@ -59,11 +59,13 @@
         </div>
         <form th:action="@{/create/save}" method="post" th:object="${createdThread}">
                 <br>
-                <label style="color: white;">Title:</label>
-                <input style="border-radius: 15px; height: 25px; width: 250px; font-size: 16px; padding: 2px;
-                        border-color: black" type="text" th:field="*{title}" required/><br/>
+                <div align="center">
+                    <label style="color: white;">Title:</label>
+                    <input style="border-radius: 15px; height: 25px; width: 250px; font-size: 16px; padding: 2px;
+                        border-color: black;" type="text" th:field="*{title}" required/><br/>
+                </div>
                 <br>
-                <textarea style="padding: 2px;border-color: black;border-radius: 15px;height:500px;font-size:12pt;width:500px;" th:field="*{caption}" required></textarea><br/>
+                <textarea style="padding: 2px;border-color: black;border-radius: 15px;height:500px;font-size:12pt;width:500px; margin:0px auto; display:block;" th:field="*{caption}" required></textarea><br/>
                 <br>
                 <br>
                 <br>
