@@ -8,15 +8,16 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 @Service
 public class FBInitializer {
 
     @PostConstruct
     public void initialize() throws IOException {
-        FileInputStream serviceAccount =
-                new FileInputStream("Blabber/platform/src/main/resources/key.json");
+        InputStream serviceAccount = getClass().getResourceAsStream("/key.json");
 
+        assert serviceAccount != null;
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .setDatabaseUrl("https://conspiracy-theory-chat-default-rtdb.firebaseio.com")

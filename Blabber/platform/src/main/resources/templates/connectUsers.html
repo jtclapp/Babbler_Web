@@ -61,7 +61,41 @@
             background-color: #a9a9a9;
             color: black;
         }
+        #myInput {
+            background-position: 10px 12px; /* Position the search icon */
+            background-repeat: no-repeat; /* Do not repeat the icon image */
+            width: 50%; /* Full-width */
+            font-size: 16px; /* Increase font-size */
+            padding: 12px 20px 12px 15px; /* Add some padding */
+            border: 1px solid #ddd; /* Add a grey border */
+            margin:0 auto;
+            display:block;
+        }
     </style>
+    <script>
+        function search() {
+            // Declare variables
+            var input, filter, ul, li, a, i, txtValue, img;
+            input = document.getElementById('myInput');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("userUL");
+            li = ul.getElementsByTagName('li');
+            img = ul.getElementsByTagName('img');
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                    img[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                    img[i].style.display = "none";
+                }
+            }
+        }
+    </script>
     <div class="topNav">
         <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
         <a href="/">Home</a>
@@ -81,20 +115,24 @@
 <div class="layer2">
     <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
     <br>
+    <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names..">
+    <br>
+    <ul id="userUL">
     <tr th:each="User: ${allUsers}">
         <br>
         <div th:if= "${User.imageURL == 'default'}">
             <img style="border-radius: 100%;overflow: hidden" th:align="middle" th:src="@{images/default_profile.jpg}" width="75" height="75"/>
-            <a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px; 
-                color: white; margin-left: 10px;" th:text="${User.username}"></a>
+            <li style="list-style-type: none"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
+                color: white; margin-left: 10px;" th:text="${User.username}"></a></li>
         </div>
         <div th:if= "${User.imageURL != 'default'}">
             <img style="border-radius: 100%;overflow: hidden;" th:align="middle" th:src="${User.imageURL}" width="75" height="75"/>
-            <a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px; 
-                color: white; margin-left: 10px;" th:text="${User.username}"></a>
+            <li style="list-style-type: none"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
+                color: white; margin-left: 10px;" th:text="${User.username}"></a></li>
         </div>
-        <br>
     </tr>
+    </ul>
+    <br>
 </div>
 </body>
 </html>

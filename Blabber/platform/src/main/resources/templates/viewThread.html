@@ -96,6 +96,16 @@
             margin: auto;
             /* Prevent carousel from being distorted if for some reason image doesn't load */
         }
+        #threadInput {
+            background-position: 10px 12px; /* Position the search icon */
+            background-repeat: no-repeat; /* Do not repeat the icon image */
+            width: 50%; /* Full-width */
+            font-size: 16px; /* Increase font-size */
+            padding: 12px 20px 12px 15px; /* Add some padding */
+            border: 1px solid #ddd; /* Add a grey border */
+            margin:0 auto;
+            display:block;
+        }
         /*.carousel-indicators {*/
         /*    text-align: left;*/
         /*    float: left;*/
@@ -103,6 +113,29 @@
         /*    right: inherit;*/
         /*}*/
     </style>
+    <script>
+        function search() {
+            // Declare variables
+            var input, filter, ul, li, a, i, txtValue, div, caption;
+            input = document.getElementById('threadInput');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("threadUL");
+            li = ul.getElementsByClassName("li-text");
+            div = ul.getElementsByClassName("carousel slide");
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i <= li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                    div[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                    div[i].style.display = "none";
+                }
+            }
+        }
+    </script>
     <div class="topNav">
         <img class="home" th:src="@{images/Babbler_White.png}" width="45" height="45">
         <a href="/">Home</a>
@@ -123,16 +156,21 @@
     <button class="main_btn" onclick="location.href='/create'">+</button>
         <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
         <br>
+        <input type="text" id="threadInput" onkeyup="search()" placeholder="Search for threads..">
+        <br>
+        <ul id="threadUL">
         <tr th:each="Threads: ${allThreads}">
             <div th:if= "${Threads.title != ''}">
             <br>
             <br>
                 <!--/*@thymesVar id="Threads" type=""*/-->
-                <a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
-                color: white; margin-left: 10px;" th:text="${Threads.title}"></a>
+                <ul id="UL1" class="ul">
+                <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
+                color: white; margin-left: 10px;" th:text="${Threads.title}"></a></li>
+                </ul>
             </div>
             <div th:if= "${Threads.image1 != null}">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div id="threadCarousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li th:if="${Threads.image1 != null}" data-target="#myCarousel" data-slide-to="0" class="active"></li>
                     <li th:if="${Threads.image2 != null}" data-target="#myCarousel" data-slide-to="1"></li>
@@ -162,11 +200,12 @@
             </div>
             <div th:if= "${Threads.image1 == null}">
                 <br>
-                <!--/*@thymesVar id="Threads" type=""*/-->
-                <a style="font-size: 15px; font-family: 'Baskerville Old Face',serif; margin-right: 200px;
-                color: white; margin-left: 20px;" th:text="${Threads.caption}"></a>
+                <li style="list-style-type: none" class="carousel slide"><a style="font-size: 15px; font-family: 'Baskerville Old Face',serif; margin-right: 200px;
+                color: white; margin-left: 20px;" th:text="${Threads.caption}"></a></li>
             </div>
         </tr>
+        </ul>
+        <br>
 </div>
 </body>
 </html>

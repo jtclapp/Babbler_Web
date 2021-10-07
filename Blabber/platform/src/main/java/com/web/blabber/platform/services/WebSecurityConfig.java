@@ -9,26 +9,27 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/", "/view","/signUp","/about").permitAll()
-                .antMatchers("/create","/connect").hasAuthority("USER")
-                .antMatchers("/images/*").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/signIn")
-                .permitAll()
-                .and()
-                .logout()
-                .logoutSuccessUrl("/");
-        http.csrf().disable();
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/", "/view","/signUp","/about").permitAll()
+//                .antMatchers("/create","/connect").hasAuthority("USER")
+//                .antMatchers("/images/*").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/signIn")
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .logoutSuccessUrl("/");
+//        http.csrf().disable();
     }
     @Bean
     @Override

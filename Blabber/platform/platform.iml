@@ -11,7 +11,11 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="BlabberApplication" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/com/web/blabber/platform/BlabberApplication.java</file>
+        </fileset>
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
@@ -25,6 +29,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="jquery-3.2.1.slim" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="popper.js" level="application" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-rest:2.4.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-rest-webmvc:3.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-rest-core:3.4.5" level="project" />
@@ -173,11 +180,7 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:2.4.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.4.5" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.4.5" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.springframework.security:spring-security-test:5.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.4.5" level="project" />
-    <orderEntry type="library" name="jquery-3.2.1.slim" level="application" />
-    <orderEntry type="library" name="bootstrap" level="application" />
-    <orderEntry type="library" name="popper.js" level="application" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.4.5" level="project" />
   </component>
 </module>
