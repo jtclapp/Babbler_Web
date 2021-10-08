@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <meta charset="UTF-8">
 <title>Blabber</title>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link  href="css/blabber.css" rel="stylesheet">
     <div class="topNav">
-
+        <a href="/" class="active"><img class="home" th:src="@{images/Babbler_White.png}"></a>
+        <a href="/view">Threads</a>
+        <a href="/connect">Users</a>
+        <a href="/about">About</a>
         <div th:if="${currentUser}">
             <b style="color: white;" th:text="${currentUser}" th:size="20" onclick="location.href='/logout'"></b>
         </div>
@@ -14,18 +17,25 @@
             <b onclick="location.href='/signUp'">Sign Up</b>
             <b onclick="location.href='/signIn'">Sign In</b>
         </div>
-        <a href="/" class="active"><img class="home" th:src="@{images/Babbler_White.png}"></a>
-        <a href="/view">Threads</a>
-        <a href="/connect">Users</a>
-        <a href="/about">About</a>
     </div>
 </head>
 <body>
-<div class = "layer2">
-    <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
+<div class="context">
+    <!--    put items within this div-->
 </div>
-<div align="center" th:if="${param.error}" class="alert alert-danger">
-    Invalid username or email.
-</div>
+<div class="area" >
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div >
 </body>
 </html>
