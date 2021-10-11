@@ -20,15 +20,20 @@
     <div class="topNav">
 
         <a href="/"><img class="home" th:src="@{images/Babbler_White.png}"></a>
-        <a href="/view">Threads</a>
+        <a href="/view" >Threads</a>
         <a href="/connect">Users</a>
         <a href="/about">About</a>
-        <div th:if="${currentUser}">
-            <b style="color: white;" th:text="${currentUser}" th:size="20" onclick="location.href='/logout'"></b>
+
+        <div class="dropdown" th:if="${currentUser}">
+            <b  class="drop" th:text="${currentUser}" th:size="20" ></b>
+            <div class="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href ="#"onclick="location.href='/logout'">Logout</a>
+            </div>
         </div>
         <div th:unless="${currentUser}">
             <b onclick="location.href='/signUp'">Sign Up</b>
-            <b onclick="location.href='/signIn'" class="active">Sign In</b>
+            <b onclick="location.href='/signIn'">Sign In</b>
         </div>
     </div>
 </head>

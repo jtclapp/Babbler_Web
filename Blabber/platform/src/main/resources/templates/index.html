@@ -1,31 +1,94 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <meta charset="UTF-8">
 <title>Blabber</title>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link  href="css/blabber.css" rel="stylesheet">
+    <style>
+         .carousel2{
+       position:relative;
+       height:100px;
+       width:80%;
+       }
+
+       .carousel__image{
+       width:100%;
+       height:100%;
+       object-fit:cover;
+       }
+
+       .carousel__track-container{
+
+       height:100%;
+       position:relative;
+       }
+
+       .carousel__track{
+       padding:0;
+       margin:0;
+       list-style:none;
+       }
+
+       .carousel__slide{
+       position:absolute;
+       top:0;
+       bottom:0;
+       width:100%;
+       }
+
+       .carousel__button{
+       position:absolute;
+       top:50%;
+       transform:translateY(-50%);
+       cursor:pointer;
+       }
+       .carousel__button--left{
+       left:-40px;
+       }
+       .carousel__button--right{
+       right:-40px;
+       }
+
+       .carousel__nav{
+       background:pink;
+       display:flex;
+       justify-content:center;
+       padding:10px 0;
+       }
+       .carousel__indicator{
+       border:0;
+       border-radius:50%;
+       width:15px;
+       height:15px;
+       background:rgba(0,0,0,.3;
+       margin:0 10px;
+       }
+
+    </style>
     <div class="topNav">
 
-        <div th:if="${currentUser}">
-            <b style="color: white;" th:text="${currentUser}" th:size="20" onclick="location.href='/logout'"></b>
+        <a href="/" class="active"><img class="home" th:src="@{images/Babbler_White.png}"></a>
+        <a href="/view" >Threads</a>
+        <a href="/connect">Users</a>
+        <a href="/about">About</a>
+
+        <div class="dropdown" th:if="${currentUser}">
+            <b class="drop" th:text="${currentUser}" th:size="20" ></b>
+            <div class="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href ="#"onclick="location.href='/logout'">Logout</a>
+            </div>
         </div>
         <div th:unless="${currentUser}">
             <b onclick="location.href='/signUp'">Sign Up</b>
             <b onclick="location.href='/signIn'">Sign In</b>
         </div>
-        <a href="/" class="active"><img class="home" th:src="@{images/Babbler_White.png}"></a>
-        <a href="/view">Threads</a>
-        <a href="/connect">Users</a>
-        <a href="/about">About</a>
     </div>
 </head>
 <body>
-<div class = "layer2">
-    <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
-</div>
-<div align="center" th:if="${param.error}" class="alert alert-danger">
-    Invalid username or email.
+<div class="layer2">
+
 </div>
 </body>
 </html>
