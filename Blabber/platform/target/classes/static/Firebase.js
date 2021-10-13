@@ -33,6 +33,8 @@ function create() {
     const app = initializeApp(firebaseConfig);
     import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
+
+
     var userEmail = document.getElementById("email").value;
     var userPass = document.getElementById("password").value;
     const auth = getAuth();
@@ -47,6 +49,7 @@ function create() {
             const errorMessage = error.message;
             // ..
         });
+        sendVerificationEmail();
 }
 function logout(){
     import { getAuth, signOut } from "firebase/auth";
@@ -59,16 +62,55 @@ function logout(){
     });
 }
 
+function sendVerificationEmail()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        user.sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // email sent
 
 
+                                    // after email is sent just logout the user and finish this activity
+                                    FirebaseAuth.getInstance().signOut();
+                                    startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                                    finish();
+                        }
+                        else
+                        {
+                            // email not sent, so display message and restart the activity or do whatever you wish to do
 
+                                    //restart this activity
+                                    overridePendingTransition(0, 0);
+                                    finish();
+                                    overridePendingTransition(0, 0);
+                                    startActivity(getIntent());
 
+                        }
+                    }
+                });
+    }
 
+    function checkIfEmailVerified()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-//first input delay
-!function(n,e){var t,o,i,c=[],f={passive:!0,capture:!0},r=new Date,a="pointerup",u="pointercancel";function p(n,c){t||(t=c,o=n,i=new Date,w(e),s())}function s(){o>=0&&o<i-r&&(c.forEach(function(n){n(o,t)}),c=[])}function l(t){if(t.cancelable){var o=(t.timeStamp>1e12?new Date:performance.now())-t.timeStamp;"pointerdown"==t.type?function(t,o){function i(){p(t,o),r()}function c(){r()}function r(){e(a,i,f),e(u,c,f)}n(a,i,f),n(u,c,f)}(o,t):p(o,t)}}function w(n){["click","mousedown","keydown","touchstart","pointerdown"].forEach(function(e){n(e,l,f)})}w(n),self.perfMetrics=self.perfMetrics||{},self.perfMetrics.onFirstInputDelay=function(n){c.push(n),s()}}(addEventListener,removeEventListener);
+        if (user.isEmailVerified())
+        {
+            // user is verified, so you can finish this activity or send user to activity which you want.
+            finish();
+            Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            // email is not verified, so just prompt the message to the user and restart this activity.
+            // NOTE: don't forget to log out the user.
+            FirebaseAuth.getInstance().signOut();
 
-import { getPerformance } from "firebase/performance";
+            //restart this activity
 
-// Initialize Performance Monitoring and get a reference to the service
-const perf = getPerformance(app);
+        }
+    }
