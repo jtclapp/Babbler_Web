@@ -75,9 +75,13 @@
 
 
         <div class="dropdown" th:if="${currentUser}">
-            <b class="drop" th:text="${currentUser}" th:size="20" ></b>
+            <button class="dropbtn" th:text="${currentUser}" th:size="20" >
+
+            </button>
             <div class="dropdown-content">
-                <a href="#">Link 1</a>
+                <a href="#">Profile</a>
+                <a href="#">About</a>
+                <a href="#">Third thing</a>
                 <a href ="#"onclick="location.href='/logout'">Logout</a>
             </div>
         </div>

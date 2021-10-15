@@ -49,7 +49,7 @@ function create() {
             const errorMessage = error.message;
             // ..
         });
-        sendVerificationEmail();
+
 }
 function logout(){
     import { getAuth, signOut } from "firebase/auth";
