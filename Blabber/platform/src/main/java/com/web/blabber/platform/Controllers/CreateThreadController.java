@@ -35,18 +35,20 @@ public class CreateThreadController
 
     }
     @GetMapping("/create")
-    public String loadCreateThreadPage(Model model) throws IOException {
+    public String loadCreateThreadPage(Model model) {
         Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = user_authentication.getName();
         if (!currentUserName.equals("") && !currentUserName.equals("anonymousUser")) {
             model.addAttribute("currentUser", currentUserName);
+        } else {
+            return "error";
         }
         fileList = new ArrayList<>();
         model.addAttribute("createdThread",new Threads());
         System.out.println("Switching over to the create thread page.");
         return "createThread";
     }
-    @PostMapping("/create/add")
+    @PostMapping("/create")
     public String addToThread(@ModelAttribute("files") MultipartFile[] files, Model model) throws Exception {
         Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = user_authentication.getName();

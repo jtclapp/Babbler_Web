@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link  href="css/blabber.css" rel="stylesheet">
     <style>
-
         #myInput {
             background-position: 10px 12px; /* Position the search icon */
             background-repeat: no-repeat; /* Do not repeat the icon image */
@@ -15,6 +14,7 @@
             border: 1px solid #ddd; /* Add a grey border */
             margin:0 auto;
             display:block;
+            border-radius: 5px;
         }
     </style>
     <script>
@@ -42,8 +42,8 @@
         }
     </script>
     <div class="topNav">
-
-        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}" ></a>
+        <!--<img class="home" th:src="@{images/Babbler_White.png}">-->
+        <a href="/">Home</a>
         <a href="/view">Threads</a>
         <a href="/connect" class="active">Users</a>
         <a href="/about">About</a>
@@ -58,16 +58,20 @@
 </head>
 <body>
 <div class="layer2">
-    <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <input type="text" id="myInput" onkeyup="search()" placeholder="Search for users..">
+    <br>
     <br>
     <ul id="userUL">
     <tr th:each="User: ${allUsers}">
         <br>
         <div th:if= "${User.imageURL == 'default'}">
             <img style="border-radius: 100%;overflow: hidden" th:align="middle" th:src="@{images/default_profile.jpg}" width="75" height="75"/>
-            <li style="list-style-type: none"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
+            <li style="list-style-type: none; display: inline"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
                 color: white; margin-left: 10px;" th:text="${User.username}"></a></li>
         </div>
         <div th:if= "${User.imageURL != 'default'}">

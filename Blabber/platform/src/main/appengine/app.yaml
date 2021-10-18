@@ -7,5 +7,7 @@ env_variables:
 handlers:
   - url: /.*
     script: this field is required, but ignored
+  - url: /css
+    static_dir: css
 manual_scaling:
   instances: 1

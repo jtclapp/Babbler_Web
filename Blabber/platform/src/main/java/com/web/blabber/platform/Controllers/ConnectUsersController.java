@@ -20,6 +20,8 @@ public class ConnectUsersController
         String currentUserName = user_authentication.getName();
         if (!currentUserName.equals("") && !currentUserName.equals("anonymousUser")) {
             model.addAttribute("currentUser", currentUserName);
+        } else {
+            return "error";
         }
         System.out.println("Switching over to the connect users page.");
         userService = new UserService();

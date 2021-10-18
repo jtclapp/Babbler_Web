@@ -25,14 +25,13 @@
             margin-right: auto;
             height: 200%;
             Width: 60%;
-            background:#333;
             padding: 10px;
         }
         body {
             margin: auto;
             font-family: Arial, Helvetica, sans-serif;
             height: 100%;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(194, 6, 6, 1) 51%, rgba(0, 0, 0, 1) 100%) no-repeat fixed;
+            background: linear-gradient(326deg, #f8002f 0%, #191919 82%) no-repeat fixed;
         }
         .topNav {
             overflow: hidden;
@@ -70,7 +69,7 @@
             width: 60px;
             height: 60px;
             border-radius: 100%;
-            background: #C20606;
+            background: black;
             border: none;
             outline: none;
             color: #FFFF;
@@ -86,14 +85,13 @@
             -webkit-transform: rotate(45deg);
         }
         .carousel{
-            background:#333;
-            margin-top: 50px;
+            margin-top: 5px;
             height: auto;
+            float: left;
+            display: block;
         }
         .carousel-item{
-            text-align: center;
-            width: 50%;
-            margin: auto;
+            width: auto;
             /* Prevent carousel from being distorted if for some reason image doesn't load */
         }
         #threadInput {
@@ -105,6 +103,8 @@
             border: 1px solid #ddd; /* Add a grey border */
             margin:0 auto;
             display:block;
+            border-radius: 5px;
+
         }
         /*.carousel-indicators {*/
         /*    text-align: left;*/
@@ -137,8 +137,8 @@
         }
     </script>
     <div class="topNav">
-
-        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}"></a>
+        <!--<img class="home" th:src="@{images/Babbler_White.png}">-->
+        <a href="/">Home</a>
         <a href="/view" class="active">Threads</a>
         <a href="/connect">Users</a>
         <a href="/about">About</a>
@@ -153,23 +153,28 @@
 </head>
 <body>
 <div class="layer2">
-    <button class="main_btn" onclick="location.href='/create'">+</button>
-        <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
-        <br>
+    <br>
+    <br>
+    <br>
+        <button class="main_btn" onclick="location.href='/create'">+</button>
+    <br>
+    <br>
+    <br>
+    <br>
         <input type="text" id="threadInput" onkeyup="search()" placeholder="Search for threads..">
         <br>
         <ul id="threadUL">
         <tr th:each="Threads: ${allThreads}">
-            <div th:if= "${Threads.title != ''}">
+            <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
             <br>
             <br>
                 <!--/*@thymesVar id="Threads" type=""*/-->
                 <ul id="UL1" class="ul">
-                <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
-                color: white; margin-left: 10px;" th:text="${Threads.title}"></a></li>
+                <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: Georgia,serif;
+                color: white;" th:text="${Threads.title}"></a></li>
                 </ul>
             </div>
-            <div th:if= "${Threads.image1 != null}">
+            <div th:if= "${Threads.image1 != null}" style="margin-left: 40px; float: left; clear: left">
             <div id="threadCarousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li th:if="${Threads.image1 != null}" data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -181,27 +186,27 @@
                 <!-- Wrapper for carousel items -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img th:src="${Threads.image1}" height="300" width="300"/>
+                        <img class="d-block w-100" th:src="${Threads.image1}" height="300" width="300"/>
                     </div>
                     <div class="carousel-item" th:if= "${Threads.image2 != null}">
-                        <img th:src="${Threads.image2}" height="300" width="300"/>
+                        <img class="d-block w-100" th:src="${Threads.image2}" height="300" width="300"/>
                     </div>
                     <div class="carousel-item" th:if= "${Threads.image3 != null}">
-                        <img th:src="${Threads.image3}" height="300" width="300"/>
+                        <img class="d-block w-100" th:src="${Threads.image3}" height="300" width="300"/>
                     </div>
                     <div class="carousel-item" th:if= "${Threads.image4 != null}">
-                        <img th:src="${Threads.image4}" height="300" width="300"/>
+                        <img class="d-block w-100" th:src="${Threads.image4}" height="300" width="300"/>
                     </div>
                     <div class="carousel-item" th:if= "${Threads.image5 != null}">
-                        <img th:src="${Threads.image5}" height="300" width="300"/>
+                        <img class="d-block w-100" th:src="${Threads.image5}" height="300" width="300"/>
                     </div>
                 </div>
             </div>
             </div>
-            <div th:if= "${Threads.image1 == null}">
+            <div th:if= "${Threads.image1 == null}" style="margin-left: 40px; float: left; clear: left">
                 <br>
                 <li style="list-style-type: none" class="carousel slide"><a style="font-size: 15px; font-family: 'Baskerville Old Face',serif; margin-right: 200px;
-                color: white; margin-left: 20px;" th:text="${Threads.caption}"></a></li>
+                color: white; margin-left: 40px;" th:text="${Threads.caption}"></a></li>
             </div>
         </tr>
         </ul>
