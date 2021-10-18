@@ -50,14 +50,13 @@ body {
   color: black;
 }
 button {
-    padding:0.6em 2em;
     border-radius: 6px;
-    color:#ffff;
-    background-color: #C20606;
-    font-size:1.1em;
+    color: white;
+    font-family: 'BN Machine', serif;
+    background-color: transparent;
+    font-size:2.7em;
     border:0;
     cursor:pointer;
-    margin:1em;
 }
 .topNav {
   overflow: hidden;

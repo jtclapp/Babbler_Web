@@ -2,28 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <title>Blabber</title>
-<body>
-
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link  href="css/blabber.css" rel="stylesheet">
-    <div class="topNav">
-        <!--<img class="home" th:src="@{images/Babbler_White.png}">-->
-        <a href="/">Home</a>
-        <a href="/view">Threads</a>
-        <a href="/connect">Users</a>
-        <a href="/about">About</a>
-        <b onclick="location.href='/signUp'">Sign Up</b>
-        <b onclick="location.href='/signIn'">Sign In</b>
-    </div>
-</head>
-<div style="text-align: center;">
-    <div class = "layer2">
-        <div class ="error">
-        <h1 style="color: white; font-family: 'BN Machine'; font-size: 25px">Please Sign In Or Sign Up To Continue</h1>
-        <button style= onclick="location.href='/signUp'">Sign Up</button>
-        <button onclick="location.href='/signIn'">Sign In</button>
-       </div>
+<body>
+<br>
+<br>
+<br>
+<img class = "logo" th:src="@{images/Babbler_NoBack.png}">
+<div class="context">
+    <div style="text-align: center;">
+        <div class = "layer2">
+            <br>
+            <br>
+                <button onclick="location.href='/signIn'">Sign In</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                <button onclick="location.href='/signUp'">Sign Up</button>
+        </div>
     </div>
 </div>
+<div class="area" >
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div >
 </body>
 </html>
