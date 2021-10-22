@@ -9,11 +9,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link  href="css/blabber.css" rel="stylesheet">
-<style>
 
-
-
-</style>
     <script>
         function search() {
             // Declare variables
@@ -42,7 +38,7 @@
         <a href="/"><img class="home" th:src="@{images/Babbler_White.png}"></a>
         <a href="/view" class="active">Threads</a>
         <a href="/connect">Users</a>
-        <a href="/about">About</a>
+
 
         <div class="dropdown" th:if="${currentUser}">
             <button class="dropbtn" th:text="${currentUser}" th:size="20" >
@@ -50,7 +46,7 @@
             </button>
             <div class="dropdown-content">
                 <a href="#">Profile</a>
-                <a href="#">About</a>
+                <a href="/about">About</a>
                 <a href="#">Third thing</a>
                 <a href ="#"onclick="location.href='/logout'">Logout</a>
             </div>

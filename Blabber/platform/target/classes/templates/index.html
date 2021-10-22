@@ -71,7 +71,7 @@
         <a href="/" class="active"><img class="home" th:src="@{images/Babbler_White.png}"></a>
         <a href="/view" >Threads</a>
         <a href="/connect">Users</a>
-        <a href="/about">About</a>
+
 
 
         <div class="dropdown" th:if="${currentUser}">
@@ -79,8 +79,8 @@
 
             </button>
             <div class="dropdown-content">
-                <a href="#">Profile</a>
-                <a href="#">About</a>
+                <a href="/Userprofile">Profile</a>
+                <a href="/about">About</a>
                 <a href="#">Third thing</a>
                 <a href ="#"onclick="location.href='/logout'">Logout</a>
             </div>
