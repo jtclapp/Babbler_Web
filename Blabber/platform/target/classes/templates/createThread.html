@@ -11,7 +11,7 @@
             padding:0.6em 2em;
             border-radius: 6px;
             color:#ffff;
-            background-color: #C20606;
+            background-color: #191919;
             font-size:1.1em;
             border:0;
             cursor:pointer;
@@ -19,8 +19,8 @@
         }
     </style>
     <div class="topNav">
-
-        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}"></a>
+        <!--<img class="home" th:src="@{images/Babbler_White.png}">-->
+        <a href="/">Home</a>
         <a href="/view" class="active">Threads</a>
         <a href="/connect">Users</a>
 
@@ -43,15 +43,21 @@
     </div>
 </head>
 <body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="layer2">
-    <div class="layer3">
-        <div style="border-width: 2px; border-color: white; border-style: solid; width: 1115px; height: 500px; margin-bottom: 6px; padding: 10px" align="center" >
+        <div style="border-width: 2px; border-color: white; border-style: solid; width: 1115px; height: 500px; margin-bottom: 6px; padding: 10px;
+                overflow: hidden;" align="center">
         <tr th:each="photo: ${Photos}">
             <img th:src="${photo}" width="250" height="250"/>
         </tr>
         </div>
         <div>
-            <form th:action="@{/create/add}" method="post" enctype="multipart/form-data">
+            <form th:action="@{/create}" method="post" enctype="multipart/form-data">
                 <input style="color: white" type="file" name="files" accept="image/*" multiple required>
                 <br>
                 <div class="center">
@@ -70,17 +76,15 @@
                 <br>
                 <div align="center">
                     <label style="color: white;">Title:</label>
-                    <input style="border-radius: 15px; height: 25px; width: 250px; font-size: 16px; padding: 2px;
+                    <input style="border-radius: 15px; height: 25px; width: 557.5px; font-size: 16px; padding: 6px;
                         border-color: black;" type="text" th:field="*{title}" required/><br/>
                 </div>
                 <br>
-                <textarea style="padding: 2px;border-color: black;border-radius: 15px;height:500px;font-size:12pt;width:500px; margin:0px auto; display:block;" th:field="*{caption}" required></textarea><br/>
-                <br>
-                <br>
+                <textarea style="padding: 8px;border-color: black;border-radius: 15px;font-size:12pt;
+                 width: 1115px; height: 500px; margin: auto; display:block;" th:field="*{caption}" required></textarea><br/>
                 <br>
                 <input style="margin:0px auto; display:block;" type="submit" value="Create Thread">
         </form>
-    </div>
 </div>
 </body>
 </html>

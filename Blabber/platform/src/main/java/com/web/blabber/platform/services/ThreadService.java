@@ -37,6 +37,41 @@ public class ThreadService
         }
         return threadList;
     }
+    private CollectionReference getRecommendedThreadCollection() {
+        firestore = FirestoreClient.getFirestore();
+        return firestore.collection("RecommendThreads");
+    }
+    public List<Threads> getAllRecommendedThreads() throws ExecutionException, InterruptedException {
+        List<Threads> threadList = new ArrayList<>();
+        CollectionReference threads = getRecommendedThreadCollection();
+        ApiFuture<QuerySnapshot> querySnapshot = threads.get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            Threads thread = doc.toObject(Threads.class);
+            assert thread != null;
+            thread.setCaption(blurbCreator(thread.getCaption()));
+            threadList.add(thread);
+        }
+        return threadList;
+    }
+    public String blurbCreator(String text)
+    {
+        String[] brokenText = text.split(" ");
+        text = "";
+        for(int i = 0; i < brokenText.length; i++)
+        {
+            if(i >= 30)
+            {
+                break;
+            }
+            if(i != 0)
+            {
+                text += " ";
+            }
+            text += brokenText[i];
+        }
+        text += "...";
+        return text;
+    }
 //    public Thread getThread(String id) throws ExecutionException, InterruptedException {
 //        List<Thread> threadList = getAllThreads();
 //        for(int i = 0; i <= threadList.size()-1; i++)
