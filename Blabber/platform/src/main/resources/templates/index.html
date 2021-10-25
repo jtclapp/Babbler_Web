@@ -8,15 +8,30 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link  href="css/blabber.css" rel="stylesheet">
     <style>
-        .layer2{
-            position:auto;
+        .logo {
+            display: block;
             margin-left: auto;
             margin-right: auto;
-            height: 200%;
-            Width: 60%;
+            width: 50%;
+        }
+        .layer2{
+            margin-left: auto;
+            margin-right: auto;
+            height: 100%;
+            Width: 35%;
             padding: 10px;
+        }
+        .layer3{
+            float: left;
+            height: 100%;
+            padding: 10px;
+        }
+        .layer4{
+            float: right;
+            height: 100%;
+            padding: 10px;
+            margin-right: 100px;
         }
         body {
             margin: auto;
@@ -24,9 +39,24 @@
             height: 100%;
             background: linear-gradient(326deg, #f8002f 0%, #191919 82%) no-repeat fixed;
         }
+        .errorNav b {
+            float: center;
+            color: #f2f2f2;
+            text-align: right;
+            padding: 12px 14px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .errorNav b:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
         .topNav {
             overflow: hidden;
-            background-color: #333;
+            background-color: #191919;
+            z-index: 1;
+            width: 100%;
+            position: absolute;
         }
         .topNav a {
             float: left;
@@ -50,21 +80,23 @@
             text-align: right;
             padding: 14px 16px;
             text-decoration: none;
-            font-size: 17px;
+            font-size: 15px;
         }
         .topNav b:hover {
             background-color: #a9a9a9;
             color: black;
         }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: 'Exo', sans-serif;
+        }
         .carousel{
-            margin-top: 5px;
             height: auto;
             float: left;
-            display: inline-block;
-        }
-        .carousel-item{
-            width: auto;
-            /* Prevent carousel from being distorted if for some reason image doesn't load */
+            display: flex;
         }
         .dropdown {
             float: right;
@@ -81,7 +113,7 @@
             margin: 0;
         }
         .navbar a:hover, .dropdown:hover .dropbtn {
-            background-color: #a9a9a9;
+            background-color: red;
         }
         .dropdown-content {
             display: none;
@@ -113,9 +145,7 @@
         <a href="/about">About</a>
 
         <div class="dropdown" th:if="${currentUser}">
-            <button class="dropbtn" th:text="${currentUser}" th:size="20" >
-
-            </button>
+            <button class="dropbtn" th:text="${currentUser}" th:size="20"></button>
             <div class="dropdown-content">
                 <a href="#">Profile</a>
                 <a href="#">About</a>
@@ -132,13 +162,15 @@
 <body>
 <br>
 <br>
-<br>
-<br>
 <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
+    <div class="layer3">
+        <a style="font-size: 36px;font-family: 'BN Machine', serif;color: white;">Top Rated Threads:</a>
+    </div>
+    <div class="layer4">
+        <a style="font-size: 36px;font-family: 'BN Machine', serif;color: white; margin-left: 5px">Top True Crime Threads:</a>
+    </div>
     <div class="layer2">
-
-        <a style="font-size: 32px; font-family: Georgia,serif;color: white;font-style: italic; margin-left: 40px">What We Recommend:</a>
-        <br>
+        <a style="font-size: 36px;font-family: 'BN Machine', serif;color: white; margin-left: 50px">What We Recommend:</a>
         <ul id="threadUL">
             <tr th:each="Threads: ${allRThreads}">
                 <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
@@ -146,11 +178,11 @@
                     <br>
                     <!--/*@thymesVar id="Threads" type=""*/-->
                     <ul id="UL1" class="ul">
-                        <li style="list-style-type: none" class="li-text"><a style="font-size: 20px; font-family: Georgia,serif;
-                color: white;margin-left: 40px" th:text="${Threads.title}"></a></li>
+                        <li style="list-style-type: none" class="li-text"><a style="font-size: 22px; font-family: 'Baskerville Old Face',serif;
+                color: white;margin-left: 70px" th:text="${Threads.title}"></a></li>
                     </ul>
                 </div>
-                <div th:if= "${Threads.image1 != null}" style="margin-left: 40px; float: left; padding-right: 20px">
+                <div th:if= "${Threads.image1 != null}" style="margin-left: 70px; float: left; padding-right: 20px">
                     <div id="threadCarousel" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li th:if="${Threads.image1 != null}" data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -162,32 +194,28 @@
                         <!-- Wrapper for carousel items -->
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img th:src="${Threads.image1}" height="400" width="400"/>
+                                <img th:src="${Threads.image1}" height="200" width="200"/>
                             </div>
                             <div class="carousel-item" th:if= "${Threads.image2 != null}">
-                                <img th:src="${Threads.image2}" height="400" width="400"/>
+                                <img th:src="${Threads.image2}" height="200" width="200"/>
                             </div>
                             <div class="carousel-item" th:if= "${Threads.image3 != null}">
-                                <img th:src="${Threads.image3}" height="400" width="400"/>
+                                <img th:src="${Threads.image3}" height="200" width="200"/>
                             </div>
                             <div class="carousel-item" th:if= "${Threads.image4 != null}">
-                                <img th:src="${Threads.image4}" height="400" width="400"/>
+                                <img th:src="${Threads.image4}" height="200" width="200"/>
                             </div>
                             <div class="carousel-item" th:if= "${Threads.image5 != null}">
-                                <img th:src="${Threads.image5}" height="400" width="400"/>
+                                <img th:src="${Threads.image5}" height="200" width="200"/>
                             </div>
                         </div>
                     </div>
                 </div>
-                    <a style="font-size: 15px; font-family: 'Baskerville Old Face',serif;
-                color: white; margin-top: 100px" th:text="${Threads.caption}"></a>
+                    <a style="font-size: 16px; font-family: 'Baskerville Old Face',serif;
+                color: white;" th:text="${Threads.caption}">Hello</a>
             </tr>
         </ul>
         <br>
     </div>
 </body>
-<br>
-<br>
-<br>
-<br>
 </html>

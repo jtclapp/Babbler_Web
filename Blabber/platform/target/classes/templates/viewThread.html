@@ -25,7 +25,7 @@
         }
         .topNav {
             overflow: hidden;
-            background-color: #333;
+            background-color: #191919;
         }
         .topNav a {
             float: left;
@@ -47,9 +47,9 @@
             float: right;
             color: #f2f2f2;
             text-align: right;
-            padding: 12px 14px;
+            padding: 14px 16px;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 15px;
         }
         .topNav b:hover {
             background-color: #a9a9a9;
@@ -94,7 +94,6 @@
             margin:0 auto;
             display:block;
             border-radius: 5px;
-
         }
         /*.carousel-indicators {*/
         /*    text-align: left;*/
@@ -176,19 +175,19 @@
                 <!-- Wrapper for carousel items -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" th:src="${Threads.image1}" height="300" width="300"/>
+                        <img th:src="${Threads.image1}" height="300" width="300"/>
                     </div>
                     <div class="carousel-item" th:if= "${Threads.image2 != null}">
-                        <img class="d-block w-100" th:src="${Threads.image2}" height="300" width="300"/>
+                        <img th:src="${Threads.image2}" height="300" width="300"/>
                     </div>
                     <div class="carousel-item" th:if= "${Threads.image3 != null}">
-                        <img class="d-block w-100" th:src="${Threads.image3}" height="300" width="300"/>
+                        <img th:src="${Threads.image3}" height="300" width="300"/>
                     </div>
                     <div class="carousel-item" th:if= "${Threads.image4 != null}">
-                        <img class="d-block w-100" th:src="${Threads.image4}" height="300" width="300"/>
+                        <img th:src="${Threads.image4}" height="300" width="300"/>
                     </div>
                     <div class="carousel-item" th:if= "${Threads.image5 != null}">
-                        <img class="d-block w-100" th:src="${Threads.image5}" height="300" width="300"/>
+                        <img th:src="${Threads.image5}" height="300" width="300"/>
                     </div>
                 </div>
             </div>
