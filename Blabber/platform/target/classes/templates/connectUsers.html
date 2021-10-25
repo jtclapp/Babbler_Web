@@ -3,9 +3,122 @@
 <title>Blabber</title>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link  href="css/blabber.css" rel="stylesheet">
     <style>
-
+        .layer2{
+            margin-left: auto;
+            margin-right: auto;
+            height: 100%;
+            Width: 60%;
+            padding: 10px;
+        }
+        body {
+            margin: auto;
+            font-family: Arial, Helvetica, sans-serif;
+            height: 100%;
+            background: linear-gradient(326deg, #f8002f 0%, #191919 82%) no-repeat fixed;
+        }
+        .errorNav b {
+            float: center;
+            color: #f2f2f2;
+            text-align: right;
+            padding: 12px 14px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .errorNav b:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        button {
+            border-radius: 6px;
+            color: white;
+            font-family: 'BN Machine', serif;
+            background-color: transparent;
+            font-size:2.7em;
+            border:0;
+            cursor:pointer;
+        }
+        .topNav {
+            overflow: visible;
+            background-color: #191919;
+            z-index: 1;
+            width: 100%;
+            position: absolute;
+        }
+        .topNav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: left;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        .topNav a:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        .topNav a.active {
+            background-color: #C20606;
+            color: white;
+        }
+        .topNav b {
+            float: right;
+            color: #f2f2f2;
+            text-align: right;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .topNav b:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        .dropdown {
+            float: right;
+            overflow: initial;
+        }
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: #a9a9a9;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: 'Exo', sans-serif;
+        }
         #myInput {
             background-position: 10px 12px; /* Position the search icon */
             background-repeat: no-repeat; /* Do not repeat the icon image */
@@ -15,6 +128,7 @@
             border: 1px solid #ddd; /* Add a grey border */
             margin:0 auto;
             display:block;
+            border-radius: 5px;
         }
     </style>
     <script>
@@ -42,41 +156,45 @@
         }
     </script>
     <div class="topNav">
-
-        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}"></a>
-        <a href="/view" >Threads</a>
-        <a href="/connect" class="active" >Users</a>
-
+        <a href="/">Home</a>
+        <a href="/view">Threads</a>
+        <a href="/connect" class="active">Users</a>
 
         <div class="dropdown" th:if="${currentUser}">
-            <button class="dropbtn" th:text="${currentUser}" th:size="20" >
-
-            </button>
+            <button class="dropbtn" th:text="${currentUser}" th:size="20"></button>
             <div class="dropdown-content">
-                <a href="#">Profile</a>
+                <a href="#">My Profile</a>
                 <a href="/about">About</a>
-                <a href="#">Third thing</a>
-                <a href ="#"onclick="location.href='/logout'">Logout</a>
+                <a href="#">Settings</a>
+                <a onclick="location.href='/logout'">Logout</a>
             </div>
         </div>
-        <div th:unless="${currentUser}">
-            <b onclick="location.href='/signUp'">Sign Up</b>
-            <b onclick="location.href='/signIn'">Sign In</b>
+        <div class="dropdown" th:unless="${currentUser}">
+            <button class="dropbtn"th:size="20">Sign In/Sign Up</button>
+            <div class="dropdown-content">
+                <a href="/about">About</a>
+                <a href="#">Settings</a>
+                <a onclick="location.href='/start'">Sign In/Sign Up</a>
+            </div>
         </div>
     </div>
 </head>
 <body>
 <div class="layer2">
-    <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <input type="text" id="myInput" onkeyup="search()" placeholder="Search for users..">
+    <br>
     <br>
     <ul id="userUL">
     <tr th:each="User: ${allUsers}">
         <br>
         <div th:if= "${User.imageURL == 'default'}">
             <img style="border-radius: 100%;overflow: hidden" th:align="middle" th:src="@{images/default_profile.jpg}" width="75" height="75"/>
-            <li style="list-style-type: none"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
+            <li style="list-style-type: none; display: inline"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
                 color: white; margin-left: 10px;" th:text="${User.username}"></a></li>
         </div>
         <div th:if= "${User.imageURL != 'default'}">

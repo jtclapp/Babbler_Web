@@ -8,8 +8,142 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link  href="css/blabber.css" rel="stylesheet">
-
+    <style>
+        .layer2{
+            position:auto;
+            margin-left: auto;
+            margin-right: auto;
+            height: 200%;
+            Width: 60%;
+            padding: 10px;
+        }
+        body {
+            margin: auto;
+            font-family: Arial, Helvetica, sans-serif;
+            height: 100%;
+            background: linear-gradient(326deg, #f8002f 0%, #191919 82%) no-repeat fixed;
+        }
+        .topNav {
+            overflow: visible;
+            background-color: #191919;
+            z-index: 1;
+            width: 100%;
+            position: absolute;
+        }
+        .topNav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: left;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        .topNav a:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        .topNav a.active {
+            background-color: #C20606;
+            color: white;
+        }
+        .topNav b {
+            float: right;
+            color: #f2f2f2;
+            text-align: right;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .topNav b:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        .dropdown {
+            float: right;
+            overflow: initial;
+        }
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: #a9a9a9;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .main_btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            background: black;
+            border: none;
+            outline: none;
+            color: #FFFF;
+            font-size: 40px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            transition: .3s;
+            float: right;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        .main_btn:focus {
+            transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+        .carousel{
+            margin-top: 5px;
+            height: auto;
+            float: left;
+            display: block;
+        }
+        .carousel-item{
+            width: auto;
+            /* Prevent carousel from being distorted if for some reason image doesn't load */
+        }
+        #threadInput {
+            background-position: 10px 12px; /* Position the search icon */
+            background-repeat: no-repeat; /* Do not repeat the icon image */
+            width: 50%; /* Full-width */
+            font-size: 16px; /* Increase font-size */
+            padding: 12px 20px 12px 15px; /* Add some padding */
+            border: 1px solid #ddd; /* Add a grey border */
+            margin:0 auto;
+            display:block;
+            border-radius: 5px;
+        }
+        /*.carousel-indicators {*/
+        /*    text-align: left;*/
+        /*    float: left;*/
+        /*    left: 2%;*/
+        /*    right: inherit;*/
+        /*}*/
+    </style>
     <script>
         function search() {
             // Declare variables
@@ -34,48 +168,53 @@
         }
     </script>
     <div class="topNav">
-
-        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}"></a>
+        <a href="/">Home</a>
         <a href="/view" class="active">Threads</a>
         <a href="/connect">Users</a>
 
-
         <div class="dropdown" th:if="${currentUser}">
-            <button class="dropbtn" th:text="${currentUser}" th:size="20" >
-
-            </button>
+            <button class="dropbtn" th:text="${currentUser}" th:size="20"></button>
             <div class="dropdown-content">
-                <a href="#">Profile</a>
+                <a href="#">My Profile</a>
                 <a href="/about">About</a>
-                <a href="#">Third thing</a>
-                <a href ="#"onclick="location.href='/logout'">Logout</a>
+                <a href="#">Settings</a>
+                <a onclick="location.href='/logout'">Logout</a>
             </div>
         </div>
-        <div th:unless="${currentUser}">
-            <b onclick="location.href='/signUp'">Sign Up</b>
-            <b onclick="location.href='/signIn'">Sign In</b>
+        <div class="dropdown" th:unless="${currentUser}">
+            <button class="dropbtn"th:size="20">Sign In/Sign Up</button>
+            <div class="dropdown-content">
+                <a href="/about">About</a>
+                <a href="#">Settings</a>
+                <a onclick="location.href='/start'">Sign In/Sign Up</a>
+            </div>
         </div>
     </div>
 </head>
 <body>
 <div class="layer2">
-    <button class="main_btn" onclick="location.href='/create'">+</button>
-        <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
-        <br>
+    <br>
+    <br>
+    <br>
+        <button class="main_btn" onclick="location.href='/create'">+</button>
+    <br>
+    <br>
+    <br>
+    <br>
         <input type="text" id="threadInput" onkeyup="search()" placeholder="Search for threads..">
         <br>
         <ul id="threadUL">
         <tr th:each="Threads: ${allThreads}">
-            <div th:if= "${Threads.title != ''}">
+            <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
             <br>
             <br>
                 <!--/*@thymesVar id="Threads" type=""*/-->
                 <ul id="UL1" class="ul">
-                <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
-                color: white; margin-left: 10px;" th:text="${Threads.title}"></a></li>
+                <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: Georgia,serif;
+                color: white;" th:text="${Threads.title}"></a></li>
                 </ul>
             </div>
-            <div th:if= "${Threads.image1 != null}">
+            <div th:if= "${Threads.image1 != null}" style="margin-left: 40px; float: left; clear: left">
             <div id="threadCarousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li th:if="${Threads.image1 != null}" data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -104,14 +243,18 @@
                 </div>
             </div>
             </div>
-            <div th:if= "${Threads.image1 == null}">
+            <div th:if= "${Threads.image1 == null}" style="margin-left: 40px; float: left; clear: left">
                 <br>
                 <li style="list-style-type: none" class="carousel slide"><a style="font-size: 15px; font-family: 'Baskerville Old Face',serif; margin-right: 200px;
-                color: white; margin-left: 20px;" th:text="${Threads.caption}"></a></li>
+                color: white; margin-left: 40px;" th:text="${Threads.caption}"></a></li>
             </div>
         </tr>
         </ul>
         <br>
 </div>
 </body>
+<br>
+<br>
+<br>
+<br>
 </html>

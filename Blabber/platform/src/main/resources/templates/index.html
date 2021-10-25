@@ -2,172 +2,307 @@
 <html lang="en">
 <meta charset="UTF-8">
 <title>Blabber</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<!--The above link causes the dropdown menu to not function correctly-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <style>
-
-
-.logo {
-     display: block;
-     margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
-
-
-    .layer2{
-    margin-left: auto;
-    margin-right: auto;
-    height: 100vh;
-    Width: 60%;
-    background:#333;
-    padding: 10px;
-}
-
-    .layer3{
-    margin-left: auto;
-    margin-right: auto;
-    height:80%;
-    width:50%;
-    background: black;
-    padding: 10px;
-    }
-
-    .error{
-        margin-left: auto;
-        margin-right: auto;
-        height:90%;
-        width:90%;
-        background: black;
-        padding: 10px;
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
         }
-
-body {
-  margin: auto;
-  font-family: Arial, Helvetica, sans-serif;
-    height: 100%;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(194, 6, 6, 1) 51%, rgba(0, 0, 0, 1) 100%) no-repeat fixed;
-}
-
-
-
-
-
-.topNav {
-  overflow: hidden;
-  background-color: #333;
-}
-.topNav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: left;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-.topNav a:hover {
-  background-color: #a9a9a9;
-  color: black;
-}
-.topNav a.active {
-  background-color: #C20606;
-  color: white;
-}
-.topNav b {
-    float: right;
-    color: #f2f2f2;
-    text-align: right;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-.topNav b:hover {
-  background-color: #a9a9a9;
-  color: black;
-}
-
-.home {
-     display: block;
-    width: 8vh;
-    height: 2.75vh;
-}
-
-.dropdown {
-  float: right;
-  overflow: hidden;
-}
-
-.dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
-
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
+        .layer2{
+            float: left;
+            height: 100%;
+            Width: 60%;
+            padding: 10px;
+        }
+        .layer4{
+            float: right;
+            height: 100%;
+            padding: 10px;
+            Width: 30%;
+        }
+        body {
+            margin: auto;
+            font-family: Arial, Helvetica, sans-serif;
+            height: 100%;
+            background: linear-gradient(326deg, #f8002f 0%, #191919 82%) no-repeat fixed;
+        }
+        .errorNav b {
+            float: center;
+            color: #f2f2f2;
+            text-align: right;
+            padding: 12px 14px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .errorNav b:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        .topNav {
+            overflow: visible;
+            background-color: #191919;
+            z-index: 1;
+            width: 100%;
+            position: absolute;
+        }
+        .topNav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: left;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        .topNav a:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        .topNav a.active {
+            background-color: #C20606;
+            color: white;
+        }
+        .topNav b {
+            float: right;
+            color: #f2f2f2;
+            text-align: right;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .topNav b:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: 'Exo', sans-serif;
+        }
+        .carousel{
+            height: auto;
+            float: left;
+            display: flex;
+        }
+        .dropdown {
+            float: right;
+            overflow: initial;
+        }
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: #a9a9a9;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
     </style>
     <div class="topNav">
-
-        <a href="/" class="active"><img class="home" th:src="@{images/Babbler_White.png}"></a>
-        <a href="/view" >Threads</a>
+        <a href="/" class="active">Home</a>
+        <a href="/view">Threads</a>
         <a href="/connect">Users</a>
 
-
-
         <div class="dropdown" th:if="${currentUser}">
-            <button class="dropbtn" th:text="${currentUser}" th:size="20" >
-
-            </button>
+            <button class="dropbtn" th:text="${currentUser}" th:size="20"></button>
             <div class="dropdown-content">
-                <a href="/Userprofile">Profile</a>
+                <a href="#">My Profile</a>
                 <a href="/about">About</a>
-                <a href="#">Third thing</a>
-                <a href ="#"onclick="location.href='/logout'">Logout</a>
+                <a href="#">Settings</a>
+                <a onclick="location.href='/logout'">Logout</a>
             </div>
         </div>
-        <div th:unless="${currentUser}">
-            <b onclick="location.href='/signUp'">Sign Up</b>
-            <b onclick="location.href='/signIn'">Sign In</b>
+        <div class="dropdown" th:unless="${currentUser}">
+            <button class="dropbtn"th:size="20">Sign In/Sign Up</button>
+            <div class="dropdown-content">
+                <a href="/about">About</a>
+                <a href="#">Settings</a>
+                <a onclick="location.href='/start'">Sign In/Sign Up</a>
+            </div>
         </div>
     </div>
 </head>
 <body>
+<br>
+<br>
+<img class = "logo" th:src="@{images/Babbler_NoBack.png}">
+<div class="layer4">
+    <a style="font-size: 28px;font-family: 'BN Machine', serif;color: white;">Top Rated Threads:</a>
+    <ul id="threadUL">
+        <tr th:each="Threads: ${allRThreads}">
+            <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
+                <br>
+                <!--/*@thymesVar id="Threads" type=""*/-->
+                <ul id="UL1" class="ul">
+                    <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: 'Baskerville Old Face',serif;
+                color: white;margin-left: 10px" th:text="${Threads.title}"></a></li>
+                </ul>
+            </div>
+            <div th:if= "${Threads.image1 != null}" style="margin-left: 10px; float: left; padding-right: 20px">
+                <div id="threadCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li th:if="${Threads.image1 != null}" data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li th:if="${Threads.image2 != null}" data-target="#myCarousel" data-slide-to="1"></li>
+                        <li th:if="${Threads.image3 != null}" data-target="#myCarousel" data-slide-to="2"></li>
+                        <li th:if="${Threads.image4 != null}" data-target="#myCarousel" data-slide-to="3"></li>
+                        <li th:if="${Threads.image5 != null}" data-target="#myCarousel" data-slide-to="4"></li>
+                    </ol>
+                    <!-- Wrapper for carousel items -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img th:src="${Threads.image1}" height="150" width="150"/>
+                        </div>
+                        <div class="carousel-item" th:if= "${Threads.image2 != null}">
+                            <img th:src="${Threads.image2}" height="150" width="150"/>
+                        </div>
+                        <div class="carousel-item" th:if= "${Threads.image3 != null}">
+                            <img th:src="${Threads.image3}" height="150" width="150"/>
+                        </div>
+                        <div class="carousel-item" th:if= "${Threads.image4 != null}">
+                            <img th:src="${Threads.image4}" height="150" width="150"/>
+                        </div>
+                        <div class="carousel-item" th:if= "${Threads.image5 != null}">
+                            <img th:src="${Threads.image5}" height="150" width="150"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a style="font-size: 14px; font-family: 'Baskerville Old Face',serif;
+                color: white;" th:text="${Threads.caption}">Hello</a>
+        </tr>
+    </ul>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a style="font-size: 28px;font-family: 'BN Machine', serif;color: white;">Top True Crime Threads:</a>
+    <ul id="threadUL">
+        <tr th:each="Threads: ${allRThreads}">
+            <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
+                <br>
+                <!--/*@thymesVar id="Threads" type=""*/-->
+                <ul id="UL1" class="ul">
+                    <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: 'Baskerville Old Face',serif;
+                color: white;margin-left: 10px" th:text="${Threads.title}"></a></li>
+                </ul>
+            </div>
+            <div th:if= "${Threads.image1 != null}" style="margin-left: 10px; float: left; padding-right: 20px">
+                <div id="threadCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li th:if="${Threads.image1 != null}" data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li th:if="${Threads.image2 != null}" data-target="#myCarousel" data-slide-to="1"></li>
+                        <li th:if="${Threads.image3 != null}" data-target="#myCarousel" data-slide-to="2"></li>
+                        <li th:if="${Threads.image4 != null}" data-target="#myCarousel" data-slide-to="3"></li>
+                        <li th:if="${Threads.image5 != null}" data-target="#myCarousel" data-slide-to="4"></li>
+                    </ol>
+                    <!-- Wrapper for carousel items -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img th:src="${Threads.image1}" height="150" width="150"/>
+                        </div>
+                        <div class="carousel-item" th:if= "${Threads.image2 != null}">
+                            <img th:src="${Threads.image2}" height="150" width="150"/>
+                        </div>
+                        <div class="carousel-item" th:if= "${Threads.image3 != null}">
+                            <img th:src="${Threads.image3}" height="150" width="150"/>
+                        </div>
+                        <div class="carousel-item" th:if= "${Threads.image4 != null}">
+                            <img th:src="${Threads.image4}" height="150" width="150"/>
+                        </div>
+                        <div class="carousel-item" th:if= "${Threads.image5 != null}">
+                            <img th:src="${Threads.image5}" height="150" width="150"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a style="font-size: 14px; font-family: 'Baskerville Old Face',serif;
+                color: white;" th:text="${Threads.caption}">Hello</a>
+        </tr>
+    </ul>
+    <br>
+</div>
 <div class="layer2">
-
+    <a style="font-size: 36px;font-family: 'BN Machine', serif;color: white; margin-left: 50px">What We Recommend:</a>
+    <ul id="threadUL">
+        <tr th:each="Threads: ${allRThreads}">
+            <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
+                <br>
+                <!--/*@thymesVar id="Threads" type=""*/-->
+                <ul id="UL1" class="ul">
+                    <li style="list-style-type: none" class="li-text"><a style="font-size: 32px; font-family: 'Baskerville Old Face',serif;
+                color: white;margin-left: 70px" th:text="${Threads.title}"></a></li>
+                </ul>
+            </div>
+            <div th:if= "${Threads.image1 != null}" style="margin-left: 70px; float: left; padding-right: 20px">
+                <div id="threadCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li th:if="${Threads.image1 != null}" data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li th:if="${Threads.image2 != null}" data-target="#myCarousel" data-slide-to="1"></li>
+                        <li th:if="${Threads.image3 != null}" data-target="#myCarousel" data-slide-to="2"></li>
+                        <li th:if="${Threads.image4 != null}" data-target="#myCarousel" data-slide-to="3"></li>
+                        <li th:if="${Threads.image5 != null}" data-target="#myCarousel" data-slide-to="4"></li>
+                    </ol>
+                    <!-- Wrapper for carousel items -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img th:src="${Threads.image1}" height="400" width="400"/>
+                        </div>
+                        <div class="carousel-item" th:if= "${Threads.image2 != null}">
+                            <img th:src="${Threads.image2}" height="400" width="400"/>
+                        </div>
+                        <div class="carousel-item" th:if= "${Threads.image3 != null}">
+                            <img th:src="${Threads.image3}" height="400" width="400"/>
+                        </div>
+                        <div class="carousel-item" th:if= "${Threads.image4 != null}">
+                            <img th:src="${Threads.image4}" height="400" width="400"/>
+                        </div>
+                        <div class="carousel-item" th:if= "${Threads.image5 != null}">
+                            <img th:src="${Threads.image5}" height="400" width="400"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a style="font-size: 26px; font-family: 'Baskerville Old Face',serif;
+                color: white;" th:text="${Threads.caption}">Hello</a>
+        </tr>
+    </ul>
+    <br>
 </div>
 </body>
 </html>
