@@ -33,7 +33,7 @@
             cursor:pointer;
         }
         .topNav {
-            overflow: hidden;
+            overflow: visible;
             background-color: #191919;
             z-index: 1;
             width: 100%;
@@ -66,6 +66,45 @@
         .topNav b:hover {
             background-color: #a9a9a9;
             color: black;
+        }
+        .dropdown {
+            float: right;
+            overflow: initial;
+        }
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: #a9a9a9;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
         *{
             margin: 0;
@@ -191,17 +230,26 @@
         }
     </style>
     <div class="topNav">
-        <!--<img class="home" th:src="@{images/Babbler_White.png}">-->
         <a href="/">Home</a>
         <a href="/view">Threads</a>
         <a href="/connect">Users</a>
-        <a href="/about" class="active">About</a>
-        <div th:if="${currentUser}">
-            <b style="color: white;" th:text="${currentUser}" th:size="20" onclick="location.href='/logout'"></b>
+
+        <div class="dropdown" th:if="${currentUser}">
+            <button class="dropbtn" th:text="${currentUser}" th:size="20"></button>
+            <div class="dropdown-content">
+                <a href="#">My Profile</a>
+                <a href="/about">About</a>
+                <a href="#">Settings</a>
+                <a onclick="location.href='/logout'">Logout</a>
+            </div>
         </div>
-        <div th:unless="${currentUser}">
-            <b onclick="location.href='/signUp'">Sign Up</b>
-            <b onclick="location.href='/signIn'">Sign In</b>
+        <div class="dropdown" th:unless="${currentUser}">
+            <button class="dropbtn"th:size="20">Sign In/Sign Up</button>
+            <div class="dropdown-content">
+                <a href="/about">About</a>
+                <a href="#">Settings</a>
+                <a onclick="location.href='/start'">Sign In/Sign Up</a>
+            </div>
         </div>
     </div>
 </head>

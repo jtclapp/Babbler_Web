@@ -55,4 +55,8 @@ public class SignInController
             return "redirect:signIn?error";
         }
     }
+    @GetMapping("/start")
+    public String loadstartPage() {
+        return "error";
+    }
 }
