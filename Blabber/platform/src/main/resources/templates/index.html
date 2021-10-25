@@ -16,22 +16,16 @@
             width: 50%;
         }
         .layer2{
-            margin-left: auto;
-            margin-right: auto;
-            height: 100%;
-            Width: 35%;
-            padding: 10px;
-        }
-        .layer3{
             float: left;
             height: 100%;
+            Width: 60%;
             padding: 10px;
         }
         .layer4{
             float: right;
             height: 100%;
             padding: 10px;
-            margin-right: 100px;
+            Width: 30%;
         }
         body {
             margin: auto;
@@ -163,11 +157,101 @@
 <br>
 <br>
 <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
-    <div class="layer3">
-        <a style="font-size: 36px;font-family: 'BN Machine', serif;color: white;">Top Rated Threads:</a>
-    </div>
     <div class="layer4">
-        <a style="font-size: 36px;font-family: 'BN Machine', serif;color: white; margin-left: 5px">Top True Crime Threads:</a>
+        <a style="font-size: 36px;font-family: 'BN Machine', serif;color: white;">Top Rated Threads:</a>
+        <ul id="threadUL">
+            <tr th:each="Threads: ${allRThreads}">
+                <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
+                    <br>
+                    <!--/*@thymesVar id="Threads" type=""*/-->
+                    <ul id="UL1" class="ul">
+                        <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: 'Baskerville Old Face',serif;
+                color: white;margin-left: 10px" th:text="${Threads.title}"></a></li>
+                    </ul>
+                </div>
+                <div th:if= "${Threads.image1 != null}" style="margin-left: 10px; float: left; padding-right: 20px">
+                    <div id="threadCarousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li th:if="${Threads.image1 != null}" data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li th:if="${Threads.image2 != null}" data-target="#myCarousel" data-slide-to="1"></li>
+                            <li th:if="${Threads.image3 != null}" data-target="#myCarousel" data-slide-to="2"></li>
+                            <li th:if="${Threads.image4 != null}" data-target="#myCarousel" data-slide-to="3"></li>
+                            <li th:if="${Threads.image5 != null}" data-target="#myCarousel" data-slide-to="4"></li>
+                        </ol>
+                        <!-- Wrapper for carousel items -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img th:src="${Threads.image1}" height="150" width="150"/>
+                            </div>
+                            <div class="carousel-item" th:if= "${Threads.image2 != null}">
+                                <img th:src="${Threads.image2}" height="150" width="150"/>
+                            </div>
+                            <div class="carousel-item" th:if= "${Threads.image3 != null}">
+                                <img th:src="${Threads.image3}" height="150" width="150"/>
+                            </div>
+                            <div class="carousel-item" th:if= "${Threads.image4 != null}">
+                                <img th:src="${Threads.image4}" height="150" width="150"/>
+                            </div>
+                            <div class="carousel-item" th:if= "${Threads.image5 != null}">
+                                <img th:src="${Threads.image5}" height="150" width="150"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a style="font-size: 14px; font-family: 'Baskerville Old Face',serif;
+                color: white;" th:text="${Threads.caption}">Hello</a>
+            </tr>
+        </ul>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a style="font-size: 36px;font-family: 'BN Machine', serif;color: white;">Top True Crime Threads:</a>
+        <ul id="threadUL">
+            <tr th:each="Threads: ${allRThreads}">
+                <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
+                    <br>
+                    <!--/*@thymesVar id="Threads" type=""*/-->
+                    <ul id="UL1" class="ul">
+                        <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: 'Baskerville Old Face',serif;
+                color: white;margin-left: 10px" th:text="${Threads.title}"></a></li>
+                    </ul>
+                </div>
+                <div th:if= "${Threads.image1 != null}" style="margin-left: 10px; float: left; padding-right: 20px">
+                    <div id="threadCarousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li th:if="${Threads.image1 != null}" data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li th:if="${Threads.image2 != null}" data-target="#myCarousel" data-slide-to="1"></li>
+                            <li th:if="${Threads.image3 != null}" data-target="#myCarousel" data-slide-to="2"></li>
+                            <li th:if="${Threads.image4 != null}" data-target="#myCarousel" data-slide-to="3"></li>
+                            <li th:if="${Threads.image5 != null}" data-target="#myCarousel" data-slide-to="4"></li>
+                        </ol>
+                        <!-- Wrapper for carousel items -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img th:src="${Threads.image1}" height="150" width="150"/>
+                            </div>
+                            <div class="carousel-item" th:if= "${Threads.image2 != null}">
+                                <img th:src="${Threads.image2}" height="150" width="150"/>
+                            </div>
+                            <div class="carousel-item" th:if= "${Threads.image3 != null}">
+                                <img th:src="${Threads.image3}" height="150" width="150"/>
+                            </div>
+                            <div class="carousel-item" th:if= "${Threads.image4 != null}">
+                                <img th:src="${Threads.image4}" height="150" width="150"/>
+                            </div>
+                            <div class="carousel-item" th:if= "${Threads.image5 != null}">
+                                <img th:src="${Threads.image5}" height="150" width="150"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a style="font-size: 14px; font-family: 'Baskerville Old Face',serif;
+                color: white;" th:text="${Threads.caption}">Hello</a>
+            </tr>
+        </ul>
+        <br>
     </div>
     <div class="layer2">
         <a style="font-size: 36px;font-family: 'BN Machine', serif;color: white; margin-left: 50px">What We Recommend:</a>
@@ -175,10 +259,9 @@
             <tr th:each="Threads: ${allRThreads}">
                 <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
                     <br>
-                    <br>
                     <!--/*@thymesVar id="Threads" type=""*/-->
                     <ul id="UL1" class="ul">
-                        <li style="list-style-type: none" class="li-text"><a style="font-size: 22px; font-family: 'Baskerville Old Face',serif;
+                        <li style="list-style-type: none" class="li-text"><a style="font-size: 32px; font-family: 'Baskerville Old Face',serif;
                 color: white;margin-left: 70px" th:text="${Threads.title}"></a></li>
                     </ul>
                 </div>
@@ -194,24 +277,24 @@
                         <!-- Wrapper for carousel items -->
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img th:src="${Threads.image1}" height="200" width="200"/>
+                                <img th:src="${Threads.image1}" height="400" width="400"/>
                             </div>
                             <div class="carousel-item" th:if= "${Threads.image2 != null}">
-                                <img th:src="${Threads.image2}" height="200" width="200"/>
+                                <img th:src="${Threads.image2}" height="400" width="400"/>
                             </div>
                             <div class="carousel-item" th:if= "${Threads.image3 != null}">
-                                <img th:src="${Threads.image3}" height="200" width="200"/>
+                                <img th:src="${Threads.image3}" height="400" width="400"/>
                             </div>
                             <div class="carousel-item" th:if= "${Threads.image4 != null}">
-                                <img th:src="${Threads.image4}" height="200" width="200"/>
+                                <img th:src="${Threads.image4}" height="400" width="400"/>
                             </div>
                             <div class="carousel-item" th:if= "${Threads.image5 != null}">
-                                <img th:src="${Threads.image5}" height="200" width="200"/>
+                                <img th:src="${Threads.image5}" height="400" width="400"/>
                             </div>
                         </div>
                     </div>
                 </div>
-                    <a style="font-size: 16px; font-family: 'Baskerville Old Face',serif;
+                    <a style="font-size: 26px; font-family: 'Baskerville Old Face',serif;
                 color: white;" th:text="${Threads.caption}">Hello</a>
             </tr>
         </ul>
