@@ -43,23 +43,7 @@ body {
 }
 
 
-.errorNav {
-  overflow: hidden;
-  background-color: black;
-}
 
-.errorNav b {
-    float: center;
-    color: #f2f2f2;
-    text-align: right;
-    padding: 12px 14px;
-    text-decoration: none;
-    font-size: 13px;
-}
-.errorNav b:hover {
-  background-color: #a9a9a9;
-  color: black;
-}
 
 
 .topNav {
@@ -146,6 +130,7 @@ body {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
 
 
 
