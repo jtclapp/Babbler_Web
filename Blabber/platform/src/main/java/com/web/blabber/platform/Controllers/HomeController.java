@@ -1,6 +1,7 @@
 package com.web.blabber.platform.Controllers;
 
 import com.web.blabber.platform.services.ThreadService;
+import org.springframework.boot.Banner;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -38,12 +39,12 @@ public class HomeController
         return "index";
     }
     @GetMapping("/logout")
-    public String logoutAttempt()
-    {
+    public String logoutAttempt(Model model) throws ExecutionException, InterruptedException {
         authorities = new ArrayList<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority("ANONYMOUS_USER"));
         authentication = new UsernamePasswordAuthenticationToken(null, null, authorities);
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        loadHomePage(model);
         return "index";
     }
 }
