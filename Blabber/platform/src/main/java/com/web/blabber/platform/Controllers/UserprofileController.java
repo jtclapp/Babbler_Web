@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserprofileController
 {
-    @GetMapping("/Userprofile")
+    @GetMapping("/userprofile")
     public String loadUserprofilePage(Model model)
     {
         Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();

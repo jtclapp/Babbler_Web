@@ -237,7 +237,7 @@
         <div class="dropdown" th:if="${currentUser}">
             <button class="dropbtn" th:text="${currentUser}" th:size="20"></button>
             <div class="dropdown-content">
-                <a href="#">My Profile</a>
+                <a href="/userprofile">My Profile</a>
                 <a href="/about">About</a>
                 <a href="#">Settings</a>
                 <a onclick="location.href='/logout'">Logout</a>
