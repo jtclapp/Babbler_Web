@@ -133,25 +133,25 @@
         }
     </style>
     <div class="topNav">
-        <a href="/">Home</a>
-        <a href="/view" class="active">Threads</a>
-        <a href="/connect">Users</a>
+        <a href="/" onclick="eraseSavedValues()">Home</a>
+        <a href="/view" onclick="eraseSavedValues()" class="active">Threads</a>
+        <a href="/connect" onclick="eraseSavedValues()">Users</a>
 
         <div class="dropdown" th:if="${currentUser}">
             <button class="dropbtn" th:text="${currentUser}" th:size="20"></button>
             <div class="dropdown-content">
-                <a href="#">My Profile</a>
-                <a href="/about">About</a>
-                <a href="#">Settings</a>
-                <a onclick="location.href='/logout'">Logout</a>
+                <a href="#" onclick="eraseSavedValues()" >My Profile</a>
+                <a href="/about" onclick="eraseSavedValues()">About</a>
+                <a href="#" onclick="eraseSavedValues()">Settings</a>
+                <a onclick="location.href='/logout' , eraseSavedValues()" >Logout</a>
             </div>
         </div>
         <div class="dropdown" th:unless="${currentUser}">
             <button class="dropbtn"th:size="20">Sign In/Sign Up</button>
             <div class="dropdown-content">
-                <a href="/about">About</a>
-                <a href="#">Settings</a>
-                <a onclick="location.href='/start'">Sign In/Sign Up</a>
+                <a href="/about" onclick="eraseSavedValues()">About</a>
+                <a href="#" onclick="eraseSavedValues()">Settings</a>
+                <a onclick="location.href='/start', eraseSavedValues()">Sign In/Sign Up</a>
             </div>
         </div>
     </div>
@@ -191,14 +191,35 @@
                 <div align="center">
                     <label style="color: white;">Title:</label>
                     <input style="border-radius: 15px; height: 25px; width: 557.5px; font-size: 16px; padding: 6px;
-                        border-color: black;" type="text" th:field="*{title}" required/><br/>
+                        border-color: black;" id="txt_1" type="text" th:field="*{title}"  onchange='saveValue(this);' required/><br/>
                 </div>
                 <br>
                 <textarea style="padding: 8px;border-color: black;border-radius: 15px;font-size:12pt;
-                 width: 1115px; height: 500px; margin: auto; display:block;" th:field="*{caption}" required></textarea><br/>
+                 width: 1115px; height: 500px; margin: auto; display:block;" id="txt_2" th:field="*{caption}" onchange='saveValue(this);' required></textarea><br/>
                 <br>
                 <input style="margin:0px auto; display:block;" type="submit" value="Create Thread">
         </form>
+    <script>
+        document.getElementById("txt_1").value = getSavedValue("txt_1");    // set the value to this input
+        document.getElementById("txt_2").value = getSavedValue("txt_2");
+
+
+        function saveValue(e){
+            var id = e.id;  // get the sender's id to save it .
+            var val = e.value; // get the value.
+            localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override .
+        }
+
+        function eraseSavedValues(){
+        localStorage.clear();
+        }
+        function getSavedValue  (v){
+            if (!localStorage.getItem(v)) {
+                return "";
+            }
+            return localStorage.getItem(v);
+        }
+    </script>
 </div>
 </body>
 </html>
