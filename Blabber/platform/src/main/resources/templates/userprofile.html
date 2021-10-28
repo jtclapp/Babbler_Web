@@ -2,16 +2,6 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <style>
-
-
-.logo {
-     display: block;
-     margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
-
-
     .layer2{
     margin-left: auto;
     margin-right: auto;
@@ -20,39 +10,18 @@
     background:#333;
     padding: 10px;
 }
-
-    .layer3{
-    margin-left: auto;
-    margin-right: auto;
-    height:80%;
-    width:50%;
-    background: black;
-    padding: 10px;
-    }
-
-    .error{
-        margin-left: auto;
-        margin-right: auto;
-        height:90%;
-        width:90%;
-        background: black;
-        padding: 10px;
-        }
-
 body {
-  margin: auto;
-  font-family: Arial, Helvetica, sans-serif;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
     height: 100%;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(194, 6, 6, 1) 51%, rgba(0, 0, 0, 1) 100%) no-repeat fixed;
+    background: linear-gradient(326deg, #f8002f 0%, #191919 82%) no-repeat fixed;
 }
-
-
-
-
-
 .topNav {
-  overflow: hidden;
-  background-color: #333;
+  overflow: visible;
+  background-color: #191919;
+  z-index: 1;
+  width: 100%;
+  position: absolute;
 }
 .topNav a {
   float: left;
@@ -82,18 +51,15 @@ body {
   background-color: #a9a9a9;
   color: black;
 }
-
 .home {
      display: block;
     width: 8vh;
     height: 2.75vh;
 }
-
 .dropdown {
   float: right;
   overflow: hidden;
 }
-
 .dropdown .dropbtn {
   font-size: 16px;
   border: none;
@@ -104,11 +70,9 @@ body {
   font-family: inherit;
   margin: 0;
 }
-
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
+    background-color: #a9a9a9;
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -117,7 +81,6 @@ body {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-
 .dropdown-content a {
   float: none;
   color: black;
@@ -126,39 +89,34 @@ body {
   display: block;
   text-align: left;
 }
-
 .dropdown-content a:hover {
   background-color: #ddd;
 }
-
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
     </style>
-
-
     <div class="topNav">
-
-        <a href="/"><img class="home" th:src="@{images/Babbler_White.png}"></a>
-        <a href="/view" class="active">Threads</a>
+        <a href="/">Home</a>
+        <a href="/view">Threads</a>
         <a href="/connect">Users</a>
 
-
         <div class="dropdown" th:if="${currentUser}">
-            <button class="dropbtn" th:text="${currentUser}" th:size="20" >
-
-            </button>
+            <button class="dropbtn" th:text="${currentUser}" th:size="20"></button>
             <div class="dropdown-content">
-                <a href="/userprofile">Profile</a>
+                <a href="/userprofile">My Profile</a>
                 <a href="/about">About</a>
-                <a href="#">Third thing</a>
-                <a href ="#"onclick="location.href='/logout'">Logout</a>
+                <a href="/settings">Settings</a>
+                <a onclick="location.href='/logout'">Logout</a>
             </div>
         </div>
-        <div th:unless="${currentUser}">
-            <b onclick="location.href='/signUp'">Sign Up</b>
-            <b onclick="location.href='/signIn'">Sign In</b>
+        <div class="dropdown" th:unless="${currentUser}">
+            <button class="dropbtn"th:size="20">Sign In/Sign Up</button>
+            <div class="dropdown-content">
+                <a href="/about">About</a>
+                <a href="/settings">Settings</a>
+                <a onclick="location.href='/start'">Sign In/Sign Up</a>
+            </div>
         </div>
     </div>
 </head>

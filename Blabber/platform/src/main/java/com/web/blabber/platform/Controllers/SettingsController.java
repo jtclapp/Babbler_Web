@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class AboutController
+public class SettingsController
 {
-    @GetMapping("/about")
+    @GetMapping("/settings")
     public String loadAboutPage(Model model)
     {
         Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -17,6 +17,6 @@ public class AboutController
         if (!currentUserName.equals("") && !currentUserName.equals("anonymousUser")) {
             model.addAttribute("currentUser", currentUserName);
         }
-        return "about";
+        return "settings";
     }
 }

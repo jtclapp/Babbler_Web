@@ -133,25 +133,25 @@
         }
     </style>
     <div class="topNav">
-        <a href="/" onclick="eraseSavedValues()">Home</a>
-        <a href="/view" onclick="eraseSavedValues()" class="active">Threads</a>
-        <a href="/connect" onclick="eraseSavedValues()">Users</a>
+        <a href="/">Home</a>
+        <a href="/view" class="active">Threads</a>
+        <a href="/connect">Users</a>
 
         <div class="dropdown" th:if="${currentUser}">
             <button class="dropbtn" th:text="${currentUser}" th:size="20"></button>
             <div class="dropdown-content">
-                <a href="/userprofile" onclick="eraseSavedValues()" >My Profile</a>
-                <a href="/about" onclick="eraseSavedValues()">About</a>
-                <a href="#" onclick="eraseSavedValues()">Settings</a>
-                <a onclick="location.href='/logout' , eraseSavedValues()" >Logout</a>
+                <a href="/userprofile">My Profile</a>
+                <a href="/about">About</a>
+                <a href="/settings">Settings</a>
+                <a onclick="location.href='/logout'">Logout</a>
             </div>
         </div>
         <div class="dropdown" th:unless="${currentUser}">
             <button class="dropbtn"th:size="20">Sign In/Sign Up</button>
             <div class="dropdown-content">
-                <a href="/about" onclick="eraseSavedValues()">About</a>
-                <a href="#" onclick="eraseSavedValues()">Settings</a>
-                <a onclick="location.href='/start', eraseSavedValues()">Sign In/Sign Up</a>
+                <a href="/about">About</a>
+                <a href="/settings">Settings</a>
+                <a onclick="location.href='/start'">Sign In/Sign Up</a>
             </div>
         </div>
     </div>

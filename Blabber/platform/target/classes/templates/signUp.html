@@ -258,9 +258,9 @@
         <div class="dropdown" th:if="${currentUser}">
             <button class="dropbtn" th:text="${currentUser}" th:size="20"></button>
             <div class="dropdown-content">
-                <a href="#">My Profile</a>
+                <a href="/userprofile">My Profile</a>
                 <a href="/about">About</a>
-                <a href="#">Settings</a>
+                <a href="/settings">Settings</a>
                 <a onclick="location.href='/logout'">Logout</a>
             </div>
         </div>
@@ -268,7 +268,7 @@
             <button class="dropbtn"th:size="20">Sign In/Sign Up</button>
             <div class="dropdown-content">
                 <a href="/about">About</a>
-                <a href="#">Settings</a>
+                <a href="/settings">Settings</a>
                 <a onclick="location.href='/start'">Sign In/Sign Up</a>
             </div>
         </div>
