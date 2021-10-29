@@ -192,16 +192,20 @@
     <ul id="userUL">
     <tr th:each="User: ${allUsers}">
         <br>
+        <td>
+    <form action="#" th:action="@{/connect/} + ${User.id}" method="get">
         <div th:if= "${User.imageURL == 'default'}">
             <img style="border-radius: 100%;overflow: hidden" th:align="middle" th:src="@{images/default_profile.jpg}" width="75" height="75"/>
-            <li style="list-style-type: none; display: inline"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
-                color: white; margin-left: 10px;" th:text="${User.username}"></a></li>
+            <li style="list-style-type: none; display: inline"><button type="submit" style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
+                color: white; margin-left: 10px;" th:text="${User.username}"></button></li>
         </div>
         <div th:if= "${User.imageURL != 'default'}">
             <img style="border-radius: 100%;overflow: hidden;" th:align="middle" th:src="${User.imageURL}" width="75" height="75"/>
             <li style="list-style-type: none"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
                 color: white; margin-left: 10px;" th:text="${User.username}"></a></li>
         </div>
+    </form>
+    </td>
     </tr>
     </ul>
     <br>

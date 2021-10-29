@@ -205,13 +205,16 @@
         <br>
         <ul id="threadUL">
         <tr th:each="Threads: ${allThreads}">
+            <td>
+            <form action="#" th:action="@{/view/} + ${Threads.sender} + @{/} + ${Threads.title}" method="get">
             <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
             <br>
             <br>
                 <!--/*@thymesVar id="Threads" type=""*/-->
                 <ul id="UL1" class="ul">
-                <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: Georgia,serif;
-                color: white;" th:text="${Threads.title}"></a></li>
+                <li style="list-style-type: none" class="li-text"><button type="submit"
+                style="font-size: 18px; font-family: Georgia,serif; border:0; border-radius: 6px;
+                color: white; background-color: transparent" th:text="${Threads.title}"></button></li>
                 </ul>
             </div>
             <div th:if= "${Threads.image1 != null}" style="margin-left: 40px; float: left; clear: left">
@@ -248,6 +251,8 @@
                 <li style="list-style-type: none" class="carousel slide"><a style="font-size: 15px; font-family: 'Baskerville Old Face',serif; margin-right: 200px;
                 color: white; margin-left: 40px;" th:text="${Threads.caption}"></a></li>
             </div>
+            </form>
+            </td>
         </tr>
         </ul>
         <br>
