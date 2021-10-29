@@ -20,6 +20,7 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class UserService {
 
+
     private Firestore firestore;
     List<GrantedAuthority> authorities;
     UserDetails user;

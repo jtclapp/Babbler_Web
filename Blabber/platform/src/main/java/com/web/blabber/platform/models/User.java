@@ -2,21 +2,30 @@ package com.web.blabber.platform.models;
 
 public class User
 {
+
     private String id;
     private String username;
     private String imageURL;
     private String email;
     private String password;
+    private String verification_code;
+    private Boolean verified;
 
-    public User(String id, String username, String email, String password, String imageURL) {
+    public User(String id, String username, String email, String password, String imageURL, String verification_code, Boolean verified) {
         this.id = id;
         this.username = username;
         this.imageURL = imageURL;
         this.email = email;
         this.password = password;
+        this.verification_code = verification_code;
+        this.verified = verified;
+
     }
     public User() {
     }
+
+
+
     public String getId() {
         return id;
     }
@@ -51,4 +60,12 @@ public class User
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getVerification_code(){return verification_code;}
+    public void setVerification_code(String verification_code){this.verification_code = verification_code;}
+
+    public Boolean getVerified(){return verified;}
+    public void setVerified(Boolean verified){this.verified= verified;}
+
+
 }

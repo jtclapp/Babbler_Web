@@ -7,6 +7,8 @@ import com.web.blabber.platform.models.Credentials;
 import com.web.blabber.platform.models.User;
 import com.web.blabber.platform.services.FBInitializer;
 import com.web.blabber.platform.services.UserService;
+import com.web.blabber.platform.services.EmailService;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
@@ -39,7 +42,7 @@ public class SignUpController
         return "signUp";
     }
     @PostMapping("/signedUp")
-    public String loginAttempt(@ModelAttribute("signUpCredentials") Credentials credentials) throws IOException, FirebaseAuthException, ExecutionException, InterruptedException {
+    public String loginAttempt(@ModelAttribute("signUpCredentials") Credentials credentials) throws IOException, FirebaseAuthException, ExecutionException, InterruptedException, MessagingException {
         fb = new FBInitializer();
         auth = FirebaseAuth.getInstance();
         userService = new UserService();
@@ -50,10 +53,11 @@ public class SignUpController
                 .setEmailVerified(false)
                 .setDisabled(false);
 
+
         UserRecord userRecord;
         try {
             userRecord = FirebaseAuth.getInstance().createUser(request);
-            user = new User(userRecord.getUid(),userRecord.getDisplayName(),userRecord.getEmail(),credentials.getPassword(),"default");
+            user = new User(userRecord.getUid(),userRecord.getDisplayName(),userRecord.getEmail(),credentials.getPassword(),"default" , "",false);
             userService.createUser(user);
             result = userService.authenticateUser(credentials.getEmail(),credentials.getPassword());
         } catch (FirebaseAuthException e) {
@@ -64,6 +68,12 @@ public class SignUpController
             if ((authentication instanceof UsernamePasswordAuthenticationToken)) {
                 String currentUserName = authentication.getName();
                 System.out.println("Current User: " + currentUserName);
+
+                String randomCode = RandomString.make(64);
+                user.setVerification_code(randomCode);
+                user.setVerified(false);
+                String siteURL = "localhost" ;
+                EmailService.sendVerificationEmail(user, siteURL);
             } else {
                 System.out.println("Error Occurred...");
             }

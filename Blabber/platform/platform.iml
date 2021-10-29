@@ -86,7 +86,6 @@
     <orderEntry type="library" name="Maven: org.ow2.asm:asm:5.0.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: jakarta.activation:jakarta.activation-api:1.2.2" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-core:3.18.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest:2.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter:5.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.7.1" level="project" />
@@ -97,7 +96,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-core:3.6.28" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy:1.10.20" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy-agent:1.10.20" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.objenesis:objenesis:3.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-junit-jupiter:3.6.28" level="project" />
@@ -182,5 +180,7 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.4.5" level="project" />
+    <orderEntry type="library" name="Maven: net.bytebuddy:byte-buddy:1.10.20" level="project" />
+    <orderEntry type="library" name="Maven: org.assertj:assertj-core:3.18.1" level="project" />
   </component>
 </module>

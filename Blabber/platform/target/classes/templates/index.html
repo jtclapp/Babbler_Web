@@ -4,66 +4,140 @@
 <title>Blabber</title>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link  href="css/blabber.css" rel="stylesheet">
+
     <style>
-         .carousel2{
-       position:relative;
-       height:100px;
-       width:80%;
-       }
 
-       .carousel__image{
-       width:100%;
-       height:100%;
-       object-fit:cover;
-       }
 
-       .carousel__track-container{
+.logo {
+     display: block;
+     margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
 
-       height:100%;
-       position:relative;
-       }
 
-       .carousel__track{
-       padding:0;
-       margin:0;
-       list-style:none;
-       }
+    .layer2{
+    margin-left: auto;
+    margin-right: auto;
+    height: 100vh;
+    Width: 60%;
+    background:#333;
+    padding: 10px;
+}
 
-       .carousel__slide{
-       position:absolute;
-       top:0;
-       bottom:0;
-       width:100%;
-       }
+    .layer3{
+    margin-left: auto;
+    margin-right: auto;
+    height:80%;
+    width:50%;
+    background: black;
+    padding: 10px;
+    }
 
-       .carousel__button{
-       position:absolute;
-       top:50%;
-       transform:translateY(-50%);
-       cursor:pointer;
-       }
-       .carousel__button--left{
-       left:-40px;
-       }
-       .carousel__button--right{
-       right:-40px;
-       }
+    .error{
+        margin-left: auto;
+        margin-right: auto;
+        height:90%;
+        width:90%;
+        background: black;
+        padding: 10px;
+        }
 
-       .carousel__nav{
-       background:pink;
-       display:flex;
-       justify-content:center;
-       padding:10px 0;
-       }
-       .carousel__indicator{
-       border:0;
-       border-radius:50%;
-       width:15px;
-       height:15px;
-       background:rgba(0,0,0,.3;
-       margin:0 10px;
-       }
+body {
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(194, 6, 6, 1) 51%, rgba(0, 0, 0, 1) 100%) no-repeat fixed;
+}
+
+
+
+
+
+.topNav {
+  overflow: hidden;
+  background-color: #333;
+}
+.topNav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topNav a:hover {
+  background-color: #a9a9a9;
+  color: black;
+}
+.topNav a.active {
+  background-color: #C20606;
+  color: white;
+}
+.topNav b {
+    float: right;
+    color: #f2f2f2;
+    text-align: right;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topNav b:hover {
+  background-color: #a9a9a9;
+  color: black;
+}
+
+.home {
+     display: block;
+    width: 8vh;
+    height: 2.75vh;
+}
+
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
     </style>
     <div class="topNav">
