@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Babbler</title>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link  href="css/blabber.css" rel="stylesheet">
+    <style>
+        .layer2{
+            margin-left: auto;
+            margin-right: auto;
+            height: 100%;
+            Width: 60%;
+            padding: 10px;
+        }
+        body {
+            margin: auto;
+            font-family: Arial, Helvetica, sans-serif;
+            height: 100%;
+            background: linear-gradient(326deg, #f8002f 0%, #191919 82%) no-repeat fixed;
+        }
+        .errorNav b {
+            float: center;
+            color: #f2f2f2;
+            text-align: right;
+            padding: 12px 14px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .errorNav b:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        button {
+            border-radius: 6px;
+            color: white;
+            font-family: 'BN Machine', serif;
+            background-color: transparent;
+            font-size:2.7em;
+            border:0;
+            cursor:pointer;
+        }
+        .topNav {
+            overflow: visible;
+            background-color: #191919;
+            z-index: 1;
+            width: 100%;
+            position: absolute;
+        }
+        .topNav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: left;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        .topNav a:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        .topNav a.active {
+            background-color: #C20606;
+            color: white;
+        }
+        .topNav b {
+            float: right;
+            color: #f2f2f2;
+            text-align: right;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .topNav b:hover {
+            background-color: #a9a9a9;
+            color: black;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: 'Exo', sans-serif;
+        }
+        .dropdown {
+            float: right;
+            overflow: initial;
+        }
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: #a9a9a9;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        input[type=submit]
+        {
+            padding:0.6em 2em;
+            border-radius: 6px;
+            color:#ffff;
+            background-color: #191919;
+            font-size:1.1em;
+            border:0;
+            cursor:pointer;
+            margin:1em;
+        }
+    </style>
+    <div class="topNav">
+        <a href="/" onclick="eraseSavedValues()">Home</a>
+        <a href="/view" class="active" onclick="eraseSavedValues()">Threads</a>
+        <a href="/connect" onclick="eraseSavedValues()">Users</a>
+
+        <div class="dropdown" th:if="${currentUser}">
+            <button class="dropbtn" th:text="${currentUser}" th:size="20"></button>
+            <div class="dropdown-content">
+                <a href="/userprofile" onclick="eraseSavedValues()">My Profile</a>
+                <a href="/about" onclick="eraseSavedValues()">About</a>
+                <a href="/settings" onclick="eraseSavedValues()">Settings</a>
+                <a onclick="location.href='/logout' , eraseSavedValues()">Logout</a>
+            </div>
+        </div>
+        <div class="dropdown" th:unless="${currentUser}">
+            <button class="dropbtn"th:size="20">Sign In/Sign Up</button>
+            <div class="dropdown-content">
+                <a href="/about" onclick="eraseSavedValues()">About</a>
+                <a href="/settings" onclick="eraseSavedValues()">Settings</a>
+                <a onclick="location.href='/start' , eraseSavedValues()">Sign In/Sign Up</a>
+            </div>
+        </div>
+    </div>
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="layer2">
+        <div style="border-width: 2px; border-color: white; border-style: solid; width: 1115px; height: 500px; margin-bottom: 6px; padding: 10px;
+                overflow: hidden;" align="center">
+        <tr th:each="photo: ${Photos}">
+            <img th:src="${photo}" width="250" height="250"/>
+        </tr>
+        </div>
+        <div>
+            <form th:action="@{/create}" method="post" enctype="multipart/form-data">
+                <input style="color: white" type="file" name="files" accept="image/*" multiple required>
+                <br>
+                <div class="center">
+                <input style="margin:0px auto; display:block;" type="submit" value="Add Images">
+                </div>
+                <br>
+                <br>
+            </form>
+        </div>
+        <br>
+        <br/>
+        <div th:if="${capacityMessage}" th:align="center">
+            <div style="color: white" th:text="${capacityMessage}"></div>
+        </div>
+        <form th:action="@{/create/save}" method="post" th:object="${createdThread}">
+                <br>
+                <div align="center">
+                    <label style="color: white;">Title:</label>
+                    <input style="border-radius: 15px; height: 25px; width: 557.5px; font-size: 16px; padding: 6px;
+                        border-color: black;" id="txt_1" type="text" th:field="*{title}"  onchange='saveValue(this);' required/><br/>
+                </div>
+                <br>
+                <textarea style="padding: 8px;border-color: black;border-radius: 15px;font-size:12pt;
+                 width: 1115px; height: 500px; margin: auto; display:block;" id="txt_2" th:field="*{caption}" onchange='saveValue(this);' required></textarea><br/>
+                <br>
+                <input style="margin:0px auto; display:block;" type="submit" value="Create Thread">
+        </form>
+    <script>
+        document.getElementById("txt_1").value = getSavedValue("txt_1");    // set the value to this input
+        document.getElementById("txt_2").value = getSavedValue("txt_2");
+
+
+        function saveValue(e){
+            var id = e.id;  // get the sender's id to save it .
+            var val = e.value; // get the value.
+            localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override .
+        }
+
+        function eraseSavedValues(){
+        localStorage.clear();
+        }
+        function getSavedValue  (v){
+            if (!localStorage.getItem(v)) {
+                return "";
+            }
+            return localStorage.getItem(v);
+        }
+    </script>
+</div>
+</body>
+</html>
