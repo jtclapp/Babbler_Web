@@ -162,16 +162,23 @@
 <br>
 <img class = "logo" th:src="@{images/Babbler_NoBack.png}">
 <div class="layer4">
+    <!--/*@thymesVar id="Threads" type=""*/-->
+    <!--/*@thymesVar id="image1" type=""*/-->
     <a style="font-size: 28px;font-family: 'BN Machine', serif;color: white;">Top Rated Threads:</a>
-    <ul id="threadUL">
         <tr th:each="Threads: ${allRThreads}">
+            <td>
+            <form action="#" th:action="@{/view/recommended/} + ${Threads.title}" method="get">
             <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
                 <br>
                 <!--/*@thymesVar id="Threads" type=""*/-->
-                <ul id="UL1" class="ul">
-                    <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: 'Baskerville Old Face',serif;
-                color: white;margin-left: 10px" th:text="${Threads.title}"></a></li>
-                </ul>
+                <div th:if="${currentUser}">
+                <button type="submit" style="font-size: 18px; font-family: 'Baskerville Old Face',serif; border:0; border-radius: 6px;
+                color: white; background-color: transparent; margin-left: 10px" th:text="${Threads.title}"></button>
+                </div>
+                <div th:unless="${currentUser}">
+                    <a style="font-size: 18px; font-family: 'Baskerville Old Face',serif; border:0; border-radius: 6px;
+                color: white; background-color: transparent; margin-left: 10px" th:text="${Threads.title}" onclick="location.href='/start'"></a>
+                </div>
             </div>
             <div th:if= "${Threads.image1 != null}" style="margin-left: 10px; float: left; padding-right: 20px">
                 <div id="threadCarousel" class="carousel slide" data-ride="carousel">
@@ -204,23 +211,29 @@
             </div>
             <a style="font-size: 14px; font-family: 'Baskerville Old Face',serif;
                 color: white;" th:text="${Threads.caption}">Hello</a>
+            </form>
+            </td>
         </tr>
-    </ul>
     <br>
     <br>
     <br>
     <br>
     <br>
     <a style="font-size: 28px;font-family: 'BN Machine', serif;color: white;">Top True Crime Threads:</a>
-    <ul id="threadUL">
         <tr th:each="Threads: ${allRThreads}">
+            <td>
+            <form action="#" th:action="@{/view/recommended/} + ${Threads.title}" method="get">
             <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
                 <br>
                 <!--/*@thymesVar id="Threads" type=""*/-->
-                <ul id="UL1" class="ul">
-                    <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: 'Baskerville Old Face',serif;
-                color: white;margin-left: 10px" th:text="${Threads.title}"></a></li>
-                </ul>
+                <div th:if="${currentUser}">
+                <button type="submit" style="font-size: 18px; font-family: 'Baskerville Old Face',serif; border:0; border-radius: 6px;
+                color: white; background-color: transparent; margin-left: 10px" th:text="${Threads.title}"></button>
+                </div>
+                <div th:unless="${currentUser}">
+                    <a style="font-size: 18px; font-family: 'Baskerville Old Face',serif; border:0; border-radius: 6px;
+                color: white; background-color: transparent; margin-left: 10px" th:text="${Threads.title}" onclick="location.href='/start'"></a>
+                </div>
             </div>
             <div th:if= "${Threads.image1 != null}" style="margin-left: 10px; float: left; padding-right: 20px">
                 <div id="threadCarousel" class="carousel slide" data-ride="carousel">
@@ -253,21 +266,27 @@
             </div>
             <a style="font-size: 14px; font-family: 'Baskerville Old Face',serif;
                 color: white;" th:text="${Threads.caption}">Hello</a>
+            </form>
+            </td>
         </tr>
-    </ul>
     <br>
 </div>
 <div class="layer2">
     <a style="font-size: 36px;font-family: 'BN Machine', serif;color: white; margin-left: 50px">What We Recommend:</a>
-    <ul id="threadUL">
         <tr th:each="Threads: ${allRThreads}">
+            <td>
+            <form action="#" th:action="@{/view/recommended/} + ${Threads.title}" method="get">
             <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
                 <br>
                 <!--/*@thymesVar id="Threads" type=""*/-->
-                <ul id="UL1" class="ul">
-                    <li style="list-style-type: none" class="li-text"><a style="font-size: 32px; font-family: 'Baskerville Old Face',serif;
-                color: white;margin-left: 70px" th:text="${Threads.title}"></a></li>
-                </ul>
+                <div th:if="${currentUser}">
+                <button type="submit" style="font-size: 32px; font-family: 'Baskerville Old Face',serif; border:0; border-radius: 6px;
+                color: white; background-color: transparent; margin-left: 70px" th:text="${Threads.title}"></button>
+                </div>
+                <div th:unless="${currentUser}">
+                    <a style="font-size: 32px; font-family: 'Baskerville Old Face',serif; border:0; border-radius: 6px;
+                color: white; background-color: transparent; margin-left: 70px" th:text="${Threads.title}" onclick="location.href='/start'"></a>
+                </div>
             </div>
             <div th:if= "${Threads.image1 != null}" style="margin-left: 70px; float: left; padding-right: 20px">
                 <div id="threadCarousel" class="carousel slide" data-ride="carousel">
@@ -300,8 +319,9 @@
             </div>
             <a style="font-size: 26px; font-family: 'Baskerville Old Face',serif;
                 color: white;" th:text="${Threads.caption}">Hello</a>
+            </form>
+            </td>
         </tr>
-    </ul>
     <br>
 </div>
 </body>

@@ -128,7 +128,7 @@
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     li[i].style.display = "";
                     img[i].style.display = "";
-                    div[i].style.display = "";
+                    div[i].style.display = "inline";
                 } else {
                     li[i].style.display = "none";
                     img[i].style.display = "none";
@@ -180,7 +180,7 @@
             <img style="border-radius: 100%;overflow: hidden; display: inline" th:align="middle" th:src="@{images/default_profile.jpg}" width="75" height="75"/>
             <div class="selectDiv" style="display: inline">
                 <button type="submit" style="font-size: 18px; font-family: Georgia,serif; border:0; border-radius: 6px;
-                color: white; background-color: transparent; margin-right: 200px; margin-left: 10px; display: inline" th:text="${User.username}"></button>
+                color: white; background-color: transparent; margin-left: 10px; display: inline" th:text="${User.username}"></button>
             </div>
             <li style="list-style-type: none; display: inline"><a hidden style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
                 color: white; margin-left: 10px;" th:text="${User.username}"></a></li>
@@ -189,7 +189,7 @@
             <img style="border-radius: 100%;overflow: hidden;" th:align="middle" th:src="${User.imageURL}" width="75" height="75"/>
             <div class="selectDiv" style="display: inline">
                 <button type="submit" style="font-size: 18px; font-family: Georgia,serif; border:0; border-radius: 6px;
-                color: white; background-color: transparent; margin-right: 200px; margin-left: 10px; display: inline" th:text="${User.username}"></button>
+                color: white; background-color: transparent; margin-left: 10px; display: inline" th:text="${User.username}"></button>
             </div>
             <li style="list-style-type: none; display: inline"><a hidden style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
                 color: white; margin-left: 10px;" th:text="${User.username}"></a></li>

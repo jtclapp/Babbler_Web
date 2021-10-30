@@ -64,12 +64,12 @@ public class UserService {
         }
         return false;
     }
-    public User getUser(String email) throws ExecutionException, InterruptedException {
+    public User getUser(String id) throws ExecutionException, InterruptedException {
         CollectionReference users = getUserCollection();
         ApiFuture<QuerySnapshot> querySnapshot = users.get();
         for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
             User usr = doc.toObject(User.class);
-            if(usr.getEmail().equals(email))
+            if(usr.getId().equals(id))
             {
                 return usr;
             }

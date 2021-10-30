@@ -1,5 +1,6 @@
 package com.web.babbler.platform.Controllers;
 
+import com.web.babbler.platform.models.Threads;
 import com.web.babbler.platform.services.ThreadService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -9,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,5 +47,18 @@ public class HomeController
         SecurityContextHolder.getContext().setAuthentication(authentication);
         loadHomePage(model);
         return "index";
+    }
+    @GetMapping("/view/recommended/{title}")
+    public String loadSelectedRecommendedThread(@ModelAttribute Threads threads, Model model) throws ExecutionException, InterruptedException {
+        Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = user_authentication.getName();
+        if (!currentUserName.equals("") && !currentUserName.equals("anonymousUser")) {
+            model.addAttribute("currentUser", currentUserName);
+        } else {
+            return "error";
+        }
+        System.out.println("Selected thread title: " + threads.getTitle());
+        model.addAttribute("selectedThread",threadService.getRecommendedThread(threads.getTitle()));
+        return "selectedThread";
     }
 }

@@ -32,7 +32,7 @@ public class ConnectUsersController
         return "connectUsers";
     }
     @GetMapping("/connect/{id}")
-    public String loadSelectedUser(@ModelAttribute User user, Model model) {
+    public String loadSelectedUser(@ModelAttribute User user, Model model) throws ExecutionException, InterruptedException {
         Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = user_authentication.getName();
         if (!currentUserName.equals("") && !currentUserName.equals("anonymousUser")) {
@@ -41,7 +41,8 @@ public class ConnectUsersController
             return "error";
         }
         System.out.println("Selected User: " + user.getId());
-        model.addAttribute("SelectedUserId",user.getId());
+        System.out.println("Username: " + userService.getUser(user.getId()).getUsername());
+        model.addAttribute("selectedUser",userService.getUser(user.getId()));
         return "selectedUser";
     }
 }

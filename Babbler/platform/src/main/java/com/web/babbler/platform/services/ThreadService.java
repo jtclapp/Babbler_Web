@@ -53,6 +53,29 @@ public class ThreadService
         }
         return threadList;
     }
+    public List<Threads> getAllRecommendedThreadsNoBlurb() throws ExecutionException, InterruptedException {
+        List<Threads> threadList = new ArrayList<>();
+        CollectionReference threads = getRecommendedThreadCollection();
+        ApiFuture<QuerySnapshot> querySnapshot = threads.get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            Threads thread = doc.toObject(Threads.class);
+            assert thread != null;
+            thread.setCaption(thread.getCaption());
+            threadList.add(thread);
+        }
+        return threadList;
+    }
+    public Threads getRecommendedThread(String title) throws ExecutionException, InterruptedException {
+        List<Threads> threadList = getAllRecommendedThreadsNoBlurb();
+        for(int i = 0; i <= threadList.size()-1; i++)
+        {
+            if(threadList.get(i).getTitle().equals(title))
+            {
+                return threadList.get(i);
+            }
+        }
+        return new Threads();
+    }
     public String blurbCreator(String text)
     {
         String[] brokenText = text.split(" ");
