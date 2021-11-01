@@ -22,6 +22,8 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
+import static com.web.blabber.platform.services.EmailService.sendVerificationEmail;
+
 @Controller
 public class SignUpController
 {
@@ -73,7 +75,7 @@ public class SignUpController
                 user.setVerification_code(randomCode);
                 user.setVerified(false);
                 String siteURL = "localhost" ;
-                EmailService.sendVerificationEmail(user, siteURL);
+                sendVerificationEmail(user, siteURL);
             } else {
                 System.out.println("Error Occurred...");
             }

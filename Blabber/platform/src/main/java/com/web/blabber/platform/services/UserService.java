@@ -27,6 +27,10 @@ public class UserService {
     InMemoryUserDetailsManager userDetailsManager;
     Authentication authentication;
 
+
+
+
+
     private CollectionReference getUserCollection() {
         firestore = FirestoreClient.getFirestore();
         return firestore.collection("Users");

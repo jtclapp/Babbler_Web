@@ -5,7 +5,9 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.web.blabber.platform.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +23,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -28,16 +31,14 @@ public class EmailService {
 
 
     @Autowired
-    private  JavaMailSender mailSender;
-
-
+    private static JavaMailSender mailSender;
 
     public static void sendVerificationEmail(User user, String siteURL)
             throws MessagingException, UnsupportedEncodingException {
 
         String toAddress = user.getEmail();
-        String fromAddress = "Your email address";
-        String senderName = "Your company name";
+        String fromAddress = "babblerbabble@gmail.com";
+        String senderName = "Babbler";
         String subject = "Please verify your registration";
         String content = "Dear [[name]],<br>"
                 + "Please click the link below to verify your registration:<br>"

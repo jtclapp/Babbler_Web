@@ -15,11 +15,7 @@
 	<packaging>jar</packaging>
 	<properties>
 		<java.version>11</java.version>
-
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="bbler@gmail.com" />
-
+		<email.version>1.16.18</email.version>
 	</properties>
 
 	<dependencies>
