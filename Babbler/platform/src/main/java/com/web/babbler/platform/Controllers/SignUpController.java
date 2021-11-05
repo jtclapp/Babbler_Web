@@ -67,6 +67,7 @@ public class SignUpController
             } else {
                 System.out.println("Error Occurred...");
             }
+//            System.out.println(auth.generateEmailVerificationLink(user.getEmail()));
             return "redirect:/";
         } else {
             return "redirect:signUp?error";

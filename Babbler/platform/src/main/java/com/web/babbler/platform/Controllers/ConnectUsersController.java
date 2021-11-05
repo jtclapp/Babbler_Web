@@ -41,7 +41,6 @@ public class ConnectUsersController
             return "error";
         }
         System.out.println("Selected User: " + user.getId());
-        System.out.println("Username: " + userService.getUser(user.getId()).getUsername());
         model.addAttribute("selectedUser",userService.getUser(user.getId()));
         return "selectedUser";
     }

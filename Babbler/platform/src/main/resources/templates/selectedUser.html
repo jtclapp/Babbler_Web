@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<meta charset="UTF-8">
+<html xmlns:th="http://www.thymeleaf.org">
 <title>Babbler</title>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -143,10 +142,20 @@
     <br>
     <br>
     <br>
+    <div style="float: right">
+        <a style="color: white" onclick="location.href='/editProfile'">Edit Profile</a>
+    </div>
     <br>
     <br>
     <div align="center">
-    <a style="font-size: 32px; font-family: Georgia,serif;
+        <div th:if= "${selectedUser.imageURL == 'default'}">
+            <img style="border-radius: 100%;overflow: hidden; display: inline" th:align="middle" th:src="@{images/default_profile.jpg}" width="75" height="75"/>
+        </div>
+        <div th:if= "${selectedUser.imageURL != 'default'}">
+            <img style="border-radius: 100%;overflow: hidden;" th:align="middle" th:src="${selectedUser.getImageURL()}" width="75" height="75"/>
+        </div>
+        <br>
+        <a style="font-size: 32px; font-family: Georgia,serif;
                 color: white;" th:text="${selectedUser.username}"></a>
     </div>
 </div>
