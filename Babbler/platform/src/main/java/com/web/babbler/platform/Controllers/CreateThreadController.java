@@ -30,10 +30,6 @@ public class CreateThreadController
     Threads thread;
     String currentUserName;
     UserService userService;
-    public CreateThreadController()
-    {
-
-    }
     @GetMapping("/create")
     public String loadCreateThreadPage(Model model) {
         Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -94,7 +90,13 @@ public class CreateThreadController
                 thread.setImage5(fileList.get(i));
             }
         }
-        threadService.createThread(thread);
+        if(threadService.uniqueThread(thread.getTitle(),thread.getSender()))
+        {
+            threadService.createThread(thread);
+            threadService.addThreadToUser(thread);
+        } else {
+            return "redirect:/create/save?error";
+        }
         return "redirect:/";
     }
     public String getUserIDForThread() throws ExecutionException, InterruptedException {

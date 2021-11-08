@@ -26,10 +26,38 @@ public class ThreadService
                 getThreadCollection().document().set(thread);
                 apiFuture.get();
     }
+    public void addThreadToUser(Threads thread) throws ExecutionException, InterruptedException {
+        ApiFuture<WriteResult> apiFuture =
+        firestore.collection("Users").
+        document(thread.getSender()).collection("CreatedThreads").document(thread.getTitle()).set(thread);
+        apiFuture.get();
+    }
+    public boolean uniqueThread(String title, String id) throws ExecutionException, InterruptedException {
+        List<Threads> threadList = getAllUserThreads(id);
+        for(int i = 0; i <= threadList.size()-1; i++)
+        {
+            if(threadList.get(i).getTitle().equals(title))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
     public List<Threads> getAllThreads() throws ExecutionException, InterruptedException {
         // You can save doc.getId() to the thread, so you can get the exact thread everytime
         List<Threads> threadList = new ArrayList<>();
         CollectionReference threads = getThreadCollection();
+        ApiFuture<QuerySnapshot> querySnapshot = threads.get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            Threads thread = doc.toObject(Threads.class);
+            threadList.add(thread);
+        }
+        return threadList;
+    }
+    public List<Threads> getAllUserThreads(String id) throws ExecutionException, InterruptedException {
+        List<Threads> threadList = new ArrayList<>();
+        firestore = FirestoreClient.getFirestore();
+        CollectionReference threads = firestore.collection("Users").document(id).collection("CreatedThreads");
         ApiFuture<QuerySnapshot> querySnapshot = threads.get();
         for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
             Threads thread = doc.toObject(Threads.class);
