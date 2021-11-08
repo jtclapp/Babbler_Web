@@ -186,6 +186,13 @@
     <br>
     <li style="list-style-type: none" class="carousel slide"><textarea style="font-size: 18px; font-family: 'Baskerville Old Face',serif;
                 color: white; overflow: scroll; background-color: transparent; width: 60%; height: 475px; padding: 5px; resize: none;" th:text="${selectedThread.caption}" readonly></textarea></li>
+    <tr th:each="Comment: ${selectedThreadComments}">
+    <br>
+    <br>
+    <a style="font-size: 20px; font-family: 'Baskerville Old Face',serif; color: white;" th:text="${Comment.getCaption()}"></a>
+    <br>
+    <br>
+    </tr>
 </div>
 </body>
 </html>

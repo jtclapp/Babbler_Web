@@ -1,5 +1,6 @@
 package com.web.babbler.platform.Controllers;
 
+import com.web.babbler.platform.models.Comments;
 import com.web.babbler.platform.models.Threads;
 import com.web.babbler.platform.services.ThreadService;
 import org.springframework.security.core.Authentication;
@@ -27,7 +28,7 @@ public class ViewThreadController
         model.addAttribute("allThreads",threadService.getAllThreads());
         return "viewThread";
     }
-    @GetMapping("/view/{sender}/{title}")
+    @GetMapping("/view/{id}")
     public String loadSelectedThreadPage(@ModelAttribute Threads threads,Model model) throws ExecutionException, InterruptedException {
         Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = user_authentication.getName();
@@ -36,9 +37,10 @@ public class ViewThreadController
         } else {
             return "error";
         }
-        System.out.println("Selected thread title: " + threads.getTitle());
-        System.out.println("Selected thread sender: " + threads.getSender());
-        model.addAttribute("selectedThread",threadService.getThread(threads.getTitle(),threads.getSender()));
+        System.out.println("Selected thread sender: " + threads.getId());
+        //threadService.addCommentToThread(new Comments("","jtclapp","This article is alright ig","11/8/2021"),threads);
+        model.addAttribute("selectedThread",threadService.getThread(threads.getId()));
+        model.addAttribute("selectedThreadComments",threadService.getAllThreadComments(threads.getId()));
         return "selectedThread";
     }
 }

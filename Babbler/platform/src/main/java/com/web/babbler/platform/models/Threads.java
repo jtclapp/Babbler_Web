@@ -2,6 +2,7 @@ package com.web.babbler.platform.models;
 
 public class Threads
 {
+    private String id;
     private String title;
     private String sender;
     private String caption;
@@ -12,10 +13,11 @@ public class Threads
     private String image4;
     private String image5;
 
-    public Threads(String title, String sender,
+    public Threads(String id,String title, String sender,
                    String caption, String date,
                    String image1, String image2, String image3,
                    String image4, String image5) {
+        this.id = id;
         this.title = title;
         this.sender = sender;
         this.caption = caption;
@@ -92,5 +94,12 @@ public class Threads
     }
     public void setImage5(String image5) {
         this.image5 = image5;
+    }
+
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 }

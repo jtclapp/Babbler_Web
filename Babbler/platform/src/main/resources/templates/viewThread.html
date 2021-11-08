@@ -210,7 +210,7 @@
         <ul id="threadUL">
         <tr th:each="Threads: ${allThreads}">
             <td>
-            <form action="#" th:action="@{/view/} + ${Threads.sender} + @{/} + ${Threads.title}" method="get">
+            <form action="#" th:action="@{/view/} + ${Threads.id}" method="get">
             <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
             <br>
             <br>

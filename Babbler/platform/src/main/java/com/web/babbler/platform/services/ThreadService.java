@@ -3,6 +3,7 @@ package com.web.babbler.platform.services;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
+import com.web.babbler.platform.models.Comments;
 import com.web.babbler.platform.models.Threads;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,21 @@ public class ThreadService
                 ApiFuture<WriteResult> apiFuture =
                 getThreadCollection().document().set(thread);
                 apiFuture.get();
+                addIdToThread(thread);
+    }
+    public void addIdToThread(Threads threads) throws ExecutionException, InterruptedException {
+        CollectionReference threadCollection = getThreadCollection();
+        ApiFuture<QuerySnapshot> querySnapshot = threadCollection.get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            Threads thread = doc.toObject(Threads.class);
+            assert thread != null;
+            if(thread.getSender().equals(threads.getSender()) && thread.getTitle().equals(threads.getTitle()))
+            {
+                threads.setId(doc.getId());
+            }
+        }
+        ApiFuture<WriteResult> apiFuture = getThreadCollection().document(getThreadId(threads.getTitle(),threads.getSender())).update("id",threads.getId());
+        apiFuture.get();
     }
     public void addThreadToUser(Threads thread) throws ExecutionException, InterruptedException {
         ApiFuture<WriteResult> apiFuture =
@@ -42,6 +58,24 @@ public class ThreadService
             }
         }
         return true;
+    }
+    public void addCommentToThread(Comments comment,Threads thread) throws ExecutionException, InterruptedException {
+        ApiFuture<WriteResult> apiFuture =
+                firestore.collection("Threads").
+                        document(thread.getId())
+                        .collection("Comments").document().set(comment);
+        apiFuture.get();
+    }
+    public List<Comments> getAllThreadComments(String id) throws ExecutionException, InterruptedException {
+        List<Comments> commentsList = new ArrayList<>();
+        firestore = FirestoreClient.getFirestore();
+        CollectionReference comments = firestore.collection("Threads").document(id).collection("Comments");
+        ApiFuture<QuerySnapshot> querySnapshot = comments.get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            Comments comments1 = doc.toObject(Comments.class);
+            commentsList.add(comments1);
+        }
+        return commentsList;
     }
     public List<Threads> getAllThreads() throws ExecutionException, InterruptedException {
         // You can save doc.getId() to the thread, so you can get the exact thread everytime
@@ -104,6 +138,31 @@ public class ThreadService
         }
         return new Threads();
     }
+    public Threads getThread(String id) throws ExecutionException, InterruptedException {
+        List<Threads> threadList = getAllThreads();
+        for(int i = 0; i <= threadList.size()-1; i++)
+        {
+            if(threadList.get(i).getId().equals(id))
+            {
+                return threadList.get(i);
+            }
+        }
+        return new Threads();
+    }
+    public String getThreadId(String title,String sender) throws ExecutionException, InterruptedException {
+        // You can save doc.getId() to the thread, so you can get the exact thread everytime
+        CollectionReference threads = getThreadCollection();
+        ApiFuture<QuerySnapshot> querySnapshot = threads.get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            Threads thread = doc.toObject(Threads.class);
+            assert thread != null;
+            if(thread.getTitle().equals(title) && thread.getSender().equals(sender))
+            {
+               return doc.getId();
+            }
+        }
+        return "";
+    }
     public String blurbCreator(String text)
     {
         String[] brokenText = text.split(" ");
@@ -122,18 +181,6 @@ public class ThreadService
         }
         text += "...";
         return text;
-    }
-    public Threads getThread(String title, String sender) throws ExecutionException, InterruptedException {
-        List<Threads> threadList = getAllThreads();
-        for(int i = 0; i <= threadList.size()-1; i++)
-        {
-            if(threadList.get(i).getTitle().equals(title)
-                    && threadList.get(i).getSender().equals(sender))
-            {
-                return threadList.get(i);
-            }
-        }
-        return new Threads();
     }
     // Add update and delete later
 }
