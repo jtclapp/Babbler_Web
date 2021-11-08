@@ -68,7 +68,7 @@ public class CreateThreadController
         return "createThread";
     }
     @PostMapping("/create/save")
-    public String saveCreatedThread(@ModelAttribute("createdThread") Threads capturedThread) throws ExecutionException, InterruptedException, IOException {
+    public String saveCreatedThread(@ModelAttribute("createdThread") Threads capturedThread, Model model) throws ExecutionException, InterruptedException, IOException {
         storageService = new StorageService();
         threadService = new ThreadService();
         thread = new Threads();
@@ -95,7 +95,8 @@ public class CreateThreadController
             threadService.createThread(thread);
             threadService.addThreadToUser(thread);
         } else {
-            return "redirect:/create/save?error";
+            model.addAttribute("reoccurringTitle", "You have already used this title in a previous thread");
+            return "createThread";
         }
         return "redirect:/";
     }

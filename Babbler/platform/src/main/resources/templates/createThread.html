@@ -177,8 +177,9 @@
                 <div class="center">
                 <input style="margin:0px auto; display:block;" type="submit" value="Add Images">
                 </div>
-                <div align="center" th:if="${param.error}">
-                    You have already used this thread title
+                <br>
+                <div align="center" th:if="${reoccurringTitle}">
+                    <b style="color: white;" th:text="${reoccurringTitle}"></b>
                 </div>
                 <br>
                 <br>
