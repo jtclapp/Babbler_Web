@@ -38,6 +38,7 @@ public class ThreadService
             {
                 threads.setId(doc.getId());
             }
+
         }
         ApiFuture<WriteResult> apiFuture = getThreadCollection().document(getThreadId(threads.getTitle(),threads.getSender())).update("id",threads.getId());
         apiFuture.get();

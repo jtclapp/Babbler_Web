@@ -39,7 +39,7 @@ public class SignUpController
         return "signUp";
     }
     @PostMapping("/signedUp")
-    public String loginAttempt(@ModelAttribute("signUpCredentials") Credentials credentials) throws IOException, FirebaseAuthException, ExecutionException, InterruptedException {
+    public String loginAttempt(@ModelAttribute("signUpCredentials") Credentials credentials) throws ExecutionException, InterruptedException {
         fb = new FBInitializer();
         auth = FirebaseAuth.getInstance();
         userService = new UserService();
@@ -53,7 +53,7 @@ public class SignUpController
         UserRecord userRecord;
         try {
             userRecord = FirebaseAuth.getInstance().createUser(request);
-            user = new User(userRecord.getUid(),userRecord.getDisplayName(),userRecord.getEmail(),credentials.getPassword(),"default");
+            user = new User(userRecord.getUid(),userRecord.getDisplayName(),userRecord.getEmail(),credentials.getPassword(),"default","default");
             userService.createUser(user);
             result = userService.authenticateUser(credentials.getEmail(),credentials.getPassword());
         } catch (FirebaseAuthException e) {
