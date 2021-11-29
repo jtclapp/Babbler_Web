@@ -12,6 +12,7 @@ public class Threads
     private String image3;
     private String image4;
     private String image5;
+    private int score;
 
     public Threads(String id,String title, String sender,
                    String caption, String date,
@@ -101,5 +102,13 @@ public class Threads
     }
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
     }
 }
