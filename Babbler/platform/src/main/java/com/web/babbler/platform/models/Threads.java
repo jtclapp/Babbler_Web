@@ -12,11 +12,12 @@ public class Threads
     private String image3;
     private String image4;
     private String image5;
+    private boolean trueCrime;
 
     public Threads(String id,String title, String sender,
                    String caption, String date,
                    String image1, String image2, String image3,
-                   String image4, String image5) {
+                   String image4, String image5,boolean trueCrime) {
         this.id = id;
         this.title = title;
         this.sender = sender;
@@ -27,6 +28,7 @@ public class Threads
         this.image3 = image3;
         this.image4 = image4;
         this.image5 = image5;
+        this.trueCrime = trueCrime;
     }
 
     public Threads()
@@ -101,5 +103,13 @@ public class Threads
     }
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isTrueCrime() {
+        return trueCrime;
+    }
+
+    public void setTrueCrime(boolean trueCrime) {
+        this.trueCrime = trueCrime;
     }
 }
