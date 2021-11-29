@@ -28,6 +28,9 @@ public class ViewThreadController
         model.addAttribute("allThreads",threadService.getAllThreads());
         return "viewThread";
     }
+
+
+
     @GetMapping("/view/{id}")
     public String loadSelectedThreadPage(@ModelAttribute Threads threads,Model model) throws ExecutionException, InterruptedException {
         Authentication user_authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -41,6 +44,30 @@ public class ViewThreadController
         //threadService.addCommentToThread(new Comments("","jtclapp","This article is alright ig","11/8/2021"),threads);
         model.addAttribute("selectedThread",threadService.getThread(threads.getId()));
         model.addAttribute("selectedThreadComments",threadService.getAllThreadComments(threads.getId()));
+
         return "selectedThread";
     }
+    @PostMapping("/view/{id}/upvote")
+    public String upvoteSelectedThread(@ModelAttribute("selectedThread") Threads thread,Model model) throws ExecutionException, InterruptedException {
+        int tempscore = thread.getScore();
+        tempscore++;
+        thread.setScore(100);
+        threadService.updateThreadScore(thread,"score");
+        System.out.println("Selected thread sender: " + thread.getId());
+        model.addAttribute("selectedThread",threadService.getThread(thread.getId()));
+        model.addAttribute("selectedThreadComments",threadService.getAllThreadComments(thread.getId()));
+        return "selectedThread";
+    }
+    @PostMapping("/view/{id}/downvote")
+    public String downvoteSelectedThread(@ModelAttribute("selectedThread") Threads thread,Model model) throws ExecutionException, InterruptedException {
+        int tempscore = thread.getScore();
+        tempscore--;
+        thread.setScore(tempscore);
+        threadService.updateThreadScore(thread,"score");
+        System.out.println("Selected thread sender: " + thread.getId());
+        model.addAttribute("selectedThread",threadService.getThread(thread.getId()));
+        model.addAttribute("selectedThreadComments",threadService.getAllThreadComments(thread.getId()));
+        return"selectedThread";
+    }
+
 }

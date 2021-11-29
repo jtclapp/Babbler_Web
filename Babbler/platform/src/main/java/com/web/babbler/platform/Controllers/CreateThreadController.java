@@ -76,6 +76,7 @@ public class CreateThreadController
         thread.setDate(getCurrentDate());
         thread.setSender(getUserIDForThread());
         thread.setCaption(capturedThread.getCaption());
+        thread.setScore(0);
         for(int i = 0; i < fileList.size(); i++)
         {
             if(i == 0) {

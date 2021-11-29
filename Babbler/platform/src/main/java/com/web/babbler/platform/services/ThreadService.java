@@ -78,6 +78,10 @@ public class ThreadService
         }
         return commentsList;
     }
+    public void updateThreadScore(Threads threads,String field)
+    {
+        getThreadCollection().document(threads.getId()).update(field,threads.getScore());
+    }
     public List<Threads> getAllThreads() throws ExecutionException, InterruptedException {
         // You can save doc.getId() to the thread, so you can get the exact thread everytime
         List<Threads> threadList = new ArrayList<>();
