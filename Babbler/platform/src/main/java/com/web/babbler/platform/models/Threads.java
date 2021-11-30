@@ -17,7 +17,7 @@ public class Threads
     public Threads(String id,String title, String sender,
                    String caption, String date,
                    String image1, String image2, String image3,
-                   String image4, String image5) {
+                   String image4, String image5, int score) {
         this.id = id;
         this.title = title;
         this.sender = sender;
@@ -28,6 +28,7 @@ public class Threads
         this.image3 = image3;
         this.image4 = image4;
         this.image5 = image5;
+        this.score = score;
     }
 
     public Threads()
@@ -106,6 +107,13 @@ public class Threads
 
     public void setScore(int score) {
         this.score = score;
+    }
+    public void incrementScore(){
+        score = score+1;
+
+    }
+    public void decrementScore(){
+        score = score-1;
     }
 
     public int getScore() {

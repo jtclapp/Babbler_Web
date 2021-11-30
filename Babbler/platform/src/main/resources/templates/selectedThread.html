@@ -215,11 +215,11 @@
     </ol>
          <!-- Wrapper for carousel items -->
         <div class ="btncontainer">
-            <form th:action="@{/view/{id}/upvote}" method="post">
+            <form th:action="@{/view/} + ${selectedThread.id}+ @{/upvote}" method="post">
             <input class ="btn" id="upvote" onclick ="up()" type="submit" value="">>
             </form>
             <p class = "counter" id ="counter"  th:text =${selectedThread.score}></p>
-            <form th:action="@{/view/{id}/downvote}" method="post">
+            <form th:action="@{/view/} + ${selectedThread.id}+@{/downvote}" method="post">
             <input class ="btn" id ="downvote" onclick ="down()" type="submit" value="">>
             </form>
 
