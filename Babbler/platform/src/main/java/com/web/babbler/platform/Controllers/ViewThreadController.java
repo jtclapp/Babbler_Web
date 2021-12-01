@@ -43,4 +43,22 @@ public class ViewThreadController
         model.addAttribute("selectedThreadComments",threadService.getAllThreadComments(threads.getId()));
         return "selectedThread";
     }
+    @PostMapping("/view/{id}/upvote")
+    public String upvoteSelectedThread(@ModelAttribute("selectedThread") Threads thread,Model model) throws ExecutionException, InterruptedException {
+        System.out.println(thread.getScore());
+        thread.setScore(thread.getScore() + 1);
+        threadService.updateThreadScore(thread,"score");
+        model.addAttribute("selectedThread",threadService.getThread(thread.getId()));
+//        model.addAttribute("selectedThreadComments",threadService.getAllThreadComments(thread.getId()));
+        return "selectedThread";
+    }
+    @PostMapping("/view/{id}/downvote")
+    public String downvoteSelectedThread(@ModelAttribute("selectedThread") Threads thread,Model model) throws ExecutionException, InterruptedException {
+        System.out.println(thread.getScore());
+        thread.setScore(thread.getScore() - 1);
+        threadService.updateThreadScore(thread,"score");
+        model.addAttribute("selectedThread",threadService.getThread(thread.getId()));
+        model.addAttribute("selectedThreadComments",threadService.getAllThreadComments(thread.getId()));
+        return"selectedThread";
+    }
 }

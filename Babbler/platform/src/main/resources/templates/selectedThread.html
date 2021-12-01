@@ -119,6 +119,45 @@
         body{
             font-family: 'Exo', sans-serif;
         }
+        .btncontainer{
+            width: 70px;
+            height: 190px;
+            text-align: center;
+            background: gray;
+            position:absolute;
+            left: -100px;
+            top: 75px;
+            border: 1px solid white;
+        }
+        .btn{
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            background: white;
+            position:absolute;
+            left: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            float:left;
+        }
+        .btn, #upvote{
+            top: 5px;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBkPSJNNDY2IDI4N2M5LTE1IDE0LTMxIDE0LTUwIDAtNDQtMzctODYtODYtODZoLTM2YzUtMTMgOS0yOCA5LTQ2IDAtNzMtMzgtMTA1LTk2LTEwNS02MSAwLTU4IDk1LTcxIDEwOS0yMyAyMi01MCA2Ni02OSA4M0gzMmMtMTggMC0zMiAxNC0zMiAzMnYyNDBjMCAxOCAxNCAzMiAzMiAzMmg2NGMxNSAwIDI3LTEwIDMxLTI0IDQ0IDEgNzUgNDAgMTc4IDQwaDIyYzc3IDAgMTEyLTM5IDExMy05NSAxMy0xOSAyMC00MyAxNy02NyAxMC0xOSAxNC00MSA5LTYzem0tNjEgNTRjMTIgMjEgMSA0OS0xNCA1NyA3IDQ5LTE4IDY2LTU0IDY2aC0zN2MtNzIgMC0xMTgtMzgtMTcyLTM4VjI0MGgxMWMyOCAwIDY4LTcxIDk0LTk3IDI5LTI5IDE5LTc2IDM4LTk1IDQ4IDAgNDggMzMgNDggNTcgMCAzOS0yOSA1Ni0yOSA5NGgxMDRjMjEgMCAzOCAxOSAzOCAzOHMtMTMgMzgtMjIgMzhjMTMgMTQgMTYgNDUtNSA2NnpNODggNDMyYTI0IDI0IDAgMSAxLTQ4IDAgMjQgMjQgMCAwIDEgNDggMHoiLz48L3N2Zz4=");
+        }
+        .btn, #downvote{
+            top:125px;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBkPSJNNDY2IDIyNWM1LTIyIDEtNDQtOS02MyAzLTI0LTQtNDgtMTctNjctMS01Ni0zNi05NS0xMTMtOTVoLTIyQzIwMSAwIDE2OSA0MCAxMjggNDBoLTExYy01LTUtMTMtOC0yMS04SDMyQzE0IDMyIDAgNDYgMCA2NHYyNDBjMCAxOCAxNCAzMiAzMiAzMmg2NGMxMiAwIDIyLTYgMjgtMTZoN2MxOSAxNyA0NiA2MSA2OSA4MyAxMyAxNCAxMCAxMDkgNzEgMTA5IDU4IDAgOTYtMzIgOTYtMTA1IDAtMTgtNC0zMy05LTQ2aDM2YzQ5IDAgODYtNDIgODYtODYgMC0xOS01LTM1LTE0LTUwek02NCAyOTZhMjQgMjQgMCAxIDEgMC00OCAyNCAyNCAwIDAgMSAwIDQ4em0zMzAgMTdIMjkwYzAgMzggMjkgNTUgMjkgOTQgMCAyNCAwIDU3LTQ4IDU3LTE5LTE5LTktNjYtMzgtOTUtMjYtMjYtNjYtOTctOTQtOTdoLTExVjg2YzU0IDAgMTAwLTM4IDE3Mi0zOGgzN2MzNiAwIDYxIDE3IDU0IDY2IDE1IDggMjYgMzYgMTQgNTcgMjEgMjEgMTggNTIgNSA2NiA5IDAgMjIgMTkgMjIgMzhzLTE3IDM4LTM4IDM4eiIvPjwvc3ZnPg==");
+        }
+        .counter{
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            left: 5px;
+            top: 65px;
+            background: white;
+            position:absolute;
+            line-height: 60px;
+        }
     </style>
     <div class="topNav">
         <a href="/">Home</a>
@@ -164,6 +203,15 @@
     <li th:if="${selectedThread.image5 != null}" data-target="#myCarousel" data-slide-to="4"></li>
     </ol>
          <!-- Wrapper for carousel items -->
+        <div class ="btncontainer">
+            <form th:action="@{/view/} + ${selectedThread.id}+ @{/upvote}" method="post">
+                <input class ="btn" id="upvote" type="submit" value="">
+            </form>
+            <p class = "counter" id ="counter"  th:text =${selectedThread.score}></p>
+            <form th:action="@{/view/} + ${selectedThread.id}+@{/downvote}" method="post">
+                <input class ="btn" id ="downvote" type="submit" value="">
+            </form>
+        </div>
          <div class="carousel-inner">
          <div class="carousel-item active">
               <img th:src="${selectedThread.image1}" height="500" width="500"/>
