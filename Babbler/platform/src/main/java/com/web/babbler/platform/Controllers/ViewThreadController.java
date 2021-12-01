@@ -49,10 +49,11 @@ public class ViewThreadController
     }
     @PostMapping("/view/{id}/upvote")
     public String upvoteSelectedThread(@ModelAttribute("selectedThread") Threads thread,Model model) throws ExecutionException, InterruptedException {
+        int temp = thread.getScore()+1;
 
 
+        thread.incrementScore(1);
 
-        thread.incrementScore();
 
         threadService.updateThreadScore(thread,"score");
         System.out.println("Selected thread sender: " + thread.getId());
@@ -63,10 +64,11 @@ public class ViewThreadController
     }
     @PostMapping("/view/{id}/downvote")
     public String downvoteSelectedThread(@ModelAttribute("selectedThread") Threads thread,Model model) throws ExecutionException, InterruptedException {
+    int temp =thread.getScore()-1;
 
 
+        thread.decrementScore(1);
 
-        thread.decrementScore();
 
         threadService.updateThreadScore(thread,"score");
         System.out.println("Selected thread sender: " + thread.getId());

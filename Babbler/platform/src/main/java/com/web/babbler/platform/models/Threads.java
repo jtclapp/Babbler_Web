@@ -108,12 +108,12 @@ public class Threads
     public void setScore(int score) {
         this.score = score;
     }
-    public void incrementScore(){
-        score = score+1;
+    public void incrementScore(int up){
+        this.score =score + up ;
 
     }
-    public void decrementScore(){
-        score = score-1;
+    public void decrementScore(int dow){
+        this.score = score - dow;
     }
 
     public int getScore() {
