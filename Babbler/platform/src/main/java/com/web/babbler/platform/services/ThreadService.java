@@ -150,6 +150,7 @@ public class ThreadService
             if (threads1.isTrueCrime() == trueCrime) {
                 if(threadList.size() < 3)
                 {
+                    threads1.setCaption(blurbCreator(threads1.getCaption()));
                     threadList.add(threads1);
                 }
             }
@@ -164,7 +165,6 @@ public class ThreadService
         for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
             Threads threads1 = doc.toObject(Threads.class);
             assert threads1 != null;
-            threads1.setCaption(blurbCreator(threads1.getCaption()));
             threadList.add(threads1);
         }
         return threadList;
