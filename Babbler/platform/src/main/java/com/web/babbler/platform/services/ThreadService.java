@@ -15,8 +15,6 @@ import java.util.concurrent.ExecutionException;
 public class ThreadService
 {
     private Firestore firestore;
-    private String currentUserName;
-    private UserService userService;
 
     private CollectionReference getThreadCollection() {
         firestore = FirestoreClient.getFirestore();
@@ -67,6 +65,11 @@ public class ThreadService
                         .collection("Comments").document().set(comment);
         apiFuture.get();
     }
+    public void addCommentToRecommendThread(Comments comment,Threads thread) throws ExecutionException, InterruptedException {
+        ApiFuture<WriteResult> apiFuture =
+                FirestoreClient.getFirestore().collection("RecommendThreads").document(thread.getId()).collection("Comments").document().set(comment);
+        apiFuture.get();
+    }
     public void updateThreadScore(Threads threads,String field)
     {
         getThreadCollection().document(threads.getId()).update(field,threads.getScore());
@@ -75,7 +78,18 @@ public class ThreadService
         List<Comments> commentsList = new ArrayList<>();
         firestore = FirestoreClient.getFirestore();
         CollectionReference comments = firestore.collection("Threads").document(id).collection("Comments");
-        ApiFuture<QuerySnapshot> querySnapshot = comments.get();
+        ApiFuture<QuerySnapshot> querySnapshot = comments.orderBy("timeStamp",Query.Direction.ASCENDING).get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            Comments comments1 = doc.toObject(Comments.class);
+            commentsList.add(comments1);
+        }
+        return commentsList;
+    }
+    public List<Comments> getAllRecommendedThreadComments(String id) throws ExecutionException, InterruptedException {
+        List<Comments> commentsList = new ArrayList<>();
+        firestore = FirestoreClient.getFirestore();
+        CollectionReference comments = firestore.collection("RecommendThreads").document(id).collection("Comments");
+        ApiFuture<QuerySnapshot> querySnapshot = comments.orderBy("timeStamp",Query.Direction.ASCENDING).get();
         for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
             Comments comments1 = doc.toObject(Comments.class);
             commentsList.add(comments1);

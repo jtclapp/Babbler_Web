@@ -227,6 +227,10 @@
                     <div th:unless="${currentUser}">
                         <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: Georgia,serif; border:0; border-radius: 6px;
                 color: white; background-color: transparent" th:text="${Threads.title}" onclick="location.href='/start'"></a></li>
+                        <div class="selectDiv">
+                            <button type="submit" hidden style="font-size: 18px; font-family: Georgia,serif; border:0; border-radius: 6px;
+                color: white; background-color: transparent" th:text="${Threads.title}"></button>
+                        </div>
                     </div>
                 </ul>
             </div>

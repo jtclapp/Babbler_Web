@@ -123,11 +123,9 @@
             width: 70px;
             height: 190px;
             text-align: center;
-            background: gray;
             position:absolute;
             left: -100px;
             top: 75px;
-            border: 1px solid white;
         }
         .btn{
             width: 60px;
@@ -145,7 +143,7 @@
             background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBkPSJNNDY2IDI4N2M5LTE1IDE0LTMxIDE0LTUwIDAtNDQtMzctODYtODYtODZoLTM2YzUtMTMgOS0yOCA5LTQ2IDAtNzMtMzgtMTA1LTk2LTEwNS02MSAwLTU4IDk1LTcxIDEwOS0yMyAyMi01MCA2Ni02OSA4M0gzMmMtMTggMC0zMiAxNC0zMiAzMnYyNDBjMCAxOCAxNCAzMiAzMiAzMmg2NGMxNSAwIDI3LTEwIDMxLTI0IDQ0IDEgNzUgNDAgMTc4IDQwaDIyYzc3IDAgMTEyLTM5IDExMy05NSAxMy0xOSAyMC00MyAxNy02NyAxMC0xOSAxNC00MSA5LTYzem0tNjEgNTRjMTIgMjEgMSA0OS0xNCA1NyA3IDQ5LTE4IDY2LTU0IDY2aC0zN2MtNzIgMC0xMTgtMzgtMTcyLTM4VjI0MGgxMWMyOCAwIDY4LTcxIDk0LTk3IDI5LTI5IDE5LTc2IDM4LTk1IDQ4IDAgNDggMzMgNDggNTcgMCAzOS0yOSA1Ni0yOSA5NGgxMDRjMjEgMCAzOCAxOSAzOCAzOHMtMTMgMzgtMjIgMzhjMTMgMTQgMTYgNDUtNSA2NnpNODggNDMyYTI0IDI0IDAgMSAxLTQ4IDAgMjQgMjQgMCAwIDEgNDggMHoiLz48L3N2Zz4=");
         }
         .btn, #downvote{
-            top:125px;
+            top: 165px;
             background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBkPSJNNDY2IDIyNWM1LTIyIDEtNDQtOS02MyAzLTI0LTQtNDgtMTctNjctMS01Ni0zNi05NS0xMTMtOTVoLTIyQzIwMSAwIDE2OSA0MCAxMjggNDBoLTExYy01LTUtMTMtOC0yMS04SDMyQzE0IDMyIDAgNDYgMCA2NHYyNDBjMCAxOCAxNCAzMiAzMiAzMmg2NGMxMiAwIDIyLTYgMjgtMTZoN2MxOSAxNyA0NiA2MSA2OSA4MyAxMyAxNCAxMCAxMDkgNzEgMTA5IDU4IDAgOTYtMzIgOTYtMTA1IDAtMTgtNC0zMy05LTQ2aDM2YzQ5IDAgODYtNDIgODYtODYgMC0xOS01LTM1LTE0LTUwek02NCAyOTZhMjQgMjQgMCAxIDEgMC00OCAyNCAyNCAwIDAgMSAwIDQ4em0zMzAgMTdIMjkwYzAgMzggMjkgNTUgMjkgOTQgMCAyNCAwIDU3LTQ4IDU3LTE5LTE5LTktNjYtMzgtOTUtMjYtMjYtNjYtOTctOTQtOTdoLTExVjg2YzU0IDAgMTAwLTM4IDE3Mi0zOGgzN2MzNiAwIDYxIDE3IDU0IDY2IDE1IDggMjYgMzYgMTQgNTcgMjEgMjEgMTggNTIgNSA2NiA5IDAgMjIgMTkgMjIgMzhzLTE3IDM4LTM4IDM4eiIvPjwvc3ZnPg==");
         }
         .counter{
@@ -154,9 +152,31 @@
             border-radius: 100%;
             left: 5px;
             top: 65px;
+            margin-top: 20px;
             background: white;
             position:absolute;
             line-height: 60px;
+        }
+        #threadInput {
+            background-position: 10px 12px; /* Position the search icon */
+            background-repeat: no-repeat; /* Do not repeat the icon image */
+            width: 50%; /* Full-width */
+            font-size: 16px; /* Increase font-size */
+            padding: 10px 20px 10px 15px; /* Add some padding */
+            border: 1px solid #ddd; /* Add a grey border */
+            margin:0 auto;
+            border-radius: 5px;
+        }
+        #commentButton
+        {
+            padding:0.6em 2em;
+            border-radius: 6px;
+            color:#ffff;
+            background-color: #191919;
+            font-size:1.1em;
+            border:0;
+            cursor:pointer;
+            margin-left: 15%;
         }
     </style>
     <div class="topNav">
@@ -234,6 +254,9 @@
     <br>
     <li style="list-style-type: none" class="carousel slide"><textarea style="font-size: 18px; font-family: 'Baskerville Old Face',serif;
                 color: white; overflow: scroll; background-color: transparent; width: 60%; height: 475px; padding: 5px; resize: none;" th:text="${selectedThread.caption}" readonly></textarea></li>
+    <br>
+    <br>
+    <br>
     <tr th:each="Comment: ${selectedThreadComments}">
     <br>
     <br>
@@ -241,6 +264,20 @@
     <br>
     <br>
     </tr>
+    <br>
+    <br>
+    <div th:unless="${isRecommended}">
+        <form action="#" th:action="@{/view/} + ${selectedThread.id}+ @{/comment}" method="post" th:object="${comment}">
+            <input type="text" id="threadInput" placeholder="Write a comment" th:field="*{caption}" required>
+            <input id="commentButton" type="submit" value="Send">
+        </form>
+    </div>
+    <div th:if="${isRecommended}">
+        <form action="#" th:action="@{/view/recommended/} + ${selectedThread.title}+ @{/comment}" method="post" th:object="${comment}">
+            <input type="text" id="threadInput" placeholder="Write a comment" th:field="*{caption}" required>
+            <input id="commentButton" type="submit" value="Send">
+        </form>
+    </div>
 </div>
 </body>
 </html>

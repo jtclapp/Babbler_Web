@@ -1,6 +1,7 @@
 package com.web.babbler.platform.Controllers;
 
 import com.web.babbler.platform.models.User;
+import com.web.babbler.platform.services.ThreadService;
 import com.web.babbler.platform.services.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,7 @@ import java.util.concurrent.ExecutionException;
 public class ConnectUsersController
 {
     UserService userService;
+    ThreadService threadService;
 
     @GetMapping("/connect")
     public String loadConnectUsersPage(Model model) throws ExecutionException, InterruptedException {
@@ -25,10 +27,9 @@ public class ConnectUsersController
         } else {
             return "error";
         }
-        System.out.println("Switching over to the connect users page.");
         userService = new UserService();
         model.addAttribute("selectedUser",new User());
-        model.addAttribute("allUsers",userService.getAllUsers());
+        model.addAttribute("allUsers",userService.getAllUsers(userService.getUserID(currentUserName)));
         return "connectUsers";
     }
     @GetMapping("/connect/{id}")
@@ -40,8 +41,9 @@ public class ConnectUsersController
         } else {
             return "error";
         }
-        System.out.println("Selected User: " + user.getId());
+        threadService = new ThreadService();
         model.addAttribute("selectedUser",userService.getUser(user.getId()));
+        model.addAttribute("USERThreads",threadService.getAllUserThreads(user.getId()));
         return "selectedUser";
     }
 }

@@ -20,14 +20,13 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class UserService {
 
-    private Firestore firestore;
     List<GrantedAuthority> authorities;
     UserDetails user;
     InMemoryUserDetailsManager userDetailsManager;
     Authentication authentication;
 
     private CollectionReference getUserCollection() {
-        firestore = FirestoreClient.getFirestore();
+        Firestore firestore = FirestoreClient.getFirestore();
         return firestore.collection("Users");
     }
     public String createUser(User user) throws ExecutionException, InterruptedException {
@@ -35,12 +34,28 @@ public class UserService {
                 getUserCollection().document(user.getId()).set(user);
         return apiFuture.get().getUpdateTime().toString();
     }
+    public List<User> getAllUsers(String id) throws ExecutionException, InterruptedException {
+        List<User> userList = new ArrayList<>();
+        CollectionReference users = getUserCollection();
+        ApiFuture<QuerySnapshot> querySnapshot = users.get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            User usr = doc.toObject(User.class);
+            assert usr != null;
+            if(usr.getId().equals(id))
+            {
+            } else {
+                userList.add(usr);
+            }
+        }
+        return userList;
+    }
     public List<User> getAllUsers() throws ExecutionException, InterruptedException {
         List<User> userList = new ArrayList<>();
         CollectionReference users = getUserCollection();
         ApiFuture<QuerySnapshot> querySnapshot = users.get();
         for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
             User usr = doc.toObject(User.class);
+            assert usr != null;
             userList.add(usr);
         }
         return userList;
@@ -69,6 +84,7 @@ public class UserService {
         ApiFuture<QuerySnapshot> querySnapshot = users.get();
         for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
             User usr = doc.toObject(User.class);
+            assert usr != null;
             if(usr.getId().equals(id))
             {
                 return usr;
@@ -81,6 +97,7 @@ public class UserService {
         ApiFuture<QuerySnapshot> querySnapshot = users.get();
         for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
             User usr = doc.toObject(User.class);
+            assert usr != null;
             if(usr.getEmail().equals(email))
             {
                 return usr.getId();
