@@ -4,13 +4,15 @@ public class Comments
 {
     private String id;
     private String sender;
+    private String senderImage;
     private String caption;
     private String date;
     private String timeStamp;
 
-    public Comments(String id, String sender, String caption, String date, String timeStamp) {
+    public Comments(String id, String sender, String senderImage, String caption, String date, String timeStamp) {
         this.id = id;
         this.sender = sender;
+        this.senderImage = senderImage;
         this.caption = caption;
         this.date = date;
         this.timeStamp = timeStamp;
@@ -51,5 +53,12 @@ public class Comments
     }
     public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    public String getSenderImage() {
+        return senderImage;
+    }
+    public void setSenderImage(String senderImage) {
+        this.senderImage = senderImage;
     }
 }

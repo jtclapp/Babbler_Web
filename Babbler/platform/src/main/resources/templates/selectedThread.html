@@ -178,6 +178,15 @@
             cursor:pointer;
             margin-left: 15%;
         }
+        footer{
+            font-family: Arial, Helvetica, sans-serif;
+            position: absolute;
+            bottom: -100px;
+            width: 100%;
+            height: 100px;
+            background-color: #000c14;
+            color: white;
+        }
     </style>
     <div class="topNav">
         <a href="/">Home</a>
@@ -224,13 +233,24 @@
     </ol>
          <!-- Wrapper for carousel items -->
         <div class ="btncontainer">
-            <form th:action="@{/view/} + ${selectedThread.id}+ @{/upvote}" method="post">
-                <input class ="btn" id="upvote" type="submit" value="">
-            </form>
-            <p class = "counter" id ="counter"  th:text =${score}></p>
-            <form th:action="@{/view/} + ${selectedThread.id}+@{/downvote}" method="post">
-                <input class ="btn" id ="downvote" type="submit" value="">
-            </form>
+            <div th:unless="${isRecommended}">
+                <form th:action="@{/view/} + ${selectedThread.id} + @{/upvote}" method="post">
+                    <input class ="btn" id="upvote" type="submit" value="">
+                </form>
+                <p class = "counter" id ="counter"  th:text =${score}></p>
+                <form th:action="@{/view/} + ${selectedThread.id} + @{/downvote}" method="post">
+                    <input class ="btn" id ="downvote" type="submit" value="">
+                </form>
+            </div>
+            <div th:if="${isRecommended}">
+                <form th:action="@{/view/recommended/} + ${selectedThread.title} + @{/upvote}" method="post">
+                    <input class ="btn" id="upvote" type="submit" value="">
+                </form>
+                <p class = "counter" id ="counter"  th:text =${score}></p>
+                <form th:action="@{/view/recommended/} + ${selectedThread.title} + @{/downvote}" method="post">
+                    <input class ="btn" id ="downvote" type="submit" value="">
+                </form>
+            </div>
         </div>
          <div class="carousel-inner">
          <div class="carousel-item active">
@@ -260,24 +280,39 @@
     <tr th:each="Comment: ${selectedThreadComments}">
     <br>
     <br>
-    <a style="font-size: 20px; font-family: 'Baskerville Old Face',serif; color: white;" th:text="${Comment.getCaption()}"></a>
-    <br>
+        <div th:if= "${Comment.getSenderImage() == 'default'}">
+            <img style="border-radius: 100%;overflow: hidden; display: inline" th:align="middle" th:src="@{/images/default_profile.jpg}" width="45" height="45"/>
+            <li style="list-style-type: none; display: inline"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
+                color: white; margin-left: 10px;" th:text="${Comment.getCaption()}"></a></li>
+        </div>
+        <div th:if= "${Comment.getSenderImage() != 'default'}">
+            <img style="border-radius: 100%;overflow: hidden;" th:align="middle" th:src="${Comment.getSenderImage()}" width="45" height="45"/>
+            <li style="list-style-type: none; display: inline"><a style="font-size: 18px; font-family: Georgia,serif; margin-right: 200px;
+                color: white; margin-left: 10px;" th:text="${Comment.getCaption()}"></a></li>
+        </div>
     <br>
     </tr>
     <br>
     <br>
     <div th:unless="${isRecommended}">
-        <form action="#" th:action="@{/view/} + ${selectedThread.id}+ @{/comment}" method="post" th:object="${comment}">
+        <form action="#" th:action="@{/view/} + ${selectedThread.id} + @{/comment}" method="post" th:object="${comment}">
             <input type="text" id="threadInput" placeholder="Write a comment" th:field="*{caption}" required>
             <input id="commentButton" type="submit" value="Send">
         </form>
     </div>
     <div th:if="${isRecommended}">
-        <form action="#" th:action="@{/view/recommended/} + ${selectedThread.title}+ @{/comment}" method="post" th:object="${comment}">
+        <form action="#" th:action="@{/view/recommended/} + ${selectedThread.title} + @{/comment}" method="post" th:object="${comment}">
             <input type="text" id="threadInput" placeholder="Write a comment" th:field="*{caption}" required>
             <input id="commentButton" type="submit" value="Send">
         </form>
     </div>
 </div>
 </body>
+<!--<footer>-->
+<!--    <br>-->
+<!--    <p>Contact us at: Babblerbabble@gmail.com</p>-->
+<!--    <a style="color: white" href="https://pdfhost.io/v/UtUWSJWcb_Terms_of_service_Babbler">Privacy Policy</a>-->
+<!--    </br>-->
+<!--    <a style="color: white" href="/about">Learn More</a>-->
+<!--</footer>-->
 </html>

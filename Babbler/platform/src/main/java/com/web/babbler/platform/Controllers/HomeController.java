@@ -28,6 +28,7 @@ public class HomeController
 {
     List<GrantedAuthority> authorities;
     ThreadService threadService;
+    UserService userService;
     Authentication authentication;
     @GetMapping("/")
     public String loadHomePage(Model model) throws ExecutionException, InterruptedException {
@@ -44,6 +45,8 @@ public class HomeController
         }
         threadService = new ThreadService();
         model.addAttribute("allRThreads",threadService.getAllRecommendedThreads());
+        model.addAttribute("allTCThreads",threadService.orderByScore(true));
+        model.addAttribute("allCTThreads",threadService.orderByScore(false));
         return "index";
     }
     @GetMapping("/logout")
@@ -68,17 +71,46 @@ public class HomeController
         model.addAttribute("selectedThread",threadService.getRecommendedThread(threads.getTitle()));
         model.addAttribute("comment", new Comments());
         model.addAttribute("isRecommended",true);
+        model.addAttribute("score",threadService.getRecommendedThread(threads.getTitle()).getScore());
         model.addAttribute("selectedThreadComments",threadService.getAllRecommendedThreadComments(threadService.getRecommendedThread(threads.getTitle()).getId()));
         return "selectedThread";
+    }
+    @PostMapping("/view/recommended/{title}/upvote")
+    public String upvoteSelectedThread(@ModelAttribute("selectedThread") Threads thread,Model model) throws ExecutionException, InterruptedException {
+        int score = threadService.getRecommendedThread(thread.getTitle()).getScore() + 1;
+        String id = threadService.getRecommendedThread(thread.getTitle()).getId();
+        threadService.updateRecommendThread(id,score);
+        model.addAttribute("comment", new Comments());
+        model.addAttribute("isRecommended",true);
+        model.addAttribute("score",score);
+        model.addAttribute("selectedThread",threadService.getRecommendedThread(thread.getTitle()));
+        model.addAttribute("selectedThreadComments",threadService.getAllRecommendedThreadComments(threadService.getRecommendedThread(thread.getTitle()).getId()));
+        return "selectedThread";
+    }
+    @PostMapping("/view/recommended/{title}/downvote")
+    public String downvoteSelectedThread(@ModelAttribute("selectedThread") Threads thread,Model model) throws ExecutionException, InterruptedException {
+        int score = threadService.getRecommendedThread(thread.getTitle()).getScore() - 1;
+        String id = threadService.getRecommendedThread(thread.getTitle()).getId();
+        threadService.updateRecommendThread(id,score);
+        model.addAttribute("comment", new Comments());
+        model.addAttribute("isRecommended",true);
+        model.addAttribute("score",score);
+        model.addAttribute("selectedThread",threadService.getRecommendedThread(thread.getTitle()));
+        model.addAttribute("selectedThreadComments",threadService.getAllRecommendedThreadComments(threadService.getRecommendedThread(thread.getTitle()).getId()));
+        return"selectedThread";
     }
     @PostMapping("/view/recommended/{title}/comment")
     public String commentOnSelectedRecommendedThread(@ModelAttribute("selectedThread") Threads thread,@ModelAttribute("comment") Comments comments,Model model) throws ExecutionException, InterruptedException {
         threadService = new ThreadService();
+        userService = new UserService();
         comments.setTimeStamp(String.valueOf(new Timestamp(System.currentTimeMillis())));
         comments.setDate(new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault()).format(new Date()));
         comments.setSender(getUserIDForComment());
+        comments.setSenderImage(userService.getUser(getUserIDForComment()).getImageURL());
         threadService.addCommentToRecommendThread(comments,threadService.getRecommendedThread(thread.getTitle()));
+        model.addAttribute("isRecommended",true);
         model.addAttribute("selectedThread",threadService.getRecommendedThread(thread.getTitle()));
+        model.addAttribute("score",threadService.getRecommendedThread(thread.getTitle()).getScore());
         model.addAttribute("selectedThreadComments",threadService.getAllRecommendedThreadComments(threadService.getRecommendedThread(thread.getTitle()).getId()));
         return "selectedThread";
     }

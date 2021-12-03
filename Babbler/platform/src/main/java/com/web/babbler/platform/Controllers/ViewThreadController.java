@@ -3,6 +3,7 @@ package com.web.babbler.platform.Controllers;
 import com.web.babbler.platform.models.Comments;
 import com.web.babbler.platform.models.Credentials;
 import com.web.babbler.platform.models.Threads;
+import com.web.babbler.platform.models.User;
 import com.web.babbler.platform.services.ThreadService;
 import com.web.babbler.platform.services.UserService;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,7 @@ import java.util.concurrent.ExecutionException;
 public class ViewThreadController
 {
     ThreadService threadService;
+    UserService userService;
     SignInController signInController;
 
     @GetMapping("/view")
@@ -51,9 +53,11 @@ public class ViewThreadController
     }
     @PostMapping("/view/{id}/comment")
     public String commentOnSelectedThread(@ModelAttribute("selectedThread") Threads thread,@ModelAttribute("comment") Comments comments,Model model) throws ExecutionException, InterruptedException {
+        userService = new UserService();
         comments.setTimeStamp(String.valueOf(new Timestamp(System.currentTimeMillis())));
         comments.setDate(new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault()).format(new Date()));
         comments.setSender(getUserIDForComment());
+        comments.setSenderImage(userService.getUser(getUserIDForComment()).getImageURL());
         threadService.addCommentToThread(comments,thread);
         model.addAttribute("comment", new Comments());
         model.addAttribute("score",threadService.getThread(thread.getId()).getScore());

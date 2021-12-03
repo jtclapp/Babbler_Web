@@ -5,6 +5,7 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.web.babbler.platform.models.Comments;
 import com.web.babbler.platform.models.Threads;
+import com.web.babbler.platform.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -74,6 +75,10 @@ public class ThreadService
     {
         getThreadCollection().document(id).update("score",score);
     }
+    public void updateRecommendThread(String id, int score)
+    {
+        getRecommendedThreadCollection().document(id).update("score",score);
+    }
     public List<Comments> getAllThreadComments(String id) throws ExecutionException, InterruptedException {
         List<Comments> commentsList = new ArrayList<>();
         firestore = FirestoreClient.getFirestore();
@@ -131,6 +136,23 @@ public class ThreadService
             assert thread != null;
             thread.setCaption(blurbCreator(thread.getCaption()));
             threadList.add(thread);
+        }
+        return threadList;
+    }
+    public List<Threads> orderByScore(boolean trueCrime) throws ExecutionException, InterruptedException {
+        List<Threads> threadList = new ArrayList<>();
+        firestore = FirestoreClient.getFirestore();
+        CollectionReference threads = firestore.collection("Threads");
+        ApiFuture<QuerySnapshot> querySnapshot = threads.orderBy("score",Query.Direction.DESCENDING).get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            Threads threads1 = doc.toObject(Threads.class);
+            assert threads1 != null;
+            if (threads1.isTrueCrime() == trueCrime) {
+                if(threadList.size() < 3)
+                {
+                    threadList.add(threads1);
+                }
+            }
         }
         return threadList;
     }
