@@ -43,10 +43,9 @@ public class ViewThreadController
         } else {
             return "error";
         }
-        System.out.println("Selected thread sender: " + threads.getId());
-        //threadService.addCommentToThread(new Comments("","jtclapp","This article is alright ig","11/8/2021"),threads);
-        model.addAttribute("selectedThread",threadService.getThread(threads.getId()));
         model.addAttribute("comment", new Comments());
+        model.addAttribute("score",threadService.getThread(threads.getId()).getScore());
+        model.addAttribute("selectedThread",threadService.getThread(threads.getId()));
         model.addAttribute("selectedThreadComments",threadService.getAllThreadComments(threads.getId()));
         return "selectedThread";
     }
@@ -56,22 +55,30 @@ public class ViewThreadController
         comments.setDate(new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault()).format(new Date()));
         comments.setSender(getUserIDForComment());
         threadService.addCommentToThread(comments,thread);
+        model.addAttribute("comment", new Comments());
+        model.addAttribute("score",threadService.getThread(thread.getId()).getScore());
         model.addAttribute("selectedThread",threadService.getThread(thread.getId()));
         model.addAttribute("selectedThreadComments",threadService.getAllThreadComments(thread.getId()));
         return "selectedThread";
     }
     @PostMapping("/view/{id}/upvote")
     public String upvoteSelectedThread(@ModelAttribute("selectedThread") Threads thread,Model model) throws ExecutionException, InterruptedException {
-        thread.setScore(thread.getScore() + 1);
-        threadService.updateThreadScore(thread,"score");
+        int score = threadService.getThread(thread.getId()).getScore() + 1;
+        String id = threadService.getThread(thread.getId()).getId();
+        threadService.updateThreadScore(id,score);
+        model.addAttribute("comment", new Comments());
+        model.addAttribute("score",score);
         model.addAttribute("selectedThread",threadService.getThread(thread.getId()));
         model.addAttribute("selectedThreadComments",threadService.getAllThreadComments(thread.getId()));
         return "selectedThread";
     }
     @PostMapping("/view/{id}/downvote")
     public String downvoteSelectedThread(@ModelAttribute("selectedThread") Threads thread,Model model) throws ExecutionException, InterruptedException {
-        thread.setScore(thread.getScore() - 1);
-        threadService.updateThreadScore(thread,"score");
+        int score = threadService.getThread(thread.getId()).getScore() - 1;
+        String id = threadService.getThread(thread.getId()).getId();
+        threadService.updateThreadScore(id,score);
+        model.addAttribute("comment", new Comments());
+        model.addAttribute("score",score);
         model.addAttribute("selectedThread",threadService.getThread(thread.getId()));
         model.addAttribute("selectedThreadComments",threadService.getAllThreadComments(thread.getId()));
         return"selectedThread";

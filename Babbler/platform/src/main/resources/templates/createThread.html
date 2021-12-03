@@ -201,6 +201,10 @@
                 <textarea style="padding: 8px;border-color: black;border-radius: 15px;font-size:12pt;
                  width: 1115px; height: 500px; margin: auto; display:block;" id="txt_2" th:field="*{caption}" onchange='saveValue(this);' required></textarea><br/>
                 <br>
+                <input type="radio" id="CTA" name="article" value="false" th:field="${createdThread.trueCrime}">
+                <label style="font-size: 20px; color: white" for="CTA">Conspiracy Theory Article</label><br><br>
+                <input type="radio" id="TCA" name="article" value="true" th:field="${createdThread.trueCrime}">
+                <label style="font-size: 20px; color: white" for="TCA">True Crime Article</label><br>
                 <input style="margin:0px auto; display:block;" type="submit" value="Create Thread">
         </form>
     <script>

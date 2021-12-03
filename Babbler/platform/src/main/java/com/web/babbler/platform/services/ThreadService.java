@@ -70,9 +70,9 @@ public class ThreadService
                 FirestoreClient.getFirestore().collection("RecommendThreads").document(thread.getId()).collection("Comments").document().set(comment);
         apiFuture.get();
     }
-    public void updateThreadScore(Threads threads,String field)
+    public void updateThreadScore(String id,int score)
     {
-        getThreadCollection().document(threads.getId()).update(field,threads.getScore());
+        getThreadCollection().document(id).update("score",score);
     }
     public List<Comments> getAllThreadComments(String id) throws ExecutionException, InterruptedException {
         List<Comments> commentsList = new ArrayList<>();

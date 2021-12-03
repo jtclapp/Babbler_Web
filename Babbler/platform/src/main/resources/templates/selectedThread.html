@@ -227,7 +227,7 @@
             <form th:action="@{/view/} + ${selectedThread.id}+ @{/upvote}" method="post">
                 <input class ="btn" id="upvote" type="submit" value="">
             </form>
-            <p class = "counter" id ="counter"  th:text =${selectedThread.score}></p>
+            <p class = "counter" id ="counter"  th:text =${score}></p>
             <form th:action="@{/view/} + ${selectedThread.id}+@{/downvote}" method="post">
                 <input class ="btn" id ="downvote" type="submit" value="">
             </form>

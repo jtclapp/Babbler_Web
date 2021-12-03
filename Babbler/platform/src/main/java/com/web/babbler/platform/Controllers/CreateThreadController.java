@@ -76,6 +76,8 @@ public class CreateThreadController
         thread.setDate(getCurrentDate());
         thread.setSender(getUserIDForThread());
         thread.setCaption(capturedThread.getCaption());
+        thread.setTrueCrime(capturedThread.isTrueCrime());
+        System.out.println("Answer " + capturedThread.isTrueCrime());
         thread.setScore(0);
         for(int i = 0; i < fileList.size(); i++)
         {
