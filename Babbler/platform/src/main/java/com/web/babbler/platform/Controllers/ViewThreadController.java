@@ -33,7 +33,7 @@ public class ViewThreadController
             model.addAttribute("currentUser", currentUserName);
         }
         threadService = new ThreadService();
-        model.addAttribute("allThreads",threadService.getAllThreads());
+        model.addAttribute("allThreads",threadService.orderThreadsByScore());
         return "viewThread";
     }
     @GetMapping("/view/{id}")

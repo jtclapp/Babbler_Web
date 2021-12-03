@@ -156,6 +156,18 @@ public class ThreadService
         }
         return threadList;
     }
+    public List<Threads> orderThreadsByScore() throws ExecutionException, InterruptedException {
+        List<Threads> threadList = new ArrayList<>();
+        firestore = FirestoreClient.getFirestore();
+        CollectionReference threads = firestore.collection("Threads");
+        ApiFuture<QuerySnapshot> querySnapshot = threads.orderBy("score",Query.Direction.DESCENDING).get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            Threads threads1 = doc.toObject(Threads.class);
+            assert threads1 != null;
+            threadList.add(threads1);
+        }
+        return threadList;
+    }
     public List<Threads> getAllRecommendedThreadsNoBlurb() throws ExecutionException, InterruptedException {
         List<Threads> threadList = new ArrayList<>();
         CollectionReference threads = getRecommendedThreadCollection();

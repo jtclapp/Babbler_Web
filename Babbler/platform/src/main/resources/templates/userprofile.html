@@ -170,8 +170,10 @@
         <br>
         <br>
         <br>
-        <a style="font-size: 20px; font-family: Georgia,serif;
+        <div th:if= "${currentUSER.bio != 'default'}">
+            <a style="font-size: 20px; font-family: Georgia,serif;
                 color: white;" th:text="${currentUSER.bio}"></a>
+        </div>
     </div>
     <br>
     <br>
