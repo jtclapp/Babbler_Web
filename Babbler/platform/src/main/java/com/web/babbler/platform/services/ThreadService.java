@@ -5,6 +5,7 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.web.babbler.platform.models.Comments;
 import com.web.babbler.platform.models.Threads;
+import com.web.babbler.platform.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,8 +16,6 @@ import java.util.concurrent.ExecutionException;
 public class ThreadService
 {
     private Firestore firestore;
-    private String currentUserName;
-    private UserService userService;
 
     private CollectionReference getThreadCollection() {
         firestore = FirestoreClient.getFirestore();
@@ -67,11 +66,35 @@ public class ThreadService
                         .collection("Comments").document().set(comment);
         apiFuture.get();
     }
+    public void addCommentToRecommendThread(Comments comment,Threads thread) throws ExecutionException, InterruptedException {
+        ApiFuture<WriteResult> apiFuture =
+                FirestoreClient.getFirestore().collection("RecommendThreads").document(thread.getId()).collection("Comments").document().set(comment);
+        apiFuture.get();
+    }
+    public void updateThreadScore(String id,int score)
+    {
+        getThreadCollection().document(id).update("score",score);
+    }
+    public void updateRecommendThread(String id, int score)
+    {
+        getRecommendedThreadCollection().document(id).update("score",score);
+    }
     public List<Comments> getAllThreadComments(String id) throws ExecutionException, InterruptedException {
         List<Comments> commentsList = new ArrayList<>();
         firestore = FirestoreClient.getFirestore();
         CollectionReference comments = firestore.collection("Threads").document(id).collection("Comments");
-        ApiFuture<QuerySnapshot> querySnapshot = comments.get();
+        ApiFuture<QuerySnapshot> querySnapshot = comments.orderBy("timeStamp",Query.Direction.ASCENDING).get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            Comments comments1 = doc.toObject(Comments.class);
+            commentsList.add(comments1);
+        }
+        return commentsList;
+    }
+    public List<Comments> getAllRecommendedThreadComments(String id) throws ExecutionException, InterruptedException {
+        List<Comments> commentsList = new ArrayList<>();
+        firestore = FirestoreClient.getFirestore();
+        CollectionReference comments = firestore.collection("RecommendThreads").document(id).collection("Comments");
+        ApiFuture<QuerySnapshot> querySnapshot = comments.orderBy("timeStamp",Query.Direction.ASCENDING).get();
         for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
             Comments comments1 = doc.toObject(Comments.class);
             commentsList.add(comments1);
@@ -121,6 +144,36 @@ public class ThreadService
         }
         return threadList;
     }
+    public List<Threads> orderByScore(boolean trueCrime) throws ExecutionException, InterruptedException {
+        List<Threads> threadList = new ArrayList<>();
+        firestore = FirestoreClient.getFirestore();
+        CollectionReference threads = firestore.collection("Threads");
+        ApiFuture<QuerySnapshot> querySnapshot = threads.orderBy("score",Query.Direction.DESCENDING).get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            Threads threads1 = doc.toObject(Threads.class);
+            assert threads1 != null;
+            if (threads1.isTrueCrime() == trueCrime) {
+                if(threadList.size() < 3)
+                {
+                    threads1.setCaption(blurbCreator(threads1.getCaption()));
+                    threadList.add(threads1);
+                }
+            }
+        }
+        return threadList;
+    }
+    public List<Threads> orderThreadsByScore() throws ExecutionException, InterruptedException {
+        List<Threads> threadList = new ArrayList<>();
+        firestore = FirestoreClient.getFirestore();
+        CollectionReference threads = firestore.collection("Threads");
+        ApiFuture<QuerySnapshot> querySnapshot = threads.orderBy("score",Query.Direction.DESCENDING).get();
+        for(DocumentSnapshot doc:querySnapshot.get().getDocuments()) {
+            Threads threads1 = doc.toObject(Threads.class);
+            assert threads1 != null;
+            threadList.add(threads1);
+        }
+        return threadList;
+    }
     public List<Threads> getAllRecommendedThreadsNoBlurb() throws ExecutionException, InterruptedException {
         List<Threads> threadList = new ArrayList<>();
         CollectionReference threads = getRecommendedThreadCollection();
@@ -148,10 +201,9 @@ public class ThreadService
         List<Threads> threadList = getAllThreads();
         for(int i = 0; i <= threadList.size()-1; i++)
         {
-            if(threadList.get(i).getId().equals(id))
-            {
-                return threadList.get(i);
-            }
+                if (threadList.get(i).getId().equals(id)) {
+                    return threadList.get(i);
+                }
         }
         return new Threads();
     }

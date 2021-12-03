@@ -131,17 +131,14 @@
             cursor:pointer;
             margin:1em;
         }
-
         footer{
-
-        font-family: Arial, Helvetica, sans-serif;
-        position: absolute;
-        bottom: -1400px;
-        width: 100%;
-         height: 100px;
-         background-color: #191919;
-         color: white;
-
+            font-family: Arial, Helvetica, sans-serif;
+            position: absolute;
+            bottom: -100px;
+            width: 100%;
+            height: 100px;
+            background-color: #000c14;
+            color: white;
         }
     </style>
     <div class="topNav">
@@ -213,6 +210,10 @@
                 <textarea style="padding: 8px;border-color: black;border-radius: 15px;font-size:12pt;
                  width: 1115px; height: 500px; margin: auto; display:block;" id="txt_2" th:field="*{caption}" onchange='saveValue(this);' required></textarea><br/>
                 <br>
+                <input type="radio" id="CTA" name="article" value="false" th:field="${createdThread.trueCrime}">
+                <label style="font-size: 20px; color: white" for="CTA">Conspiracy Theory Article</label><br><br>
+                <input type="radio" id="TCA" name="article" value="true" th:field="${createdThread.trueCrime}">
+                <label style="font-size: 20px; color: white" for="TCA">True Crime Article</label><br>
                 <input style="margin:0px auto; display:block;" type="submit" value="Create Thread">
         </form>
     <script>
@@ -238,10 +239,11 @@
     </script>
 </div>
 </body>
-<footer>
-    <p>Contact us at: Babblerbabble@gmail.com
-    </p><a href="https://pdfhost.io/v/UtUWSJWcb_Terms_of_service_Babbler">A Link to Our Privacy Policy</a>
-    </br>
-    <a href="/about">Learn More about Babbler</a>
-</footer>
+<!--<footer>-->
+<!--    <br>-->
+<!--    <p>Contact us at: Babblerbabble@gmail.com</p>-->
+<!--    <a style="color: white" href="https://pdfhost.io/v/UtUWSJWcb_Terms_of_service_Babbler">Privacy Policy</a>-->
+<!--    </br>-->
+<!--    <a style="color: white" href="/about">Learn More</a>-->
+<!--</footer>-->
 </html>

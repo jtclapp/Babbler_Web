@@ -137,26 +137,34 @@
             display:block;
             border-radius: 5px;
         }
-        /*.carousel-indicators {*/
-        /*    text-align: left;*/
-        /*    float: left;*/
-        /*    left: 2%;*/
-        /*    right: inherit;*/
-        /*}*/
-footer{
-
-        font-family: Arial, Helvetica, sans-serif;
-        position: absolute;
-        bottom: -1400px;
-        width: 100%;
-         height: 100px;
-         background-color: #191919;
-         color: white;
-
-        }
-
     </style>
+    <script>
+        function search() {
+            // Declare variables
+            var input, filter, ul, li, a, i, txtValue, div, div1;
 
+            input = document.getElementById('threadInput');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("threadUL");
+            li = ul.getElementsByClassName("li-text");
+            div = ul.getElementsByClassName("carousel slide");
+            div1 = ul.getElementsByClassName("selectDiv");
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i <= li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                    div[i].style.display = "";
+                    div1[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                    div[i].style.display = "none";
+                    div1[i].style.display = "none";
+                }
+            }
+        }
+    </script>
     <div class="topNav">
         <a href="/">Home</a>
         <a href="/view" class="active">Threads</a>
@@ -182,7 +190,6 @@ footer{
     </div>
 </head>
 <body>
-
 <div class="layer2">
     <br>
     <br>
@@ -202,14 +209,10 @@ footer{
             <br>
             <br>
                 <!--/*@thymesVar id="Threads" type=""*/-->
-
-
                 <ul id="UL1" class="ul">
-
                     <div th:if="${currentUser}">
                         <li style="list-style-type: none" class="li-text"><a hidden style="font-size: 18px; font-family: Georgia,serif; border:0; border-radius: 6px;
                 color: white; background-color: transparent" th:text="${Threads.title}"></a></li>
-
                         <div class="selectDiv">
                         <button type="submit" style="font-size: 18px; font-family: Georgia,serif; border:0; border-radius: 6px;
                 color: white; background-color: transparent" th:text="${Threads.title}"></button>
@@ -218,15 +221,16 @@ footer{
                     <div th:unless="${currentUser}">
                         <li style="list-style-type: none" class="li-text"><a style="font-size: 18px; font-family: Georgia,serif; border:0; border-radius: 6px;
                 color: white; background-color: transparent" th:text="${Threads.title}" onclick="location.href='/start'"></a></li>
+                        <div class="selectDiv">
+                            <button type="submit" hidden style="font-size: 18px; font-family: Georgia,serif; border:0; border-radius: 6px;
+                color: white; background-color: transparent" th:text="${Threads.title}"></button>
+                        </div>
                     </div>
                 </ul>
             </div>
             <div th:if= "${Threads.image1 != null}" style="margin-left: 40px; float: left; clear: left">
-
             <div id="threadCarousel" class="carousel slide" data-ride="carousel">
-
                 <ol class="carousel-indicators">
-
                     <li th:if="${Threads.image1 != null}" data-target="#myCarousel" data-slide-to="0" class="active"></li>
                     <li th:if="${Threads.image2 != null}" data-target="#myCarousel" data-slide-to="1"></li>
                     <li th:if="${Threads.image3 != null}" data-target="#myCarousel" data-slide-to="2"></li>
@@ -234,10 +238,7 @@ footer{
                     <li th:if="${Threads.image5 != null}" data-target="#myCarousel" data-slide-to="4"></li>
                 </ol>
                 <!-- Wrapper for carousel items -->
-
-
                 <div class="carousel-inner">
-
                     <div class="carousel-item active">
                         <img th:src="${Threads.image1}" height="300" width="300"/>
                     </div>
@@ -253,12 +254,9 @@ footer{
                     <div class="carousel-item" th:if= "${Threads.image5 != null}">
                         <img th:src="${Threads.image5}" height="300" width="300"/>
                     </div>
-
-                </div>
-
                 </div>
             </div>
-
+            </div>
             <div th:if= "${Threads.image1 == null}" style="margin-left: 40px; float: left; clear: left">
                 <br>
                 <li style="list-style-type: none" class="carousel slide"><a style="font-size: 15px; font-family: 'Baskerville Old Face',serif; margin-right: 200px;
@@ -269,52 +267,10 @@ footer{
         </tr>
         </ul>
         <br>
-
 </div>
-
 </body>
-<footer>
-    <p>Contact us at: Babblerbabble@gmail.com
-    </p><a href="https://pdfhost.io/v/UtUWSJWcb_Terms_of_service_Babbler">A Link to Our Privacy Policy</a>
-    </br>
-    <a href="/about">Learn More about Babbler</a>
-</footer>
 <br>
 <br>
 <br>
 <br>
 </html>
-<script>
-        function search() {
-            // Declare variables
-            var input, filter, ul, li, a, i, txtValue, div, div1;
-
-            input = document.getElementById('threadInput');
-            filter = input.value.toUpperCase();
-            ul = document.getElementById("threadUL");
-            li = ul.getElementsByClassName("li-text");
-            div = ul.getElementsByClassName("carousel slide");
-            div1 = ul.getElementsByClassName("selectDiv");
-            // Loop through all list items, and hide those who don't match the search query
-            for (i = 0; i <= li.length; i++) {
-                a = li[i].getElementsByTagName("a")[0];
-                txtValue = a.textContent || a.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                    div[i].style.display = "";
-                    div1[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
-                    div[i].style.display = "none";
-                    div1[i].style.display = "none";
-                }
-            }
-            }
-
-
-
-
-
-
-
-    </script>

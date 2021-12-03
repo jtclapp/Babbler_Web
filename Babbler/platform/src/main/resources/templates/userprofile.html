@@ -1,119 +1,125 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<meta charset="UTF-8">
 <title>Babbler</title>
-
-
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    .layer2{
-    margin-left: auto;
-    margin-right: auto;
-    height: 100vh;
-    Width: 60%;
-    background:#333;
-    padding: 10px;
-}
-body {
-    margin: auto;
-    font-family: Arial, Helvetica, sans-serif;
-    height: 100%;
-    background: linear-gradient(326deg, #f8002f 0%, #191919 82%) no-repeat fixed;
-}
-.topNav {
-  overflow: visible;
-  background-color: #191919;
-  z-index: 1;
-  width: 100%;
-  position: absolute;
-}
-.topNav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: left;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-.topNav a:hover {
-  background-color: #a9a9a9;
-  color: black;
-}
-.topNav a.active {
-  background-color: #C20606;
-  color: white;
-}
-.topNav b {
-    float: right;
-    color: #f2f2f2;
-    text-align: right;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-.topNav b:hover {
-  background-color: #a9a9a9;
-  color: black;
-}
-.home {
-     display: block;
-    width: 8vh;
-    height: 2.75vh;
-}
-.dropdown {
-  float: right;
-  overflow: hidden;
-}
-.dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
-.navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: #a9a9a9;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-footer{
-
+    body {
+        margin: auto;
         font-family: Arial, Helvetica, sans-serif;
-        position: absolute;
-        bottom: -100px;
+        height: 100%;
+        background: linear-gradient(326deg, #f8002f 0%, #191919 82%) no-repeat fixed;
+    }
+    .layer2{
+        position:auto;
+        margin-left: auto;
+        margin-right: auto;
+        height: 200%;
+        Width: 60%;
+        padding: 10px;
+    }
+    .errorNav b {
+        float: center;
+        color: #f2f2f2;
+        text-align: right;
+        padding: 12px 14px;
+        text-decoration: none;
+        font-size: 13px;
+    }
+    .errorNav b:hover {
+        background-color: #a9a9a9;
+        color: black;
+    }
+    .topNav {
+        overflow: visible;
+        background-color: #191919;
+        z-index: 1;
         width: 100%;
-         height: 100px;
-         background-color: #191919;
-         color: white;
-
-        }
-
-
+        position: absolute;
+    }
+    .topNav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: left;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+    .topNav a:hover {
+        background-color: #a9a9a9;
+        color: black;
+    }
+    .topNav a.active {
+        background-color: #C20606;
+        color: white;
+    }
+    .topNav b {
+        float: right;
+        color: #f2f2f2;
+        text-align: right;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 15px;
+    }
+    .topNav b:hover {
+        background-color: #a9a9a9;
+        color: black;
+    }
+    .dropdown {
+        float: right;
+        overflow: initial;
+    }
+    .dropdown .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+    .navbar a:hover, .dropdown:hover .dropbtn {
+        background-color: #a9a9a9;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    .carousel{
+        margin-top: 5px;
+        height: auto;
+        float: left;
+        display: block;
+    }
+    .carousel-item{
+        width: auto;
+        /* Prevent carousel from being distorted if for some reason image doesn't load */
+    }
     </style>
-
     <div class="topNav">
         <a href="/">Home</a>
         <a href="/view">Threads</a>
@@ -139,12 +145,93 @@ footer{
     </div>
 </head>
 <body>
-
+<div class="layer2">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="float: right">
+        <button style="color: white; background: transparent; border: 0px" onclick="location.href='/editProfile'">Edit Profile</button>
+    </div>
+    <br>
+    <br>
+    <div align="center">
+        <div th:if= "${currentUSER.imageURL == 'default'}">
+            <img style="border-radius: 100%;overflow: hidden; display: inline" th:align="middle" th:src="@{/images/default_profile.jpg}" width="150" height="150"/>
+        </div>
+        <div th:if= "${currentUSER.imageURL != 'default'}">
+            <img style="border-radius: 100%;overflow: hidden;" th:align="middle" th:src="${currentUSER.getImageURL()}" width="150" height="150"/>
+        </div>
+        <br>
+        <a style="font-size: 38px; font-family: Georgia,serif;
+                color: white;" th:text="${currentUSER.username}"></a>
+        <br>
+        <br>
+        <br>
+        <div th:if= "${currentUSER.bio != 'default'}">
+            <a style="font-size: 20px; font-family: Georgia,serif;
+                color: white;" th:text="${currentUSER.bio}"></a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <ul id="threadUL">
+        <tr th:each="Threads: ${USERThreads}">
+            <td>
+                <form action="#" th:action="@{/view/} + ${Threads.id}" method="get">
+                    <div th:if= "${Threads.title != ''}" style="margin: auto; clear: left">
+                        <br>
+                        <br>
+                        <!--/*@thymesVar id="Threads" type=""*/-->
+                        <ul id="UL1" class="ul">
+                                <li style="list-style-type: none" class="li-text"><a hidden style="font-size: 18px; font-family: Georgia,serif; border:0; border-radius: 6px;
+                color: white; background-color: transparent" th:text="${Threads.title}"></a></li>
+                                <div class="selectDiv">
+                                    <button type="submit" style="font-size: 18px; font-family: Georgia,serif; border:0; border-radius: 6px;
+                color: white; background-color: transparent" th:text="${Threads.title}"></button>
+                                </div>
+                        </ul>
+                    </div>
+                    <div th:if= "${Threads.image1 != null}" style="margin-left: 40px; float: left; clear: left">
+                        <div id="threadCarousel" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li th:if="${Threads.image1 != null}" data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                <li th:if="${Threads.image2 != null}" data-target="#myCarousel" data-slide-to="1"></li>
+                                <li th:if="${Threads.image3 != null}" data-target="#myCarousel" data-slide-to="2"></li>
+                                <li th:if="${Threads.image4 != null}" data-target="#myCarousel" data-slide-to="3"></li>
+                                <li th:if="${Threads.image5 != null}" data-target="#myCarousel" data-slide-to="4"></li>
+                            </ol>
+                            <!-- Wrapper for carousel items -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img th:src="${Threads.image1}" height="300" width="300"/>
+                                </div>
+                                <div class="carousel-item" th:if= "${Threads.image2 != null}">
+                                    <img th:src="${Threads.image2}" height="300" width="300"/>
+                                </div>
+                                <div class="carousel-item" th:if= "${Threads.image3 != null}">
+                                    <img th:src="${Threads.image3}" height="300" width="300"/>
+                                </div>
+                                <div class="carousel-item" th:if= "${Threads.image4 != null}">
+                                    <img th:src="${Threads.image4}" height="300" width="300"/>
+                                </div>
+                                <div class="carousel-item" th:if= "${Threads.image5 != null}">
+                                    <img th:src="${Threads.image5}" height="300" width="300"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:if= "${Threads.image1 == null}" style="margin-left: 40px; float: left; clear: left">
+                        <br>
+                        <li style="list-style-type: none" class="carousel slide"><a style="font-size: 15px; font-family: 'Baskerville Old Face',serif; margin-right: 200px;
+                color: white; margin-left: 40px;" th:text="${Threads.caption}"></a></li>
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </ul>
+</div>
 </body>
-<footer>
-    <p>Contact us at: Babblerbabble@gmail.com
-    </p><a href="https://pdfhost.io/v/UtUWSJWcb_Terms_of_service_Babbler">A Link to Our Privacy Policy</a>
-    </br>
-    <a href="/about">Learn More about Babbler</a>
-</footer>
 </html>
