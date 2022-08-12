@@ -5,7 +5,6 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.web.babbler.platform.models.Comments;
 import com.web.babbler.platform.models.Threads;
-import com.web.babbler.platform.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
